@@ -24,6 +24,9 @@
 
 ##Team
 **Product Owner:** [Brittany Artimez](https://github.com/bartimez)
+
 **Scrum Master:** [Scott Charles Harris Horn](https://github.com/Scotthorn0)
+
 **Software Developer:** [Arvin Wallace](https://github.com/arvinwallace)
+
 **Software Developer:** [Tulasi Bandi](https://github.com/TulasiBandi)
