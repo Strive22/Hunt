@@ -16,10 +16,17 @@
     - Input application sent date & keep realtime elapsed tracker
     - Input Interview date & export to Google calendar
     - Option to track rejection
+  * Find other users in your area
+    - users can opt-in for location community
+    - results return name, tech skills, goals, contact,
+
+
 
 ###Stretch Goals
   * Google Docs Integration with "In Progress Jobs"
   * Map of Job location
+  * Meet up Integration
+  * Resume Review
 
 
 ##Team

@@ -53,10 +53,10 @@
 ### Cut a namespaced feature branch from master
 
 Your branch should follow this naming convention:
-  - bugFixDescription
-  - featureDescription
-  - docDescription
-  - refactorDescription
+  - bugFix/Description
+  - feature/Description
+  - doc/Description
+  - refactor/Description
 
 These commands will help you do this:
 
@@ -163,3 +163,14 @@ no problem getting your changes merged in.
 [squashed]: http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
 <!-- A link to your directory of tests on github -->
 [tests]: tests/
+
+##Summary
+
+
+When pulling branchings into master, given a version number MAJOR.MINOR.PATCH, increment the:
+
+**MAJOR** version when you make incompatible API changes.
+**MINOR** version when you add functionality in a backwards-compatible manner.
+**PATCH** version when you make backwards-compatible bug fixes.
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
