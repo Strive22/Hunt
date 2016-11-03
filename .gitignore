@@ -1,0 +1,14 @@
+# npm error log
+npm-debug.log
+
+# dependency directories
+node_modules
+
+# Apple
+.DS_Store
+
+# mLab credentials
+./config/mongo.js
+
+# dot env file for environment variable loading
+.env
