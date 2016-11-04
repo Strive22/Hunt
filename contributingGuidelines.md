@@ -53,10 +53,10 @@
 ### Cut a namespaced feature branch from master
 
 Your branch should follow this naming convention:
-  - bugFix/Description
-  - feature/Description
-  - doc/Description
-  - refactor/Description
+  - #[issue#]-bugFix/Description
+  - #[issue#]-feature/Description
+  - #[issue#]-doc/Description
+  - #[issue#]-refactor/Description
 
 These commands will help you do this:
 
