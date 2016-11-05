@@ -1,4 +1,4 @@
-//Entry point for React
+//Entry point
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -6,7 +6,7 @@ const ReactDOM = require('react-dom');
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 const App = require('./components/App');
-const UserHome = require('./components/UserHome');
+// const UserHome = require('./components/UserHome');
 
 // This is just a basic structure and some guesses at placeholders:
 
