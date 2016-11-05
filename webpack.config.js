@@ -1,12 +1,17 @@
-// this object is the common configuration for webpack whether it is
-// used in production or development
 const webpack = require('webpack');
+const path = require('path');
 
+// settings for all environments
 const commonConfig = {
-  entry: './app/index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './app/index.js'
+  ],
+
   output: {
-    filename: 'bundle.js',
-    path: './server/public/'
+    path: path.resolve(__dirname, 'server/public'),
+    filename: 'bundle.js'
   },
 
   resolve: {
@@ -18,31 +23,28 @@ const commonConfig = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['babel']
       }
     ]
   }
 }
 
-// this is the dev setup we want our webpack to have 
+// development settings 
 const devConfig = {
   devtool: 'source-maps',
-  devServer: {
-    inline: true,
-    historyApiFallback: true,
-    contentBase: './server/public/'
-  }
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
-// this would be production settings we would want webpack to use
+// production settings
 const prodConfig = {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,
       comments: false,
       compress: {
-        warnings: false,
-        // drop_console: true
+        warnings: false
       },
       mangle: {
         except: ['$'],
@@ -55,8 +57,6 @@ const prodConfig = {
 
 const config = {};
 
-// this is how we can see if webpack should be used in production mode
-// or if it should be used in a developer mode
 // if TARGET is 'build' -> production mode
 // if TARGET is 'dev' -> development mode
 const TARGET = process.env.npm_lifecycle_event;

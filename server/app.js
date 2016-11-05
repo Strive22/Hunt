@@ -6,17 +6,27 @@ const path = require('path');
 
 const db = require('./config/db');
 
+const routes = require('./routes/index');
+
 const app = express();
 
-app.get('/', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../server/public/app.html'));
-})
+app.use(express.static(path.join(__dirname, 'public')));
 
-//Catch-all route - MUST BE AT END - to handle unexpected use cases in React Router
-//Will serve the app.html file if another file is not found on the server
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '/server', '/public', 'app.html'))
-})
+app.use('/', routes);
+
+//404 handler
+app.use((req, res, next) => {
+  let err = new Error(`404: ${req.originalUrl} Not Found`);
+  err.status = 404;
+  next(err);
+});
+
+app.use((err, req, res, next) => {
+  res.status(500).send({
+    message: err.message,
+    error: err
+  });
+});
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {

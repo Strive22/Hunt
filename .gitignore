@@ -10,5 +10,5 @@ node_modules
 # dot env file for environment variable loading
 .env
 
-# ignore webpack bundle
+# webpack bundle
 bundle.js
