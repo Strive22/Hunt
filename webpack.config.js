@@ -1,11 +1,14 @@
 const webpack = require('webpack');
+const path = require('path');
 
 // settings for all environments
 const commonConfig = {
-  entry: './app/index.js',
+  entry: {
+    app: ['./app/index.js']
+  },
   output: {
-    filename: 'bundle.js',
-    path: './server/public/'
+    path: path.resolve(__dirname, '/server/public'),
+    filename: 'bundle.js'
   },
 
   resolve: {
@@ -25,12 +28,7 @@ const commonConfig = {
 
 // development settings 
 const devConfig = {
-  devtool: 'source-maps',
-  devServer: {
-    inline: true,
-    historyApiFallback: true,
-    contentBase: './server/public/'
-  }
+  devtool: 'source-maps'
 }
 
 // production settings
