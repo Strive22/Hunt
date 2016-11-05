@@ -3,11 +3,9 @@ const path = require('path');
 
 // settings for all environments
 const commonConfig = {
-  entry: {
-    app: ['./app/index.js']
-  },
+  entry: './app/index.js',
   output: {
-    path: path.resolve(__dirname, '/server/public'),
+    path: path.resolve(__dirname, 'server/public'),
     filename: 'bundle.js'
   },
 
