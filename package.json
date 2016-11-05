@@ -12,7 +12,7 @@
     "start:dev": "nodemon server/app.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server --inline --history-api-fallback --content-base server/public"
   },
   "repository": {
     "type": "git",
