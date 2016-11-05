@@ -1,7 +1,7 @@
 const React = require('react');
 import { browserHistory } from 'react-router';
 
-class App extends React.component {
+class App extends React.Component {
   render() {
     return (
       <div>
@@ -10,3 +10,5 @@ class App extends React.component {
     )
   } 
 }
+
+module.exports = App;
