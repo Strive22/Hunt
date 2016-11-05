@@ -3,7 +3,12 @@ const path = require('path');
 
 // settings for all environments
 const commonConfig = {
-  entry: './app/index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './app/index.js'
+  ],
+
   output: {
     path: path.resolve(__dirname, 'server/public'),
     filename: 'bundle.js'
@@ -18,7 +23,7 @@ const commonConfig = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['babel']
       }
     ]
   }
@@ -26,7 +31,10 @@ const commonConfig = {
 
 // development settings 
 const devConfig = {
-  devtool: 'source-maps'
+  devtool: 'source-maps',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 // production settings
