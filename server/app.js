@@ -7,6 +7,9 @@ const path = require('path');
 const db = require('./config/db');
 
 const routes = require('./routes/index');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
+const search = require('./routes/search');
 
 const app = express();
 
