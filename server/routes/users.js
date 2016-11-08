@@ -44,4 +44,14 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
 
 })
 
+//POST job content specific to a user's job
+router.get('/:userid/jobs/:jobid/content', (req, res) => {
+
+})
+
+//PUT update job content specific to a user's job
+router.get('/:userid/jobs/:jobid/content/:contentid', (req, res) => {
+
+})
+
 module.exports = router;
