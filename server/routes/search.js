@@ -3,9 +3,22 @@ const router = express.Router();
 const path = require('path');
 
 //search the API of the user's choice for jobs
-//THINK: should the three APIs be split into different endpoints?
-router.get('/:api/:searchterms', (req, res) => {
+
+//github
+router.get('/gh/:searchterms', (req, res) => {
 
 })
+
+//authentic jobs
+router.get('/aj/:searchterms', (req, res) => {
+
+})
+
+//indeed
+router.get('/in/:searchterms', (req, res) => {
+  
+})
+
+
 
 module.exports = router;

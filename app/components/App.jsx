@@ -5,7 +5,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      It works! and it's hot reloading!
+      It works! and it's hot reloading! so good
       </div>
     )
   } 

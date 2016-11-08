@@ -4,6 +4,11 @@ const path = require('path');
 
 //NOTE: POSTing a new user will likely be handled by the authorization path
 
+//GET all users
+router.get('/', (req, res) => {
+
+})
+
 //GET specific user
 router.get('/:userid', (req, res) => {
 
@@ -36,6 +41,16 @@ router.put('/:userid/jobs/:jobid', (req, res) => {
 
 //DELETE one of a user's jobs
 router.delete('/:userid/jobs/:jobid', (req, res) => {
+
+})
+
+//POST job content specific to a user's job
+router.get('/:userid/jobs/:jobid/content', (req, res) => {
+
+})
+
+//PUT update job content specific to a user's job
+router.get('/:userid/jobs/:jobid/content/:contentid', (req, res) => {
 
 })
 
