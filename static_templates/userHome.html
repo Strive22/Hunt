@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hunt</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <link href="./userHome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar transparent navbar-default navbar-static-top">
+      <div class="container">
+        <p class="navbar-text">Hunt</p>
+      </div>
+    </div>
+
+    <div class="jumbotron text-center">
+      <div class="container-fluid text-center">
+        <h1>Brit, you've got this.<br/>
+        <small>What would you like to do?</small>
+        </h1>
+        <p><a class="btn btn-sm btn-primary" href="#" role="button">Complete Your Profile</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-lg-4 text-center">
+            <div class="selectbox">
+              <h2>Search<br/>for a Job</h2>
+              <p><a class="btn btn-default go" data-toggle="modal" href="#basicModal">Go</a></p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="selectbox">          
+              <h2>View Your<br/>Dashboard</h2>
+              <p><a class="btn btn-default go" data-toggle="modal" href="#basicModal">Go</a></p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="selectbox">          
+              <h2>Enter<br/>a Job</h2>
+              <p><a class="btn btn-default go" data-toggle="modal" href="#basicModal">Go</a></p>
+            </div>
+          </div>
+
+          <div id="basicModal" class="modal fade" tabindex="-1">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" data-dismiss="modal">×</button>
+                <h3>Describe the job.</h3>
+              </div>
+              <div class="modal-body">
+                <form id="addJob" method="post" role="form">
+                  <div class="form-group">
+                    <label for="jobTitle">Job Title</label>
+                      <input type="jobTitle" class="form-control" id="jobTitle" placeholder="Job Title">
+                  </div>
+                  <div class="form-group">
+                    <label for="jobCompany">Company</label>
+                      <input type="jobCompany" class="form-control" id="jobCompany" placeholder="Company Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="jobLocation">Location</label>
+                      <input type="jobLocation" class="form-control" id="jobLocation" placeholder="Job Location">
+                  </div>  
+                  <div class="form-group">
+                    <label for="jobLink">Link to Job Posting</label>
+                      <input type="jobLink" class="form-control" id="jobLink" placeholder="https://somejob.com">
+                  </div>
+                  <div class="form-group">
+                    <label for="jobDesc">Description</label>
+                      <textarea class="form-control" id="jobDesc" placeholder="Describe the job"></textarea>
+                  </div>                                                               
+                </form>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary">Submit</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /row-->
+      </div><!-- /wrapper -->
+
+      <div class="row hunterbtn text-center">
+        <a class="btn btn-primary" href="#" role="button">Connect with Nearby Hunters</a>
+      </div>
+      <br/>
+      <footer>
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2016 Strive</p>
+      </footer>
+    </div>
+
+
+  </body>
+</html>
