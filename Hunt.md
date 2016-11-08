@@ -27,6 +27,8 @@
   * Map of Job location
   * Meet up Integration
   * Resume Review
+  * Changing motivational message upon login
+  * "Show me more" option in Dashboard, rather than all jobs shown
 
 
 ##Team
@@ -37,3 +39,64 @@
 **Software Developer:** [Arvin Wallace](https://github.com/arvinwallace)
 
 **Software Developer:** [Tulasi Bandi](https://github.com/TulasiBandi)
+
+##Routes
+
+### Users
+
+Route | Type | Action
+ :---: | :---: | ---
+
+/api/users/ | GET: | all users
+/api/users/ | POST: | create user
+
+/api/users/:userid | GET: | specific user
+/api/users/:userid | PUT: | update user
+
+/api/users/:userid/jobs | GET: | all user's jobs
+/api/users/:userid/jobs | POST: | post specific job
+
+/api/users/:userid/jobs/:jobid | GET: | get specific job
+/api/users/:userid/jobs/:jobid | DELETE: | delete specific job
+/api/users/:userid/jobs/:jobid | PUT: | update specific job
+
+### Jobs
+
+Route | Type | Action
+:---: | :---: | ---
+
+/api/search/gh/:searchterms/ | GET: | makes API call to GitHub Jobs
+/api/search/aj/:searchterms/ | GET: | makes API call to Authentic Jobs
+/api/search/in/:searchterms/ | GET: | makes API call to Indeed
+
+
+
+##Components
+
+(R) => React Router
+
+(B) => React Bootstrap
+
+* APP (R)
+  * HOME (R)
+    * Jumbotron (B)
+    * HOMELAYOUT (R)
+      * NAV (R)
+        * ViewDash
+        * SearchJobs
+        * EnterJob
+      * JOBLIST (R)
+        * JobListItem
+          * Modal (B)
+            * Job
+              * JobContent
+                * Notes
+                * Actions
+                * Details
+  * DASHBOARD (R)
+    * DashLayout
+      * JobList (and all assoc'd subcomponents)
+  * PROFILE (R)
+    * Materials
+  * CONNECT (R)
+    * Hunter
