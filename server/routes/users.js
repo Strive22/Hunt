@@ -4,6 +4,11 @@ const path = require('path');
 
 //NOTE: POSTing a new user will likely be handled by the authorization path
 
+//GET all users
+router.get('/', (req, res) => {
+  
+})
+
 //GET specific user
 router.get('/:userid', (req, res) => {
 
