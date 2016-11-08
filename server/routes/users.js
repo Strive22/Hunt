@@ -6,7 +6,7 @@ const path = require('path');
 
 //GET all users
 router.get('/', (req, res) => {
-  
+
 })
 
 //GET specific user

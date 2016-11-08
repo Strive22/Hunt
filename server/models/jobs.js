@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const jobsSchema = new Schema({
   _id: String,
+  apiOrUser: String,
+  apiSpecificId: String,
   title: String,
   company: String,
   location: String,
