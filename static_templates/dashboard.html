@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hunt</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../server/public/css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="jumbotron hunt">
+        <h2>Hunt</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-10">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#">Interested</a></li>
+            <li><a href="#">In Progress</a></li>
+            <li><a href="#">Completed</a></li>
+          </ul>
+
+          <div class="list">
+            <ul class="list-group">
+              <li class="list-group-item">
+
+                  <div class="row">
+
+                    <div class="col-xs-6">
+                      <h3 class="job-name">Job Company Name</h3>
+                    </div>
+
+                    <div class="col-xs-6">
+                      <span class="glyphicon glyphicon-remove"></span>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-8">
+                      <p class="job-details">some list specific notes depends on the list </p>
+                    </div>
+
+                    <div class="col-xs-2">
+                      <button type="button" class="btn btn-info move" data-toggle="modal" data-target="#myModal">Modal</button>
+                      <!-- Modal -->
+                      <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Hunt</h4>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <h3>Job Title</h3>
+                                    <h4>Company Name</h4>
+                                    <p>Location</p>
+                                    <button type="button" class="btn btn-default move">Go to listing</button>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <p class="job-description">Ut nostrud dolor aute deserunt deserunt in mollit excepteur velit est aliqua reprehenderit nostrud est non cillum. Quis tempor voluptate duis velit laboris ea non voluptate dolor laboris consequat elit veniam voluptate. Et et exercitation ea culpa esse commodo anim quis proident Lorem minim. Consequat commodo incididunt deserunt dolore enim sint nostrud excepteur in deserunt elit. Ut nostrud dolor aute deserunt deserunt in mollit excepteur velit est aliqua reprehenderit nostrud est non cillum. Quis tempor voluptate duis velit laboris ea non voluptate dolor laboris consequat elit veniam voluptate. Et et exercitation ea culpa esse commodo anim quis proident Lorem minim. Consequat commodo incididunt deserunt dolore enim sint nostrud excepteur in deserunt elit.</p>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-xs-6">
+
+                                    <div class="row">
+                                      <div class="col-xs-12">
+                                        <h3>Action component</h3>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Do Something</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Do Another thing!</button>
+
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-xs-12">
+                                        <h3>Details component</h3>
+                                        <p>This will be different for different steps along the way. At somepoint it will be a form for PDF or google doc linking of resumes!</p>
+                                        <form>
+                                          <div class="form-group">
+                                            <label for="email">Resume:</label>
+                                            <input type="email" class="form-control" id="email">
+                                          </div>
+                                          <div class="checkbox">
+                                            <label><input type="checkbox">Google Doc link?</label>
+                                          </div>
+                                          <button type="submit" class="btn btn-default">Submit</button>
+                                        </form>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="form-group">
+                                      <label for="comment">Notes:</label>
+                                      <textarea class="form-control" rows="5" id="job-notes" placeholder="Jot down some stuff to remember here!"></textarea>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Back to it!</button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-2">
+                      <button type="button" class="btn btn-default move">Work on it!</button>
+                    </div>
+
+                  </div>
+
+              </li>
+              <li class="list-group-item">
+
+                <div class="row">
+
+                  <div class="col-xs-6">
+                    <h3 class="job-name">Job Company Name</h3>
+                  </div>
+
+                  <div class="col-xs-6">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-xs-10">
+                    <p class="job-details">some list specific notes depends on the list </p>
+                  </div>
+
+                  <div class="col-xs-2">
+                    <button type="button" class="btn btn-default move">Work on it!</button>
+                  </div>
+
+                </div>
+
+
+              </li>
+              <li class="list-group-item">
+
+                <div class="row">
+
+                  <div class="col-xs-6">
+                    <h3 class="job-name">Job Company Name</h3>
+                  </div>
+
+                  <div class="col-xs-6">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-xs-10">
+                    <p class="job-details">some list specific notes depends on the list </p>
+                  </div>
+
+                  <div class="col-xs-2">
+                    <button type="button" class="btn btn-default move">Work on it!</button>
+                  </div>
+
+                </div>
+
+
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-1">
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+</html>

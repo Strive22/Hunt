@@ -1,0 +1,24 @@
+/*styles.css*/
+
+.list {
+  border: 1px solid #d4d4d4;
+  border-top: 0px;
+  padding: 15px;
+}
+
+.list-group {
+  margin-bottom: 0px;
+}
+
+.list-group-item {
+  padding: 5px 15px;
+}
+
+.glyphicon {
+  font-size: .75em;
+  float: right;
+}
+
+.job-name {
+  margin: 0px;
+}
