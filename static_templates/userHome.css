@@ -1,0 +1,58 @@
+/*This mockup IS NOT COMPLETELY STYLED.  Basics only!
+*/
+
+body {
+  background-color: white;
+}
+
+.jumbotron {
+  height: 300px;
+  text-align: center;
+  vertical-align: center;
+  padding-bottom: 30px;
+}
+
+.jumbotron h1 {
+  text-align: center;
+}
+
+.jumbotron .jumbo-content {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.navbar {
+  background-color: #eee;
+  background: transparent;
+  border-color: transparent;
+  height: 20px;
+}
+
+.navbar-text {
+  text-align: center;
+  float: none;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px #e4e4e4;
+}
+
+.selectbox {
+  border: solid 1px #d7d7d7;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 1px 1px 0px #d7d7d7;
+}
+
+.selectbox h2 {
+  text-align: center;
+  font-size: 35px;
+}
+
+.hunterbtn {
+  padding: 30px;
+}
+
+
+
+
+
