@@ -6,18 +6,19 @@ const path = require('path');
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
-
-})
+  console.log('this should hit and log somewhere');
+  res.status(404).send(req);
+});
 
 //authentic jobs
 router.get('/aj/:searchterms', (req, res) => {
 
-})
+});
 
 //indeed
 router.get('/in/:searchterms', (req, res) => {
-  
-})
+
+});
 
 
 
