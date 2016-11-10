@@ -5,8 +5,8 @@ const ReactDOM = require('react-dom');
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer.js';
-import changeTestResult from './actions/testActions.js';
+import rootReducer from './reducers/rootReducer';
+import changeTestResult from './actions/testActions';
 
 const App = require('./components/App');
 // const UserHome = require('./components/UserHome');

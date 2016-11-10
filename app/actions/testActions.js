@@ -1,5 +1,8 @@
-export const FIRST_TEST = 'FIRST_TEST'
+const FIRST_TEST = 'FIRST_TEST'
 
-export function changeTestResult(text) {
+function changeTestResult(text) {
+  console.log('changeTestResult catching')
   return { type: FIRST_TEST, text }
 }
+
+export default changeTestResult;
