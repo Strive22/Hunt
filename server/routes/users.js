@@ -40,7 +40,6 @@ router.put('/:userid', (req, res) => {
   for (key in req.body) {
     toUpdate[key] = req.body[key];
   }
-  console.log('toUpdate:', toUpdate);
 
   Users.findOneAndUpdate({ _id: req.params.userid }, 
   toUpdate,
