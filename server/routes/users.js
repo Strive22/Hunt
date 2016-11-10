@@ -23,7 +23,18 @@ router.put('/:userid', (req, res) => {
 
 //GET all user's jobs
 router.get('/:userid/jobs', (req, res) => {
-
+  Users.findOne({ _id: req.params.userid })
+  //may be able to take this populate out later if the populate occurs elsewhere
+  //TODO: ADD jobContent to populate once the schema is initialized
+  .populate('interested inProgress complete')
+  .exec((err, result) => {
+    console.log(`Error: ${err}`)
+    console.log('result:', result)
+  })
+  .then(found => {
+    console.log('found:', found)
+    res.send(found);
+  })
 })
 
 //POST add a job for a user
@@ -34,6 +45,7 @@ router.post('/:userid/jobs', (req, res) => {
   let q = req.query.q;
   
   //first, put the job in the jobs collection
+  //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
   let job = new Jobs({
     api: req.body.api,
     apiSpecificId: req.body.apiSpecificId,
@@ -49,9 +61,9 @@ router.post('/:userid/jobs', (req, res) => {
     if (err) {
       console.log('err saving job:', err);
     } else {  
+      //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
       let toPush = {};
       toPush[q] = jobId;
-      console.log('toPush:', toPush)
       Users.findOneAndUpdate(
         {_id: id },
         { $push: toPush },
