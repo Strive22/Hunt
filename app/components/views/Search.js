@@ -1,18 +1,15 @@
 import React from 'react';
 
-export default React.createClass({
+export default (props) => {
 
-  getQuery: function() {
-    return this.refs.search.value;
-  },
-
-  render: function() {
-    return (
+  return (
+    <div className="selectbox">
+      <h2>View Your<br/>Dashboard</h2>
       <form onSubmit={this.props.search} className="search">
         <input type="text" ref="search" placeholder="Search" />
-        <button>Search</button>
+        <Button>Go!</Button>
       </form>
-    );
-  }
+    </div>
+  );
 
-});
+};

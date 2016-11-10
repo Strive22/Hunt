@@ -13,7 +13,6 @@ import router from './router.js'
 
 let store = createStore(rootReducer);
 
-console.log('store.getState result:', store.getState());
 
 store.dispatch(changeTestResult('the test passed!'));
 
