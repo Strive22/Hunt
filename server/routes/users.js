@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const Users = require('../models/users');
 const Jobs = require('../models/jobs');
+const JobContent = require('../models/jobContent');
 
 //NOTE: POSTing a new user will likely be handled by the authorization path
 
@@ -73,11 +74,11 @@ router.get('/:userid/jobs', (req, res) => {
 //POST add a job for a user
 router.post('/:userid/jobs', (req, res) => {
   //we'll utilize this route when a user either adds via the form or clicks on the 'add to interested' button upon searching
-  let id = req.params.userid;
+  let userId = req.params.userid;
   //importantly, there needs to be a query string given to this endpoint in order to ascertain which of the user's queues this is going into (so, the value MUST be 'interested', 'inProgress', or 'complete')
   let q = req.query.q;
   
-  //first, put the job in the jobs collection
+  //second, put the job in the jobs collection
   //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
   let job = new Jobs({
     api: req.body.api,
@@ -94,17 +95,25 @@ router.post('/:userid/jobs', (req, res) => {
     if (err) {
       console.log('err saving job:', err);
     } else {  
-      //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
-      let toPush = {};
-      toPush[q] = jobId;
-      Users.findOneAndUpdate(
-        {_id: id },
-        { $push: toPush },
-        { new: true }
-      )
-      //return the updated user
-      .then(user => {
-        res.json(user);
+      //create the job content doc that'll be associated with this user and job
+      let jobContent = new JobContent({
+        user_id: userId,
+        job_id: jobId
+      })
+      jobContent.save((err, content) => {
+        jobContentId = content._id;
+        //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
+        let toPush = {};
+        toPush[q] = jobId;
+        Users.findOneAndUpdate(
+          { _id: userId },
+          { $push: toPush, $push: { jobContent: jobContentId } },
+          { new: true }
+        )
+        //return the updated user
+        .then(user => {
+          res.json(user);
+        })
       })
     }
   })
@@ -112,7 +121,17 @@ router.post('/:userid/jobs', (req, res) => {
 
 //GET one of a user's jobs
 router.get('/:userid/jobs/:jobid', (req, res) => {
+  Users.findOne({ _id: req.params.userid })
+  //may be able to take this populate out later if the populate occurs elsewhere
+  //TODO: ADD jobContent to populate once the schema is initialized
+  .populate('interested inProgress complete')
+  .exec((err, result) => {
+    if (err) console.log(`Error: ${err}`)
+  })
+  .then(found => {
 
+    res.send(found);
+  })
 })
 
 //PUT update one of a user's jobs
