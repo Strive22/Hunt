@@ -8,7 +8,15 @@ const Jobs = require('../models/jobs');
 
 //GET all users
 router.get('/', (req, res) => {
-
+  Users.find({}, (err, users) => {
+    if (err) {
+      console.log(`Find all users error: ${err}`);
+      res.send(err);
+    } else {
+      console.log(`Find all users: ${users}`);
+      res.send(users);
+    }
+  })
 })
 
 //GET specific user
