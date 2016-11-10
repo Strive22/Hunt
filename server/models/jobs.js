@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const jobsSchema = new Schema({
-  _id: String,
-  apiOrUser: String,
+  api: String,
   apiSpecificId: String,
   title: String,
   company: String,

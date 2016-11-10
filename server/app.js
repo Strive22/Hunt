@@ -4,9 +4,10 @@ require('dotenv').config({silent: true});
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const db = require('./config/db');
-const User = require('./models/users')
+const User = require('./models/users');
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
@@ -17,6 +18,8 @@ const fallback = require('./routes/fallback');
 const app = express();
 
 app.use(morgan('dev'));
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -61,6 +64,5 @@ const server = app.listen(port, () => {
     }
   })
 });
-
 
 module.exports = app;

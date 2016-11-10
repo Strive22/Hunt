@@ -21,18 +21,18 @@ console.log('store.getState result:', store.getState());
 
 store.dispatch(changeTestResult('the test passed!'));
 
+console.log('store.getState new result:', store.getState());
+
+
 // This is just a basic structure:
 
 ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      // <Route path='/' component={App} />
-      <Route path='/' component={Hunt}>
-      <IndexRoute component ={Land}/>
+      <Route path='/' component={App} />
       <Route path ='Land' component ={Land}/>
       <Route path ='Dash' component ={Dash}/>
       <Route path ='search' component ={search}/>
-      </Route>
     </Router>
   </Provider>
 ), document.getElementById('app'));

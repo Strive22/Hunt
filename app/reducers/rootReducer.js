@@ -8,9 +8,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  console.log('action:', action);
   if (action.type === "FIRST_TEST") {
-    console.log('catching the action')
     return Object.assign({}, state, {
       test: action.text
     })
