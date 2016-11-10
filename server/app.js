@@ -10,6 +10,7 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const search = require('./routes/search');
+const fallback = require('./routes/fallback');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
+app.use('/fallback', fallback);
 
 //404 handler
 app.use((req, res, next) => {
