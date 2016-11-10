@@ -1,11 +1,12 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 
-export default (props) => {
+export default () => {
 
   return (
     <div className="selectbox">
-      <h2>View Your<br/>Dashboard</h2>
-      <form onSubmit={this.props.search} className="search">
+      <h2>Search<br/>for Jobs</h2>
+      <form className="search">
         <input type="text" ref="search" placeholder="Search" />
         <Button>Go!</Button>
       </form>

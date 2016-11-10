@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory,Link} from 'react-router';
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
 import HomeNavContainer from '../containers/HomeNavContainer';
-import HomeNav from '../layouts/Home';
+import HomeNav from '../layouts/HomeNav';
 
 
 export default function(props) {
@@ -29,7 +29,7 @@ export default function(props) {
 
       </div>
       <div>
-        {/* <HomeNav /> */}
+        <HomeNav />
       </div>
     </div>
   )

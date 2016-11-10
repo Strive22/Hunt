@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-export default (props) => {
+export default () => {
 
   return (
     <div className="selectbox">

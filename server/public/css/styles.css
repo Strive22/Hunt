@@ -13,6 +13,7 @@ h1 small {
 }
 
 .selectbox {
+  height: 250px;
   border: solid 1px #d7d7d7;
   border-radius: 5px;
   padding: 5px;

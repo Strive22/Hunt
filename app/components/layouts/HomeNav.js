@@ -4,31 +4,28 @@ import ToDash from '../views/ToDash';
 import Search from '../views/Search';
 import EnterJob from '../views/EnterJob';
 
-const HomeNav = (props) => {
+export default () => {
 
   return (
-    // <Grid>
-    <div>
-      sometext
-      {/* <Row> */}
+    <Grid>
 
-        {/* <Col md={4}> */}
-          {/* <Search /> */}
-        {/* </Col> */}
+      <Row>
 
-        {/* <Col md={4}> */}
-          {/* <ToDash /> */}
-        {/* </Col> */}
+        <Col md={4}>
+          <Search />
+        </Col>
 
-        {/* <Col md={4}> */}
-          {/* <EnterJob /> */}
-        {/* </Col> */}
+        <Col md={4}>
+          <ToDash />
+        </Col>
 
-      {/* </Row> */}
+        <Col md={4}>
+          <EnterJob />
+        </Col>
 
-    </div>
-    // </Grid>
+      </Row>
+
+    </Grid>
 
   )
 }
-module.exports = HomeNav;
