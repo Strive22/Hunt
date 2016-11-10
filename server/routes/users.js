@@ -35,13 +35,13 @@ router.post('/:userid/jobs', (req, res) => {
   
   //first, put the job in the jobs collection
   let job = new Jobs({
-    api = req.body.api || '',
-    apiSpecificId = req.body.apiSpecificId,
-    title = req.body.title,
-    company = req.body.company,
-    location = req.body.location,
-    link = req.body.link,
-    description = req.body.description
+    api: req.body.api,
+    apiSpecificId: req.body.apiSpecificId,
+    title: req.body.title,
+    company: req.body.company,
+    location: req.body.location,
+    link: req.body.link,
+    description: req.body.description
   })
   job.save((err, job) => {
     if (err) console.log('err saving job:', err);
@@ -52,14 +52,14 @@ router.post('/:userid/jobs', (req, res) => {
     console.log('jobId:', jobId);
     User.findOneAndUpdate(
       {_id: id},
-      { $push: { `${q}`: jobId } },
+      { $push: { q: jobId } },
       { new: true }
     )
     //return the updated user
     .then(user => {
       res.json(user);
     })
-  }
+  })
 })
 
 //GET one of a user's jobs
