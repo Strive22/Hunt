@@ -44,7 +44,7 @@ router.put('/:userid', (req, res) => {
 
   Users.findOneAndUpdate({ _id: req.params.userid }, 
   toUpdate,
-  { upsert: true },
+  { new: true },
   (err, user) => {
     if (err) console.log(`Error in user PUT: ${err}`);
     res.send(user);
