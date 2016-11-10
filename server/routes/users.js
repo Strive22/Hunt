@@ -34,8 +34,13 @@ router.get('/:userid', (req, res) => {
 })
 
 //PUT update specific user
+//This route is for updating information on the user's profile and will provide params in the body specifying the elements to be updated
 router.put('/:userid', (req, res) => {
-
+  let changes = req.body;
+  for (key in changes) {
+    
+  }
+  Users.findOneAndUpdate({ _id: req.params.userid })
 })
 
 //GET all user's jobs
