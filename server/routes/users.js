@@ -28,12 +28,16 @@ router.get('/:userid/jobs', (req, res) => {
   //TODO: ADD jobContent to populate once the schema is initialized
   .populate('interested inProgress complete')
   .exec((err, result) => {
-    console.log(`Error: ${err}`)
-    console.log('result:', result)
+    if (err) console.log(`Error: ${err}`)
   })
   .then(found => {
-    console.log('found:', found)
-    res.send(found);
+    let allJobs = {
+      interested: found.interested,
+      inProgress: found.inProgress,
+      complete: found.complete,
+      jobContent: found.jobContent
+    };
+    res.send(allJobs);
   })
 })
 
