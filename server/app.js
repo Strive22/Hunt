@@ -6,6 +6,7 @@ const path = require('path');
 const morgan = require('morgan');
 
 const db = require('./config/db');
+const User = require('./models/users')
 
 const routes = require('./routes/index');
 const users = require('./routes/users');
@@ -43,6 +44,27 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+  //when the server starts let's insert a dummy user
+  User.findOne({name: 'Brittany'}, (err, user) => {
+    console.log('user', user)
+    console.log('err', err)
+    if (!user) {
+      console.log('gets here')
+      var brit = new User({
+        name: 'Brittany',
+        email: 'myEmail@gmail.com',
+        location: 'Austin, Texas',
+        tech: 'Javascript',
+        otherHunters: true
+      })
+      console.log('brit:', brit)
+      brit.save((error, data) => {
+        if (error) console.log('err saving:', error);
+        else console.log('saved:', data)
+      })
+    }
+  })
 });
+
 
 module.exports = app;

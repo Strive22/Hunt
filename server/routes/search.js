@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const request = require('request');
-// const xml = require('xml2js').parseString;
 
 // const model = require('./models/search_models.js')
 
