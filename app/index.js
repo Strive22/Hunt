@@ -26,7 +26,7 @@ store.dispatch(changeTestResult('the test passed!'));
 ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      //<Route path='/' component={App} />
+      // <Route path='/' component={App} />
       <Route path='/' component={Hunt}>
       <IndexRoute component ={Land}/>
       <Route path ='Land' component ={Land}/>
