@@ -23,7 +23,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
-app.use('/fallback', fallback);
+app.use('*', fallback);
 
 //404 handler
 app.use((req, res, next) => {

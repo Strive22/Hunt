@@ -51,42 +51,24 @@ describe('The Server to end all Servers!', function() {
 
     it_('Should have a route for GitHub Jobs API', function * () {
 
-      yield request(app)
-        .get('/search/gh/developer')
-        .expect(200)
-        .expect(function(response) {
-          // console.log(response);
-        });
 
     });
 
     it_('Should have a route for Indeed API', function * () {
 
-      yield request(app)
-        .get('/search/in/developer')
-        .expect(200)
-        .expect(function(response) {
-          var content = response.header['content-type'];
-          var doctype = response.text.slice(0, 15);
-
-          expect(content).to.be.a('string');
-          expect(content).to.equal('text/html; charset=UTF-8');
-          expect(doctype).to.equal('<!DOCTYPE html>');
-        });
 
     });
 
     it_('Should have a route for Authentic Jobs API', function * () {
 
-      yield request(app)
-        .get('/search/aj/developer')
-        .expect(200)
-        .expect(function(response) {
-          // console.log(response);
-        });
+
 
     });
 
+  });
+
+  describe('users.js', function() {
+    
   });
 
 });

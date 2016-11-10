@@ -6,8 +6,7 @@ const path = require('path');
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
-  console.log('this should hit and log somewhere');
-  res.status(404).send(req);
+  
 });
 
 //authentic jobs
