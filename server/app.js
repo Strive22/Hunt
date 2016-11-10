@@ -46,10 +46,7 @@ const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
   //when the server starts let's insert a dummy user
   User.findOne({name: 'Brittany'}, (err, user) => {
-    console.log('user', user)
-    console.log('err', err)
     if (!user) {
-      console.log('gets here')
       var brit = new User({
         name: 'Brittany',
         email: 'myEmail@gmail.com',
@@ -57,7 +54,6 @@ const server = app.listen(port, () => {
         tech: 'Javascript',
         otherHunters: true
       })
-      console.log('brit:', brit)
       brit.save((error, data) => {
         if (error) console.log('err saving:', error);
         else console.log('saved:', data)
