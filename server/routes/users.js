@@ -13,7 +13,16 @@ router.get('/', (req, res) => {
 
 //GET specific user
 router.get('/:userid', (req, res) => {
-
+  Users.findOne({ _id: req.params.userid })
+  //may be able to take this populate out later if the populate occurs elsewhere
+  //TODO: ADD jobContent to populate once the schema is initialized
+  .populate('interested inProgress complete')
+  .exec((err, result) => {
+    if (err) console.log(`Error: ${err}`)
+  })
+  .then(found => {
+    res.send(found);
+  })
 })
 
 //PUT update specific user
