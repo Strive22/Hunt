@@ -14,7 +14,7 @@ import router from './router.js'
 let store = createStore(rootReducer);
 
 
-store.dispatch(changeTestResult('the test passed!'));
+// store.dispatch(changeTestResult('the test passed!'));
 
 // This is just a basic structure:
 

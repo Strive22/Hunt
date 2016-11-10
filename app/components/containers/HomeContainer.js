@@ -4,10 +4,10 @@ import Home from '../layouts/Home'
 
 class HomeContainer extends React.Component {
 
-  componentDidMount(){
-    //update the store with the user's information.
-    // and pass that into home somehow....
-  }
+  // componentDidMount(){
+  //   //update the store with the user's information.
+  //   // and pass that into home somehow....
+  // }
 
   render() {
     return (
