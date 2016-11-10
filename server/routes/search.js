@@ -7,14 +7,14 @@ const request = require('request');
 // const model = require('./models/search_models.js')
 
 //search the API of the user's choice for jobs
-//PLEASE NOTE ALL LOCATIONS ARE HARDCODED TO AUSTIN FOR THE TIME BEING.
+//PLEASE NOTE ALL LOCATIONS OTHER THAN GITHUB ARE HARDCODED TO AUSTIN FOR THE TIME BEING. AUSTIN CURRENTLY HAS NO GITHUB LISTINGS AT ALL SO IT IS HARDCODED TO SAN FRANCISCO.
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
   let searchTerms = req.params.searchterms;
-  let location;
+  // let location;
   let options = {
-    url: ``
+    url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=sanfrancisco`
   }
 
   function getGithubJobs(err, response, body) {
@@ -52,7 +52,7 @@ router.get('/aj/:searchterms', (req, res) => {
 //indeed
 router.get('/in/:searchterms', (req, res) => {
   let searchTerms = req.params.searchterms;
-  let location;
+  // let location;
   let options = {
     url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${req.params.search}&l=austin%2C+tx&v=2`
   }
