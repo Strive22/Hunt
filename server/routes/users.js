@@ -44,21 +44,24 @@ router.post('/:userid/jobs', (req, res) => {
     description: req.body.description
   })
   job.save((err, job) => {
-    if (err) console.log('err saving job:', err);
-    else return job._id;
-  })
-  //next we've gotta update the user with the job in the correct queue
-  .next(jobId => {
-    console.log('jobId:', jobId);
-    User.findOneAndUpdate(
-      {_id: id},
-      { $push: { q: jobId } },
-      { new: true }
-    )
-    //return the updated user
-    .then(user => {
-      res.json(user);
-    })
+    //next we've gotta update the user with the job in the correct queue
+    let jobId = job._id;
+    if (err) {
+      console.log('err saving job:', err);
+    } else {  
+      let toPush = {};
+      toPush[q] = jobId;
+      console.log('toPush:', toPush)
+      Users.findOneAndUpdate(
+        {_id: id },
+        { $push: toPush },
+        { new: true }
+      )
+      //return the updated user
+      .then(user => {
+        res.json(user);
+      })
+    }
   })
 })
 
