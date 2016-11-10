@@ -3,6 +3,7 @@ require('dotenv').config({silent: true});
 
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
 
 const db = require('./config/db');
 
@@ -14,13 +15,15 @@ const fallback = require('./routes/fallback');
 
 const app = express();
 
+app.use(morgan('dev'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
-app.use('/fallback', fallback);
+app.use('*', fallback);
 
 //404 handler
 app.use((req, res, next) => {
@@ -35,6 +38,7 @@ app.use((err, req, res, next) => {
     error: err
   });
 });
+
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
