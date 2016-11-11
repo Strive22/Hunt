@@ -1,5 +1,5 @@
 // import { combineReducers } from 'redux';
-import { FIRST_TEST } from '../actions/testActions';
+import { FIRST_TEST, GET_GITHUB } from '../actions/actionTypes';
 
 //For now, all reducers will be in this file.  Later on, we can split them into their own files as appropriate for features
 
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  if (action.type === "FIRST_TEST") {
+  if (action.type === 'FIRST_TEST') {
     return Object.assign({}, state, {
       test: action.text
     })
