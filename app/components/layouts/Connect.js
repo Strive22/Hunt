@@ -1,12 +1,12 @@
 const React = require('react');
 import { browserHistory,Link} from 'react-router';
 
-class Land extends React.Component {
+class Connect extends React.Component {
   render() {
-    return ( 
+    return (
 
       <div>
-     <h1> Helloo Land</h1>  
+     <h1> Helloo Connect</h1>
       <Link to="Dash">View DashBoard</Link>
       <br/>
       <Link to="search">searchforJob</Link>
@@ -15,7 +15,7 @@ class Land extends React.Component {
       </div>
 
     )
-  } 
+  }
 }
 
-module.exports = Land;
+module.exports = Connect;

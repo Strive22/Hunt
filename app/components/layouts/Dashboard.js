@@ -2,18 +2,15 @@ const React = require('react');
 import { browserHistory,Link} from 'react-router';
 
 class DashBoard extends React.Component {
+
   render() {
-    return ( 
-
+    return (
       <div>
-     <h1> Dash Board</h1>  
-     
-
-
+        <h1> Dash Board</h1>
       </div>
-
     )
-  } 
+  }
+  
 }
 
 module.exports = DashBoard;
