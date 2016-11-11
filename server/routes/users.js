@@ -25,7 +25,7 @@ router.get('/:userid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
   //may be able to take this populate out later if the populate occurs elsewhere
   //TODO: ADD jobContent to populate once the schema is initialized
-  .populate('interested inProgress complete')
+  .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
   })
@@ -89,33 +89,32 @@ router.post('/:userid/jobs', (req, res) => {
     link: req.body.link,
     description: req.body.description
   })
-  job.save((err, job) => {
+  job.save().then(job => {
     //next we've gotta update the user with the job in the correct queue
     let jobId = job._id;
-    if (err) {
-      console.log('err saving job:', err);
-    } else {  
-      //create the job content doc that'll be associated with this user and job
-      let jobContent = new JobContent({
-        user_id: userId,
-        job_id: jobId
+    //create the job content doc that'll be associated with this user and job
+    let jobContent = new JobContent({
+      user_id: userId,
+      job_id: jobId
+    })
+    jobContent.save().then(content => {
+      jobContentId = content._id;
+      //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
+      let toPush = {};
+      toPush[q] = jobId;
+      toPush.jobContent = jobContentId;
+      console.log('toPush', toPush)
+      console.log('userId', userId) 
+      Users.findOneAndUpdate(
+        { _id: userId },
+        { $push: toPush },
+        { new: true }
+      )
+      //return the updated user
+      .then(user => {
+        res.json(user);
       })
-      jobContent.save((err, content) => {
-        jobContentId = content._id;
-        //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
-        let toPush = {};
-        toPush[q] = jobId;
-        Users.findOneAndUpdate(
-          { _id: userId },
-          { $push: toPush, $push: { jobContent: jobContentId } },
-          { new: true }
-        )
-        //return the updated user
-        .then(user => {
-          res.json(user);
-        })
-      })
-    }
+    })
   })
 })
 
