@@ -24,12 +24,16 @@ router.get('/gh/:searchterms', (req, res) => {
       let jobs = body.map(job => {
         let desc = job.description;
         //remove the messy stuff
+        desc = desc.replace('<br>', '  ');
+        desc = desc.replace('<p>', '  ');
         desc = desc.replace(/<(?:.|\n)*?>/gm, '');
+        desc = desc.replace(/\n/gm, '  ');
         desc = desc.replace('&amp;', '');
-        desc = desc.substr(0,200);
+        //eventually we'll want to do this on the front end I think
+        desc = desc.substr(0,200) + '...';
 
         return {
-          api: "github",
+          api: "Github Jobs",
           apiSpecificId: job.id,
           title: job.title,
           company: job.company,
@@ -60,7 +64,30 @@ router.get('/aj/:searchterms', (req, res) => {
 
   function getAuthenticJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
-      res.send(body);
+      body = JSON.parse(body);
+      let jobs = body.listings.listing.map(job => {
+        let desc = job.description;
+        //remove the messy stuff
+        desc = desc.replace('<br>', '  ');
+        desc = desc.replace('<p>', '  ');
+        desc = desc.replace(/<(?:.|)*?>/gm, '');
+        desc = desc.replace(/\n/gm, '  ');
+        desc = desc.replace('&amp;', '');
+        //eventually we'll want to do this on the front end I think
+        desc = desc.substr(0,200) + '...';
+
+        return {
+          api: "Authentic Jobs",
+          apiSpecificId: job.id,
+          title: job.title,
+          company: job.company.name,
+          location: job.company.location.name,
+          link: job.url,
+          description: desc
+        } 
+      })
+
+      res.send(jobs);
     } else {
       console.log(`Error in AJ API call: ${err}`);
     }
@@ -79,7 +106,31 @@ router.get('/in/:searchterms', (req, res) => {
 
   function getIndeedJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
-      res.send(body);
+      body = JSON.parse(body);
+      body = body.results;
+
+      let jobs = body.map(job => {
+        let desc = job.snippet;
+        //remove the messy stuff
+        desc = desc.replace('<br>', '  ');
+        desc = desc.replace('<p>', '  ');
+        desc = desc.replace(/<(?:.|)*?>/gm, '');
+        desc = desc.replace(/\n/gm, '  ');
+        desc = desc.replace('&amp;', '');
+        //eventually we'll want to do this on the front end I think
+        desc = desc.substr(0,200) + '...';
+
+        return {
+          api: "Indeed",
+          apiSpecificId: job.jobkey,
+          title: job.jobtitle,
+          company: job.company,
+          location: job.formattedLocation,
+          link: job.url,
+          description: desc
+        } 
+      })
+      res.send(jobs);
     } else {
       console.log(`Error in Indeed API call: ${err}`);
     }
