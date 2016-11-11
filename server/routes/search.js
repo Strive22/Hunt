@@ -6,7 +6,7 @@ const request = require('request');
 // const model = require('./models/search_models.js')
 
 //search the API of the user's choice for jobs
-//PLEASE NOTE ALL LOCATIONS OTHER THAN GITHUB ARE HARDCODED TO AUSTIN FOR THE TIME BEING. AUSTIN CURRENTLY HAS NO GITHUB LISTINGS AT ALL SO IT IS HARDCODED TO SAN FRANCISCO.
+//PLEASE NOTE: Github and Indeed routes currently support the addition of a user-specified location, while Authentic Jobs does not (it's hard coded to Austin)
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
