@@ -142,9 +142,10 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
   let q = req.query.q;
   let toDelete = {};
   toDelete[q] = req.params.jobid;
+  // toDelete.jobContent = { job_id: req.params.jobid }
 
   Users.update( { _id: req.params.userid },
-  { $pull: toDelete } )
+  { $pull: toDelete/*, jobContent: { job_id: req.params.jobid }*/ } )
   .then(done => {
     if (done) {
       res.json(done);
@@ -154,6 +155,7 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
   }).catch(error => {
     throw error;
   })
+
 })
 
 //POST job content specific to a user's job
