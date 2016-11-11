@@ -21,29 +21,32 @@ router.get('/gh/:searchterms', (req, res) => {
     if (!err && response.statusCode === 200) {
       //if less than 10 results, will return them all
       body = JSON.parse(body);
-      let jobs = body.map(job => {
-        let desc = job.description;
-        //remove the messy stuff
-        desc = desc.replace('<br>', '  ');
-        desc = desc.replace('<p>', '  ');
-        desc = desc.replace(/<(?:.|\n)*?>/gm, '');
-        desc = desc.replace(/\n/gm, '  ');
-        desc = desc.replace('&amp;', '');
-        //eventually we'll want to do this on the front end I think
-        desc = desc.substr(0,200) + '...';
+      if (body.length === 0){
+        res.send('Sorry, no jobs matched your search.')
+      } else {
+        let jobs = body.map(job => {
+          let desc = job.description;
+          //remove the messy stuff
+          desc = desc.replace('<br>', '  ');
+          desc = desc.replace('<p>', '  ');
+          desc = desc.replace(/<(?:.|\n)*?>/gm, '');
+          desc = desc.replace(/\n/gm, '  ');
+          desc = desc.replace('&amp;', '');
+          //eventually we'll want to do this on the front end I think
+          desc = desc.substr(0,200) + '...';
 
-        return {
-          api: "Github Jobs",
-          apiSpecificId: job.id,
-          title: job.title,
-          company: job.company,
-          location: job.location,
-          link: job.url,
-          description: desc
-        } 
-      })
-
-      res.send(jobs);
+          return {
+            api: "Github Jobs",
+            apiSpecificId: job.id,
+            title: job.title,
+            company: job.company,
+            location: job.location,
+            link: job.url,
+            description: desc
+          } 
+        })
+        res.send(jobs);
+      }
     } else {
       console.log(`Error in GH API call: ${err}`);
     }
