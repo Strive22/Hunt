@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
 router.get('/:userid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
   //may be able to take this populate out later if the populate occurs elsewhere
-  //TODO: ADD jobContent to populate once the schema is initialized
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
@@ -42,21 +41,22 @@ router.put('/:userid', (req, res) => {
     toUpdate[key] = req.body[key];
   }
 
-  Users.findOneAndUpdate({ _id: req.params.userid }, 
-  toUpdate,
-  { new: true },
-  (err, user) => {
-    if (err) console.log(`Error in user PUT: ${err}`);
-    res.send(user);
-  })
+  Users.findOneAndUpdate(
+    { _id: req.params.userid },
+    toUpdate, 
+    { new: true },
+    (err, user) => {
+      if (err) console.log(`Error in user PUT: ${err}`);
+      res.send(user);
+    }
+  )
 })
 
 //GET all user's jobs
 router.get('/:userid/jobs', (req, res) => {
   Users.findOne({ _id: req.params.userid })
   //may be able to take this populate out later if the populate occurs elsewhere
-  //TODO: ADD jobContent to populate once the schema is initialized
-  .populate('interested inProgress complete')
+  .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
   })
@@ -101,10 +101,10 @@ router.post('/:userid/jobs', (req, res) => {
       jobContentId = content._id;
       //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
       let toPush = {};
+      //push to the right job array
       toPush[q] = jobId;
-      toPush.jobContent = jobContentId;
-      console.log('toPush', toPush)
-      console.log('userId', userId) 
+      //also wanna push the new jobContent id into that array
+      toPush.jobContent = jobContentId; 
       Users.findOneAndUpdate(
         { _id: userId },
         { $push: toPush },
@@ -122,25 +122,38 @@ router.post('/:userid/jobs', (req, res) => {
 router.get('/:userid/jobs/:jobid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
   //may be able to take this populate out later if the populate occurs elsewhere
-  //TODO: ADD jobContent to populate once the schema is initialized
-  .populate('interested inProgress complete')
+  .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
   })
   .then(found => {
-
     res.send(found);
   })
 })
 
-//PUT update one of a user's jobs
+//PUT update one of a user's jobs (this route may be unnecessary)
 router.put('/:userid/jobs/:jobid', (req, res) => {
 
 })
 
 //DELETE one of a user's jobs
+//This route will also need a query string providing the name of the correct queue
 router.delete('/:userid/jobs/:jobid', (req, res) => {
+  let q = req.query.q;
+  let toDelete = {};
+  toDelete[q] = req.params.jobid;
 
+  Users.update( { _id: req.params.userid },
+  { $pull: toDelete } )
+  .then(done => {
+    if (done) {
+      res.json(done);
+    } else {
+      res.json({error: 'user and/or job not found'})
+    }
+  }).catch(error => {
+    throw error;
+  })
 })
 
 //POST job content specific to a user's job
