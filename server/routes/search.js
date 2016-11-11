@@ -10,16 +10,15 @@ const request = require('request');
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
-  //search terms MUST be comma-delimited
+  //search terms and location (if separate terms, e.g san+francisco) MUST be delimited by commas or a + sign
   let searchTerms = req.params.searchterms;
   let location = req.query.loc;
   let options = {
-    url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=sanfrancisco`
+    url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=${location}`
   }
 
   function getGithubJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
-      //if less than 10 results, will return them all
       body = JSON.parse(body);
       if (body.length === 0){
         res.send('Sorry, no jobs matched your search.')
@@ -57,7 +56,7 @@ router.get('/gh/:searchterms', (req, res) => {
 
 //authentic jobs
 router.get('/aj/:searchterms', (req, res) => {
-  //search terms must be comma-separated - need this to be clear to the user
+  //search terms must be delimited by a COMMA (NOT a plus sign)
   let searchTerms = req.params.searchterms;
   //location will be a query string
   let location = req.query.loc;
@@ -105,6 +104,7 @@ router.get('/aj/:searchterms', (req, res) => {
 
 //indeed
 router.get('/in/:searchterms', (req, res) => {
+  //search terms must be delimited by a comma or a plus sign
   let searchTerms = req.params.searchterms;
   //location must be city,state or a zipcode
   let location = req.query.loc;
