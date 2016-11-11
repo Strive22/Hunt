@@ -101,7 +101,7 @@ router.get('/in/:searchterms', (req, res) => {
   let searchTerms = req.params.searchterms;
   // let location;
   let options = {
-    url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${req.params.search}&l=austin%2C+tx&v=2`
+    url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=austin%2C+tx&v=2`
   }
 
   function getIndeedJobs(err, response, body) {
