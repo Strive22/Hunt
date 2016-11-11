@@ -65,7 +65,6 @@ router.get('/aj/:searchterms', (req, res) => {
   function getAuthenticJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
       body = JSON.parse(body);
-      console.log('body:', body)
       if (body.listings.listing.length === 0) {
         res.send('Sorry, no jobs matched your search.');
       } else {
@@ -114,29 +113,32 @@ router.get('/in/:searchterms', (req, res) => {
     if (!err && response.statusCode === 200) {
       body = JSON.parse(body);
       body = body.results;
+      if (body.length === 0) {
+        res.send('Sorry, no jobs matched your search.')
+      } else {
+        let jobs = body.map(job => {
+          let desc = job.snippet;
+          //remove the messy stuff
+          desc = desc.replace('<br>', '  ');
+          desc = desc.replace('<p>', '  ');
+          desc = desc.replace(/<(?:.|)*?>/gm, '');
+          desc = desc.replace(/\n/gm, '  ');
+          desc = desc.replace('&amp;', '');
+          //eventually we'll want to do this on the front end I think
+          desc = desc.substr(0,200) + '...';
 
-      let jobs = body.map(job => {
-        let desc = job.snippet;
-        //remove the messy stuff
-        desc = desc.replace('<br>', '  ');
-        desc = desc.replace('<p>', '  ');
-        desc = desc.replace(/<(?:.|)*?>/gm, '');
-        desc = desc.replace(/\n/gm, '  ');
-        desc = desc.replace('&amp;', '');
-        //eventually we'll want to do this on the front end I think
-        desc = desc.substr(0,200) + '...';
-
-        return {
-          api: "Indeed",
-          apiSpecificId: job.jobkey,
-          title: job.jobtitle,
-          company: job.company,
-          location: job.formattedLocation,
-          link: job.url,
-          description: desc
-        } 
-      })
-      res.send(jobs);
+          return {
+            api: "Indeed",
+            apiSpecificId: job.jobkey,
+            title: job.jobtitle,
+            company: job.company,
+            location: job.formattedLocation,
+            link: job.url,
+            description: desc
+          } 
+        })
+        res.send(jobs);
+      }
     } else {
       console.log(`Error in Indeed API call: ${err}`);
     }
