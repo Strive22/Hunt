@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { createStore } from 'redux';
+
 import { Provider } from 'react-redux';
+
 import rootReducer from './reducers/rootReducer';
 import changeTestResult from './actions/testActions';
 

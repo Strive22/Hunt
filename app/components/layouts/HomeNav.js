@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import ToDash from '../views/ToDash';
-import Search from '../views/Search';
+import SearchContainer from '../containers/SearchContainer';
 import EnterJob from '../views/EnterJob';
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
       <Row>
 
         <Col md={4}>
-          <Search />
+          <SearchContainer />
         </Col>
 
         <Col md={4}>
