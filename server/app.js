@@ -19,7 +19,7 @@ const app = express();
 
 app.use(morgan('dev'));
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -45,6 +45,7 @@ app.use((err, req, res, next) => {
 
 
 const port = process.env.PORT || 3000;
+
 const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
   //when the server starts let's insert a dummy user
@@ -56,13 +57,13 @@ const server = app.listen(port, () => {
         location: 'Austin, Texas',
         tech: 'Javascript',
         otherHunters: true
-      })
+      });
       brit.save((error, data) => {
         if (error) console.log('err saving:', error);
-        else console.log('saved:', data)
-      })
+        else console.log('saved:', data);
+      });
     }
-  })
+  });
 });
 
 module.exports = app;
