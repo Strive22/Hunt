@@ -12,7 +12,7 @@ const request = require('request');
 router.get('/gh/:searchterms', (req, res) => {
   //search terms MUST be comma-delimited
   let searchTerms = req.params.searchterms;
-  // let location;
+  let location = req.query.loc;
   let options = {
     url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=sanfrancisco`
   }
@@ -57,7 +57,7 @@ router.get('/aj/:searchterms', (req, res) => {
   //search terms must be comma-separated - need this to be clear to the user
   let searchTerms = req.params.searchterms;
   //location will be a query string
-  // let location = req.query.loc;
+  let location = req.query.loc;
   let options = {
     url: `https://authenticjobs.com/api/?api_key=${process.env.AJ_KEY}&method=aj.jobs.search&format=json&location=austintxus&keywords=${searchTerms}`
   }
@@ -99,9 +99,10 @@ router.get('/aj/:searchterms', (req, res) => {
 //indeed
 router.get('/in/:searchterms', (req, res) => {
   let searchTerms = req.params.searchterms;
-  // let location;
+  //location must be city,state or a zipcode
+  let location = req.query.loc;
   let options = {
-    url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=austin%2C+tx&v=2`
+    url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=${location}&v=2`
   }
 
   function getIndeedJobs(err, response, body) {
