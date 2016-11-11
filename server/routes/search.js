@@ -10,6 +10,7 @@ const request = require('request');
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
+  //search terms MUST be comma-delimited
   let searchTerms = req.params.searchterms;
   // let location;
   let options = {
@@ -18,7 +19,27 @@ router.get('/gh/:searchterms', (req, res) => {
 
   function getGithubJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
-      res.send(body);
+      //if less than 10 results, will return them all
+      body = JSON.parse(body);
+      let jobs = body.map(job => {
+        let desc = job.description;
+        //remove the messy stuff
+        desc = desc.replace(/<(?:.|\n)*?>/gm, '');
+        desc = desc.replace('&amp;', '');
+        desc = desc.substr(0,200);
+
+        return {
+          api: "github",
+          apiSpecificId: job.id,
+          title: job.title,
+          company: job.company,
+          location: job.location,
+          link: job.url,
+          description: desc
+        } 
+      })
+
+      res.send(jobs);
     } else {
       console.log(`Error in GH API call: ${err}`);
     }
