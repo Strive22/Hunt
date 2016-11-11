@@ -65,29 +65,34 @@ router.get('/aj/:searchterms', (req, res) => {
   function getAuthenticJobs(err, response, body) {
     if (!err && response.statusCode === 200) {
       body = JSON.parse(body);
-      let jobs = body.listings.listing.map(job => {
-        let desc = job.description;
-        //remove the messy stuff
-        desc = desc.replace('<br>', '  ');
-        desc = desc.replace('<p>', '  ');
-        desc = desc.replace(/<(?:.|)*?>/gm, '');
-        desc = desc.replace(/\n/gm, '  ');
-        desc = desc.replace('&amp;', '');
-        //eventually we'll want to do this on the front end I think
-        desc = desc.substr(0,200) + '...';
+      console.log('body:', body)
+      if (body.listings.listing.length === 0) {
+        res.send('Sorry, no jobs matched your search.');
+      } else {
+        let jobs = body.listings.listing.map(job => {
+          let desc = job.description;
+          //remove the messy stuff
+          desc = desc.replace('<br>', '  ');
+          desc = desc.replace('<p>', '  ');
+          desc = desc.replace(/<(?:.|)*?>/gm, '');
+          desc = desc.replace(/\n/gm, '  ');
+          desc = desc.replace('&amp;', '');
+          //eventually we'll want to do this on the front end I think
+          desc = desc.substr(0,200) + '...';
 
-        return {
-          api: "Authentic Jobs",
-          apiSpecificId: job.id,
-          title: job.title,
-          company: job.company.name,
-          location: job.company.location.name,
-          link: job.url,
-          description: desc
-        } 
-      })
+          return {
+            api: "Authentic Jobs",
+            apiSpecificId: job.id,
+            title: job.title,
+            company: job.company.name,
+            location: job.company.location.name,
+            link: job.url,
+            description: desc
+          } 
+        })
+        res.send(jobs);
+      }
 
-      res.send(jobs);
     } else {
       console.log(`Error in AJ API call: ${err}`);
     }
