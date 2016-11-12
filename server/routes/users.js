@@ -158,6 +158,7 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
 
 })
 
+//POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 //POST job content specific to a user's job
 router.get('/:userid/jobs/:jobid/content', (req, res) => {
 
@@ -165,7 +166,9 @@ router.get('/:userid/jobs/:jobid/content', (req, res) => {
 
 //PUT update job content specific to a user's job
 router.get('/:userid/jobs/:jobid/content/:contentid', (req, res) => {
-
+  let userId = req.params.userid;
+  let jobId = req.params.jobid;
+  JobContent.findOneAndUpdate({ user_id: userId, job_id: jobId })
 })
 
 module.exports = router;
