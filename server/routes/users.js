@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 //GET specific user
 router.get('/:userid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
-  //may be able to take this populate out later if the populate occurs elsewhere
+  // this will be the primary populate
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
@@ -34,7 +34,7 @@ router.get('/:userid', (req, res) => {
 })
 
 //PUT update specific user
-//This route is for updating information on the user's profile and will provide params in the body specifying the elements to be updated
+//This route is for updating information on the user's profile and will provide data in the body specifying the elements to be updated
 router.put('/:userid', (req, res) => {
   let toUpdate = {};
   for (key in req.body) {
@@ -118,54 +118,64 @@ router.post('/:userid/jobs', (req, res) => {
   })
 })
 
-//GET one of a user's jobs
-router.get('/:userid/jobs/:jobid', (req, res) => {
-  Users.findOne({ _id: req.params.userid })
-  //may be able to take this populate out later if the populate occurs elsewhere
-  .populate('interested inProgress complete jobContent')
-  .exec((err, result) => {
-    if (err) console.log(`Error: ${err}`)
+//PUT move a job to a new queue or DELETE a job from a queue
+router.route('/:userid/jobs/:jobid/:queue')
+  .put((req, res) => {
+    let queue = req.params.queue;
+    let jobId = req.params.jobid;
+    let toAdd = {};
+    toAdd[queue] = jobId;
+    Users.findOneAndUpdate({ _id: req.params.userid },
+      { $push: toAdd },
+      { new: true })
+      .then(user => {
+        res.send(user);
+      })
+      .catch(error => {
+        throw error;
+      })
   })
-  .then(found => {
-    res.send(found);
-  })
-})
+  .delete((req, res) => {
+    let queue = req.params.queue;
+    let jobId = req.params.jobid;
+    let toDelete = {};
+    toDelete[queue] = jobId;
 
-//PUT update one of a user's jobs (this route may be unnecessary)
-router.put('/:userid/jobs/:jobid', (req, res) => {
-
-})
-
-//DELETE one of a user's jobs
-//This route will also need a query string providing the name of the correct queue
-router.delete('/:userid/jobs/:jobid', (req, res) => {
-  let q = req.query.q;
-  let toDelete = {};
-  toDelete[q] = req.params.jobid;
-  // toDelete.jobContent = { job_id: req.params.jobid }
-
-  Users.update( { _id: req.params.userid },
-  { $pull: toDelete/*, jobContent: { job_id: req.params.jobid }*/ } )
-  .then(done => {
-    if (done) {
-      res.json(done);
-    } else {
-      res.json({error: 'user and/or job not found'})
-    }
-  }).catch(error => {
-    throw error;
+    JobContent.findOneAndRemove( { user_id: req.params.userid, job_id: jobId },
+      (err, content) => {
+        Users.findOneAndUpdate( { _id: req.params.userid },
+          { $pull: toDelete },
+          { new: true },
+          (err, user) => {
+            res.send(user);
+          }
+        )
+      }
+    )
   })
 
-})
-
-//POST job content specific to a user's job
-router.get('/:userid/jobs/:jobid/content', (req, res) => {
+//POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
+router.post('/:userid/jobs/:jobid/content', (req, res) => {
 
 })
 
 //PUT update job content specific to a user's job
-router.get('/:userid/jobs/:jobid/content/:contentid', (req, res) => {
-
+router.put('/:userid/jobs/:jobid/content', (req, res) => {
+  let userId = req.params.userid;
+  let jobId = req.params.jobid;
+  //as with the PUT user route, will provide data in the body about the specific information to be updated
+  let toUpdate = {};
+  for (key in req.body) {
+    toUpdate[key] = req.body[key];
+  }
+  JobContent.findOneAndUpdate({ user_id: userId, job_id: jobId },
+    toUpdate,
+    { new: true },
+    (err, jobContent) => {
+      if (err) console.log(`Error in jobContent PUT: ${err}`);
+      res.send(jobContent);
+    }
+  )
 })
 
 module.exports = router;
