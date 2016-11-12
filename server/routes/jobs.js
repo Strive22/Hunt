@@ -5,6 +5,14 @@ const Users = require('../models/users');
 const Jobs = require('../models/jobs');
 const JobContent = require('../models/jobContent');
 
+//GET get a job
+router.get('/:jobid', (req, res) => {
+  Jobs.findOne({ _id: req.params.jobid })
+  .then(job => {
+    res.send(job);
+  })
+})
+
 //PUT update a job
 router.put('/:jobid', (req, res) => {
   let toUpdate = {};
