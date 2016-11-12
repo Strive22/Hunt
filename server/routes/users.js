@@ -118,57 +118,31 @@ router.post('/:userid/jobs', (req, res) => {
   })
 })
 
-//GET one of a user's jobs
-router.get('/:userid/jobs/:jobid', (req, res) => {
-  Users.findOne({ _id: req.params.userid })
-  //may be able to take this populate out later if the populate occurs elsewhere
-  .populate('interested inProgress complete jobContent')
-  .exec((err, result) => {
-    if (err) console.log(`Error: ${err}`)
-  })
-  .then(found => {
-    res.send(found);
-  })
-})
+//POST a job to a queue or DELETE a job from a queue
+router.route('/:userid/jobs/:jobid/:queue')
+  .delete(req, res, next) => {
+    let queue = req.params.queue;
+    let toDelete = {};
+    toDelete[queue] = req.params.jobid;
+    // toDelete.jobContent = { job_id: req.params.jobid }
 
-//PUT update one of a user's jobs
-//Needs a query string providing the name of the correct queue
-router.put('/:userid/jobs/:jobid', (req, res) => {
-  let q = req.query.q;
-  let toUpdate = {};
-  for (key in req.body) {
-    toUpdate[key] = req.body[key];
+    Users.update( { _id: req.params.userid },
+    { $pull: toDelete/*, jobContent: { job_id: req.params.jobid }*/ } )
+    .then(done => {
+      if (done) {
+        res.json(done);
+      } else {
+        res.json({error: 'user and/or job not found'})
+      }
+    }).catch(error => {
+      throw error;
+    })
   }
-  Users.findOne({ _id: req.params.userid })
-})
-
-//DELETE one of a user's jobs
-//This route will also need a query string providing the name of the correct queue
-router.delete('/:userid/jobs/:jobid', (req, res) => {
-  let q = req.query.q;
-  let toDelete = {};
-  toDelete[q] = req.params.jobid;
-  // toDelete.jobContent = { job_id: req.params.jobid }
-
-  Users.update( { _id: req.params.userid },
-  { $pull: toDelete/*, jobContent: { job_id: req.params.jobid }*/ } )
-  .then(done => {
-    if (done) {
-      res.json(done);
-    } else {
-      res.json({error: 'user and/or job not found'})
-    }
-  }).catch(error => {
-    throw error;
-  })
-
-})
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
-//POST job content specific to a user's job
-// router.post('/:userid/jobs/:jobid/content', (req, res) => {
+router.post('/:userid/jobs/:jobid/content', (req, res) => {
 
-// })
+})
 
 //PUT update job content specific to a user's job
 router.put('/:userid/jobs/:jobid/content', (req, res) => {

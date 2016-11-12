@@ -53,16 +53,17 @@ Route  | Type  | Action
 /api/users/:userid | GET: | specific user
 /api/users/:userid | PUT: | update user
 
-/api/users/:userid/jobs        | GET:    | all user's jobs
-/api/users/:userid/jobs        | POST:   | post specific job
-/api/users/:userid/jobs/:jobid | DELETE: | delete specific job
+/api/users/:userid/jobs               | GET:    | all user's jobs
+/api/users/:userid/jobs               | POST:   | save or create & save job
+/api/users/:userid/jobs/:jobid/:queue | PUT:    | move job to a different queue
+/api/users/:userid/jobs/:jobid/:queue | DELETE: | delete job from a queue
 
-/api/users/:userid/jobs/:jobid/content | PUT: | update specific job content
+/api/users/:userid/jobs/:jobid/content | PUT: | update job content
 
 ## Jobs
 
-/api/jobs/:jobid | GET: | get specific job
-/api/jobs/:jobid | PUT: | update specific job
+/api/jobs/:jobid | GET: | get job
+/api/jobs/:jobid | PUT: | update job
 
 ### Search
 
