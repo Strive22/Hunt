@@ -120,7 +120,7 @@ router.post('/:userid/jobs', (req, res) => {
 
 //PUT move a job to a new queue or DELETE a job from a queue
 router.route('/:userid/jobs/:jobid/:queue')
-  .put((req, res, next) => {
+  .put((req, res) => {
     let queue = req.params.queue;
     let jobId = req.params.jobid;
     let toAdd = {};
@@ -135,7 +135,7 @@ router.route('/:userid/jobs/:jobid/:queue')
         throw error;
       })
   })
-  .delete((req, res, next) => {
+  .delete((req, res) => {
     let queue = req.params.queue;
     let jobId = req.params.jobid;
     let toDelete = {};
