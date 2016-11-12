@@ -12,3 +12,6 @@ node_modules
 
 # webpack bundle
 bundle.js
+
+# .orig files
+*.orig

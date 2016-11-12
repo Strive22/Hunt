@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 //GET specific user
 router.get('/:userid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
-  //may be able to take this populate out later if the populate occurs elsewhere
+  // this will be the primary populate
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
