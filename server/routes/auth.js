@@ -5,13 +5,13 @@ const passport = require('passport');
 
 router.route('/')
   .get(passport.authenticate('google', {
-      scope: ['profile']
+      scope: ['profile', 'email']
   }));
 
 router.route('/return')
   .get(passport.authenticate('google', {
       successRedirect: '/',
-      failureRedirect: '/landing'
+      failureRedirect: '/landing',
   }));
 
 module.exports = router;
