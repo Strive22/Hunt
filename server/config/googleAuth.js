@@ -1,23 +1,46 @@
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const Users = require('../models/users');
 
-passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_ID,
-  clientSecret: process.env.GOOGLE_SECRET,
-  callbackURL: process.env.HOST
-}))
+module.exports = () => {
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_ID,
+    clientSecret: process.env.GOOGLE_SECRET,
+    callbackURL: `${process.env.HOST}/return`
+  }, (accessToken, refreshToken, profile, cb) => {
+    Users.findOne({ name: profile.displayName }).then(user => {
+      if (user) {
+        console.log('User found.')
+        cb(null, user);
+      } else {
+        console.log('User not found - Adding to database');
+        console.log('profile:', profile)
 
+        let imageUrl = '';
+        if (profile.photos && profile.photos.length) {
+          imageUrl = profile.photos[0].value;
+        }
 
-
-
-
-
-
-
-exports.onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
+        new Users({
+          name: profile.displayName,
+          email: profile.email,
+          image: imageUrl
+        }).save(err => {
+          console.log('error saving new user:', err);
+        })
+        cb(null, user)
+      }
+    })
+    .catch(err => {
+      throw err;
+    })
+  }))
 }
+
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+})
+
+passport.deserializeUser((obj, cb) => {
+  cb(null, obj);
+})
