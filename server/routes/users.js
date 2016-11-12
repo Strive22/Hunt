@@ -125,7 +125,6 @@ router.route('/:userid/jobs/:jobid/:queue')
     let jobId = req.params.jobid;
     let toAdd = {};
     toAdd[queue] = jobId;
-    console.log(toAdd)
     Users.findOneAndUpdate({ _id: req.params.userid },
       { $push: toAdd },
       { new: true })

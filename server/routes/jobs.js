@@ -25,5 +25,4 @@ router.put('/:jobid', (req, res) => {
       res.send(job);
     }
   )
-
 })
