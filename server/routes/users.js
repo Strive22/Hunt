@@ -131,9 +131,15 @@ router.get('/:userid/jobs/:jobid', (req, res) => {
   })
 })
 
-//PUT update one of a user's jobs (this route may be unnecessary)
+//PUT update one of a user's jobs
+//Needs a query string providing the name of the correct queue
 router.put('/:userid/jobs/:jobid', (req, res) => {
-
+  let q = req.query.q;
+  let toUpdate = {};
+  for (key in req.body) {
+    toUpdate[key] = req.body[key];
+  }
+  Users.findOne({ _id: req.params.userid })
 })
 
 //DELETE one of a user's jobs
@@ -160,9 +166,9 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 //POST job content specific to a user's job
-router.post('/:userid/jobs/:jobid/content', (req, res) => {
+// router.post('/:userid/jobs/:jobid/content', (req, res) => {
 
-})
+// })
 
 //PUT update job content specific to a user's job
 router.put('/:userid/jobs/:jobid/content', (req, res) => {

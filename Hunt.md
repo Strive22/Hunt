@@ -44,7 +44,7 @@
 
 ### Users
 
-Route | Type | Action
+Route  | Type  | Action
  :---: | :---: | ---
 
 /api/users/ | GET: | all users
@@ -53,16 +53,20 @@ Route | Type | Action
 /api/users/:userid | GET: | specific user
 /api/users/:userid | PUT: | update user
 
-/api/users/:userid/jobs | GET: | all user's jobs
-/api/users/:userid/jobs | POST: | post specific job
-
-/api/users/:userid/jobs/:jobid | GET: | get specific job
+/api/users/:userid/jobs        | GET:    | all user's jobs
+/api/users/:userid/jobs        | POST:   | post specific job
 /api/users/:userid/jobs/:jobid | DELETE: | delete specific job
-/api/users/:userid/jobs/:jobid | PUT: | update specific job
 
-### Jobs
+/api/users/:userid/jobs/:jobid/content | PUT: | update specific job content
 
-Route | Type | Action
+## Jobs
+
+/api/jobs/:jobid | GET: | get specific job
+/api/jobs/:jobid | PUT: | update specific job
+
+### Search
+
+Route | Type  | Action
 :---: | :---: | ---
 
 /api/search/gh/:searchterms/ | GET: | makes API call to GitHub Jobs
