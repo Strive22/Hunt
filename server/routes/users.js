@@ -34,7 +34,7 @@ router.get('/:userid', (req, res) => {
 })
 
 //PUT update specific user
-//This route is for updating information on the user's profile and will provide params in the body specifying the elements to be updated
+//This route is for updating information on the user's profile and will provide data in the body specifying the elements to be updated
 router.put('/:userid', (req, res) => {
   let toUpdate = {};
   for (key in req.body) {
@@ -160,15 +160,27 @@ router.delete('/:userid/jobs/:jobid', (req, res) => {
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 //POST job content specific to a user's job
-router.get('/:userid/jobs/:jobid/content', (req, res) => {
+router.post('/:userid/jobs/:jobid/content', (req, res) => {
 
 })
 
 //PUT update job content specific to a user's job
-router.get('/:userid/jobs/:jobid/content/:contentid', (req, res) => {
+router.put('/:userid/jobs/:jobid/content', (req, res) => {
   let userId = req.params.userid;
   let jobId = req.params.jobid;
-  JobContent.findOneAndUpdate({ user_id: userId, job_id: jobId })
+  //as with the PUT user route, will provide data in the body about the specific information to be updated
+  let toUpdate = {};
+  for (key in req.body) {
+    toUpdate[key] = req.body[key];
+  }
+  JobContent.findOneAndUpdate({ user_id: userId, job_id: jobId },
+    toUpdate,
+    { new: true },
+    (err, jobContent) => {
+      if (err) console.log(`Error in jobContent PUT: ${err}`);
+      res.send(jobContent);
+    }
+  )
 })
 
 module.exports = router;
