@@ -8,7 +8,7 @@ router.route('/')
       scope: ['profile', 'email']
   }));
 
-router.route('/return')
+router.route('/callback')
   .get(passport.authenticate('google', {
       successRedirect: '/',
       failureRedirect: '/landing',

@@ -6,7 +6,7 @@ module.exports = () => {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: `${process.env.HOST}/return`
+    callbackURL: `${process.env.HOST}/auth/callback`
   }, (accessToken, refreshToken, profile, cb) => {
     Users.findOne({ name: profile.displayName }).then(user => {
       if (user) {
@@ -23,12 +23,12 @@ module.exports = () => {
 
         new Users({
           name: profile.displayName,
-          email: profile.email,
+          email: profile.emails[0].value,
           image: imageUrl
         }).save(err => {
           console.log('error saving new user:', err);
         })
-        cb(null, user)
+        cb(null, user);
       }
     })
     .catch(err => {
