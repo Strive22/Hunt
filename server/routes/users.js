@@ -118,26 +118,42 @@ router.post('/:userid/jobs', (req, res) => {
   })
 })
 
-//POST a job to a queue or DELETE a job from a queue
+//PUT move a job to a new queue or DELETE a job from a queue
 router.route('/:userid/jobs/:jobid/:queue')
-  .delete(req, res, next) => {
+  .put((req, res, next) => {
     let queue = req.params.queue;
+    let jobId = req.params.jobid;
+    let toAdd = {};
+    toAdd[queue] = jobId;
+    console.log(toAdd)
+    Users.findOneAndUpdate({ _id: req.params.userid },
+      { $push: toAdd },
+      { new: true })
+      .then(user => {
+        res.send(user);
+      })
+      .catch(error => {
+        throw error;
+      })
+  })
+  .delete((req, res, next) => {
+    let queue = req.params.queue;
+    let jobId = req.params.jobid;
     let toDelete = {};
-    toDelete[queue] = req.params.jobid;
-    // toDelete.jobContent = { job_id: req.params.jobid }
+    toDelete[queue] = jobId;
 
-    Users.update( { _id: req.params.userid },
-    { $pull: toDelete/*, jobContent: { job_id: req.params.jobid }*/ } )
-    .then(done => {
-      if (done) {
-        res.json(done);
-      } else {
-        res.json({error: 'user and/or job not found'})
+    JobContent.findOneAndRemove( { user_id: req.params.userid, job_id: jobId },
+      (err, content) => {
+        Users.findOneAndUpdate( { _id: req.params.userid },
+          { $pull: toDelete },
+          { new: true },
+          (err, user) => {
+            res.send(user);
+          }
+        )
       }
-    }).catch(error => {
-      throw error;
-    })
-  }
+    )
+  })
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 router.post('/:userid/jobs/:jobid/content', (req, res) => {
