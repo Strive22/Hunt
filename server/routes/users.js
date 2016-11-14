@@ -5,7 +5,7 @@ const Users = require('../models/users');
 const Jobs = require('../models/jobs');
 const JobContent = require('../models/jobContent');
 
-//NOTE: POSTing a new user will likely be handled by the authorization path
+//NOTE: Posting new users is handled by the auth path, see googleAuth.js
 
 //GET all users
 router.get('/', (req, res) => {

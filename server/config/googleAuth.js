@@ -11,7 +11,7 @@ module.exports = () => {
     Users.findOne({ name: profile.displayName }).then(user => {
       if (user) {
         console.log('User found.')
-        cb(null, user);
+        done(null, user);
       } else {
         console.log('User not found - Adding to database');
         console.log('profile:', profile)
@@ -28,7 +28,7 @@ module.exports = () => {
         }).save(err => {
           console.log('error saving new user:', err);
         })
-        cb(null, user);
+        done(null, user);
       }
     })
     .catch(err => {
@@ -38,9 +38,9 @@ module.exports = () => {
 }
 
 passport.serializeUser((user, cb) => {
-  cb(null, user);
+  done(null, user);
 })
 
 passport.deserializeUser((obj, cb) => {
-  cb(null, obj);
+  done(null, obj);
 })
