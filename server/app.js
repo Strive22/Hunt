@@ -26,8 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.session({ 
   secret: 'huntersruleyall' 
 }))
-app.use(passport.initialize());
-app.use(passport.session());
+
+//this calls the passport and session initialization
+require('./config/passport')();
 
 app.use('/', routes);
 app.use('/users', users);
