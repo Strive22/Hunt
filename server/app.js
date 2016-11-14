@@ -34,18 +34,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//the express session has to be instantiated before the passport session (see passportjs.org/docs/configure)
 app.use(session({ 
+  //used to sign the session ID cookie
   secret: 'huntersrule',
   cookie: {
+    //number in milliseconds to use in calculating expiration of cookie
     maxAge: 1000 * 60 * 60 * 24 * 7     // one week
   },
   store: store,
+  //force session to save to the store - needed b/c this store sets an expiration date
   resave: true,
+  //force new both not modified sessions (uninitialized) to save to the store
   saveUninitialized: true
 }))
 
 //this calls the passport and session initialization
-require('./config/passport')();
+require('./config/passport')(app);
 
 app.use('/', routes);
 app.use('/users', users);
