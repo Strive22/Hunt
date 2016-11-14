@@ -5,11 +5,11 @@ module.exports = function(app) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  passport.serializeUser((user, cb) => {
+  passport.serializeUser((user, done) => {
     done(null, user);
   })
 
-  passport.deserializeUser((obj, cb) => {
+  passport.deserializeUser((obj, done) => {
     done(null, obj);
   })
 
