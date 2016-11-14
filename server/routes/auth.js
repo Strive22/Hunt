@@ -4,7 +4,12 @@ const path = require('path');
 const passport = require('passport');
 
 router.get('/', 
-  passport.authenticate('google', { scope: ['profile', 'email'/*, 'https://www.googleapis.com/auth/drive.readonly'*/] })
+  passport.authenticate('google', 
+    { scope: [
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/drive.readonly'
+    ]})
 );
 
 router.get('/callback', passport.authenticate('google', {
