@@ -6,6 +6,7 @@ const usersSchema = new Schema({
   email: String,
   location: String,
   tech: String,
+  image: String,
   otherHunters: Boolean,
   interested: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }],
   inProgress: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }],
