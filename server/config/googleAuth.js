@@ -7,7 +7,7 @@ module.exports = () => {
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: `${process.env.HOST}/auth/callback`
-  }, (accessToken, refreshToken, profile, cb) => {
+  }, (accessToken, refreshToken, profile, done) => {
     Users.findOne({ name: profile.displayName }).then(user => {
       if (user) {
         console.log('User found.')
@@ -37,10 +37,10 @@ module.exports = () => {
   }))
 }
 
-passport.serializeUser((user, cb) => {
+passport.serializeUser((user, done) => {
   done(null, user);
 })
 
-passport.deserializeUser((obj, cb) => {
+passport.deserializeUser((obj, done) => {
   done(null, obj);
 })

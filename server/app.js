@@ -3,7 +3,7 @@ require('dotenv').config({silent: true});
 
 const express = require('express');
 const session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
+// const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -18,15 +18,14 @@ const search = require('./routes/search');
 const fallback = require('./routes/fallback');
 
 const app = express();
-const store = new MongoDBStore({
-  uri: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
-  collection: 'huntSessions'
-});
+// const store = new MongoDBStore({
+//   uri: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
+//   collection: 'huntSessions'
+// });
 
-store.on('error', err => {
-  assert.ifError(err);
-  assert.ok(false);
-})
+// store.on('error', err => {
+//   console.log('store err:', err);
+// })
 
 app.use(morgan('dev'));
 
@@ -38,11 +37,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ 
   //used to sign the session ID cookie
   secret: 'huntersrule',
-  cookie: {
-    //number in milliseconds to use in calculating expiration of cookie
-    maxAge: 1000 * 60 * 60 * 24 * 7     // one week
-  },
-  store: store,
+  // cookie: {
+  //   //number in milliseconds to use in calculating expiration of cookie
+  //   maxAge: 1000 * 60 * 60 * 24 * 7     // one week
+  // },
+  // store: store,
   //force session to save to the store - needed b/c this store sets an expiration date
   resave: true,
   //force new both not modified sessions (uninitialized) to save to the store
