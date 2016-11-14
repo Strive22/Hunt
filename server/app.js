@@ -2,6 +2,8 @@
 require('dotenv').config({silent: true});
 
 const express = require('express');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -16,6 +18,15 @@ const search = require('./routes/search');
 const fallback = require('./routes/fallback');
 
 const app = express();
+const store = new MongoDBStore({
+  uri: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
+  collection: 'huntSessions'
+});
+
+store.on('error', err => {
+  assert.ifError(err);
+  assert.ok(false);
+})
 
 app.use(morgan('dev'));
 
@@ -23,8 +34,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.session({ 
-  secret: 'huntersruleyall' 
+app.use(session({ 
+  secret: 'huntersrule',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7     // one week
+  },
+  store: store,
+  resave: true,
+  saveUninitialized: true
 }))
 
 //this calls the passport and session initialization
