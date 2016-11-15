@@ -4,8 +4,8 @@ const path = require('path');
 // settings for all environments
 const commonConfig = {
   entry: [
-    // 'webpack-dev-server/client?http://localhost:8080',
-    // 'webpack/hot/only-dev-server',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     './app/index.js'
   ],
 
@@ -16,6 +16,15 @@ const commonConfig = {
 
   resolve: {
     extensions: ['.jsx', '.js', '']
+  },
+
+  devServer: {
+    inline: true,
+    historyApiFallback: true,
+    contentBase: 'server/public',
+    proxy: {
+      '**': 'http://localhost:3000'
+    }
   },
 
   module: {
@@ -31,10 +40,10 @@ const commonConfig = {
 
 // development settings 
 const devConfig = {
-  devtool: 'source-maps'
-  // plugins: [
-  //   new webpack.HotModuleReplacementPlugin()
-  // ]
+  devtool: 'source-maps',
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
 
 // production settings
