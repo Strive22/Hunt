@@ -31,9 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   console.log('store err:', err);
 // })
 
-
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 //the express session has to be instantiated before the passport session (see passportjs.org/docs/configure)
 app.use(session({ 
@@ -57,7 +55,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
-// app.use('*', fallback);
+app.use('*', fallback);
 
 //404 handler
 app.use((req, res, next) => {
