@@ -10,11 +10,11 @@ function checkIfLoggedIn(req, res, next) {
   res.redirect('/landing');
 }
 
-router.get('/', checkIfLoggedIn, (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+router.get('/', checkIfLoggedIn, (req, res, next) => {
+  res.sendFile(path.join(__dirname, '../public/app.html'));
 });
 
-router.get('/landing', (req, res) => {
+router.get('/landing', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../public/landing.html'));
 })
 
