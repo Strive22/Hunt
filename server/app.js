@@ -2,10 +2,11 @@
 require('dotenv').config({silent: true});
 
 const express = require('express');
-const session = require('express-session');
-// const MongoDBStore = require('connect-mongodb-session')(session);
 const path = require('path');
+const passport = require('passport');
+const session = require('express-session');
 const morgan = require('morgan');
+// const MongoDBStore = require('connect-mongodb-session')(session);
 const bodyParser = require('body-parser');
 
 const db = require('./config/db');
@@ -15,9 +16,12 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const search = require('./routes/search');
-const fallback = require('./routes/fallback');
+// const fallback = require('./routes/fallback');
 
 const app = express();
+app.use(morgan('dev'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 // const store = new MongoDBStore({
 //   uri: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
 //   collection: 'huntSessions'
@@ -27,11 +31,9 @@ const app = express();
 //   console.log('store err:', err);
 // })
 
-app.use(morgan('dev'));
 
-app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static(path.join(__dirname, 'public')));
 
 //the express session has to be instantiated before the passport session (see passportjs.org/docs/configure)
 app.use(session({ 
@@ -55,7 +57,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
-app.use('*', fallback);
+// app.use('*', fallback);
 
 //404 handler
 app.use((req, res, next) => {
