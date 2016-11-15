@@ -16,7 +16,7 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const search = require('./routes/search');
-// const fallback = require('./routes/fallback');
+const fallback = require('./routes/fallback');
 
 const app = express();
 app.use(morgan('dev'));
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // })
 
 
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 //the express session has to be instantiated before the passport session (see passportjs.org/docs/configure)
