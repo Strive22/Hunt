@@ -18,15 +18,6 @@ const commonConfig = {
     extensions: ['.jsx', '.js', '']
   },
 
-  devServer: {
-    inline: true,
-    historyApiFallback: true,
-    contentBase: 'server/public',
-    proxy: {
-      '**': 'http://localhost:3000'
-    }
-  },
-
   module: {
     loaders: [
       {
@@ -41,6 +32,14 @@ const commonConfig = {
 // development settings 
 const devConfig = {
   devtool: 'source-maps',
+  devServer: {
+    inline: true,
+    historyApiFallback: true,
+    contentBase: 'server/public',
+    proxy: {
+      '**': 'http://localhost:3000'
+    }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
