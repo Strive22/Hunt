@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { PageHeader } from 'react-bootstrap';
-const axios = require('axios');
+import { PageHeader } from 'react-bootstrap';
+import axios from 'axios';
 
 class App extends React.Component {
     constructor (props) {
@@ -34,11 +34,57 @@ class App extends React.Component {
       <div>
         <PageHeader bsClass="page-header hunt">Hunt</PageHeader>
         <div>
-          {this.props.children}
+          {this.renderChildrenWithProps()}
         </div>
       </div>
     )
   }
+
+  renderChildrenWithProps () {
+    // add props to all the children of app
+    return React.Children.map(this.props.children, (child) => {
+      switch (child.type.name) {
+        case "Home" :
+          // home needs . . . 
+          return React.cloneElement(child, {
+            userName: this.state.currentUser.name,
+            //in case we want the google pic
+            userPhoto: this.state.currentUser.image,
+            //potentially for search result stuff
+            interested: this.state.currentUser.interested
+          });
+          break;
+        case "Dashboard" :
+          // dashboard needs . . . 
+          return React.cloneElement(child, {
+            //duh
+            interested: this.state.currentUser.interested,
+            inProgress: this.state.currentUser.inProgress,
+            complete: this.state.currentUser.complete,
+            jobContent: this.state.currentUser.jobContent
+          });
+          break;
+        case "EditProfile" :
+          // editprofile needs . . . 
+          return React.cloneElement(child, {
+            currentUser: this.state.currentUser,
+          });
+          break;
+        case "Connect" :
+          // connect needs . . . 
+          return React.cloneElement(child, {
+            userName: this.state.currentUser.name,
+            userEmail: this.state.currentUser.email,
+            userTech: this.state.currentUser.tech || '',
+            userLocation: this.state.currentUser.location || '',
+          });
+          break;        
+        default :
+          return child;
+      }
+    });
+  }
+
 }
 
 module.exports = App;

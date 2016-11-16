@@ -1,13 +1,15 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
-// import HomeNav from './HomeNav';
+import HomeNav from './HomeNav';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userName: this.props.userName,
+      userPhoto: this.props.userPhoto,
+      interested: this.props.interested
     }
   }
   render() {
@@ -33,7 +35,7 @@ class Home extends React.Component {
 
         </div>
         <div>
-          {/*<HomeNav />*/}
+          <HomeNav />
         </div>
       </div>
     )

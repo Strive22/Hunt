@@ -12,6 +12,7 @@ node_modules
 
 # webpack bundle
 bundle.js
+bundle.js.map
 
 # .orig files
 *.orig

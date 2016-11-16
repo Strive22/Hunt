@@ -1,31 +1,28 @@
-// import React from 'react';
-// import { Grid, Row, Col } from 'react-bootstrap';
-// import ToDash from '../views/ToDash';
-// import SearchContainer from '../containers/SearchContainer';
-// import EnterJob from '../views/EnterJob';
+import React from 'react';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
-// export default () => {
+const HomeNav = () => {
+  return (
+    <Grid>
+      <Row>
+        <Col md={4}>
+          {/*<SearchContainer />*/}
+        </Col>
+        <Col md={4}>
+          <div className="selectbox">
+            <h2>View Your<br/>Dashboard</h2>
+            <LinkContainer to={'/dashboard'}>
+              <Button>Go!</Button>
+            </LinkContainer>
+          </div>
+        </Col>
+        <Col md={4}>
+          {/*<EnterJob />*/}
+        </Col>
+      </Row>
+    </Grid>
+  )
+}
 
-//   return (
-//     <Grid>
-
-//       <Row>
-
-//         <Col md={4}>
-//           <SearchContainer />
-//         </Col>
-
-//         <Col md={4}>
-//           <ToDash />
-//         </Col>
-
-//         <Col md={4}>
-//           <EnterJob />
-//         </Col>
-
-//       </Row>
-
-//     </Grid>
-
-//   )
-// }
+module.exports = HomeNav;

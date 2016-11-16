@@ -11,7 +11,7 @@
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
     "build": "webpack",
-    "build:watch": "webpack --watch",
+    "build:watch": "webpack --watch --devtool inline-source-map",
     "dev": "webpack-dev-server"
   },
   "repository": {
@@ -66,6 +66,7 @@
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0",
+    "react-router-bootstrap": "^0.23.1",
     "request": "^2.78.0",
     "xml2js": "^0.4.17"
   }
