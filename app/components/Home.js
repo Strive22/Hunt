@@ -1,12 +1,9 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
-import HomeNav from './HomeNav';
 import axios from 'axios';
 
 class Home extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +37,6 @@ class Home extends React.Component {
         </div>
         <div>
           {this.props.children}
-          {/* <HomeNav /> */}
         </div>
       </div>
     )

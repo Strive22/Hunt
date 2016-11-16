@@ -12,9 +12,9 @@ import HomeNav from './components/HomeNav';
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="home/:userid" component={Home}>
+      <Route path="/home/:userid" component={Home}>
         <IndexRoute component={HomeNav}/>
-        <Route path="searchResults" component={NewSearchResults}/>
+        <Route path="/searchResults" component={NewSearchResults}/>
       </Route>
       <Route path="/dashboard" component={Dashboard}/>
     </Route>

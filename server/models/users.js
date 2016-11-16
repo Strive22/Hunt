@@ -5,7 +5,7 @@ const usersSchema = new Schema({
   name: String,
   email: String,
   location: String,
-  tech: String,
+  tech: [String],
   image: String,
   otherHunters: Boolean,
   interested: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }],
