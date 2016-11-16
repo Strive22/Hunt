@@ -23,7 +23,7 @@ class App extends React.Component {
           this.setState({
             currentUser: res.data
           });
-          const path = `/users/${this.state.currentUser.fbid}`;
+          const path = `/users/${this.state.currentUser._id}`;
           browserHistory.push(path);
         });
     }
