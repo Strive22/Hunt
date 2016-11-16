@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const User = require('../models/users');
 
 function checkIfLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -15,8 +16,14 @@ router.get('/', checkIfLoggedIn, (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-  console.log('login req.user:',  req.user);
-  res.send(req.user);
+  User.findById(req.user._id)
+    .populate('interested inProgress complete jobContent')
+    .exec((err, result) => {
+      if (err) console.log(`Error: ${err}`)
+    })
+    .then(user => {
+      res.send(user);
+    })
 })
 
 router.get('/landing', (req, res, next) => {
