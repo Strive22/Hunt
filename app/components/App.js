@@ -34,11 +34,46 @@ class App extends React.Component {
       <div>
         <PageHeader bsClass="page-header hunt">Hunt</PageHeader>
         <div>
-          {this.props.children}
+          {this.renderChildrenWithProps()}
         </div>
       </div>
     )
   }
+
+  renderChildrenWithProps () {
+    // add props to all the children of app
+    return React.Children.map(this.props.children, (child) => {
+      switch (child.type.name) {
+        case "Home" :
+          // home needs . . . 
+          return React.cloneElement(child, {
+            currentUser: this.state.currentUser,
+          });
+          break;
+        case "Dashboard" :
+          // dashboard needs . . . 
+          return React.cloneElement(child, {
+            currentUser: this.state.currentUser,
+          });
+          break;
+        case "EditProfile" :
+          // editprofile needs . . . 
+          return React.cloneElement(child, {
+            currentUser: this.state.currentUser,
+          });
+          break;
+        case "Connect" :
+          // connect needs . . . 
+          return React.cloneElement(child, {
+            currentUser: this.state.currentUser,
+          });
+          break;        
+        default :
+          return child;
+      }
+    });
+  }
+
 }
 
 module.exports = App;

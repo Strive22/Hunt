@@ -3,7 +3,6 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const HomeNav = () => {
-  console.log('link container:', LinkContainer);
   return (
     <Grid>
       <Row>
