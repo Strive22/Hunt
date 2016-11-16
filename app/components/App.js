@@ -45,7 +45,7 @@ class App extends React.Component {
 
   }
 
-  //add a job to interested
+  //add job to interested
   addJobToInterested(jobData) {
     let description = jobData.description.substr(0,700) + '...';
     axios.post(`http://localhost:3000/${this.state.currentUser._id}/jobs?q=interested`, {
@@ -58,28 +58,58 @@ class App extends React.Component {
         description: description
     })
     .then(res => {
-      const updateUser = Object.assign({}, this.state.currentUser);
-      updateUser.interested = updateUser.interested.concat(res.data.interested)
-      updateUser.jobContent = updateUser.jobContent.concat(res.data.jobContent)
+      let updateUser = Object.assign({}, this.state.currentUser);
+      //assuming these return the entire array
+      updateUser.interested = res.data.interested;
+      updateUser.jobContent = res.data.jobContent;
       this.setState({
-        currentUser: updateUser      
+        currentUser: updateUser   
       })
     })
   }
 
   //add a job to inProgress
-  addJobToInProgress() {
-    axios.post()
+  addJobToInProgress(jobData) {
+    //jobData comes from the props of the JobListItem
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.interested = res.data.interested;
+      updateUser.inProgress = res.data.inProgress;
+      updateUser.complete = res.data.complete;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   //add a job to complete
   addJobToComplete() {
-    axios.post()
+    //jobData comes from the props of the JobListItem
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.interested = res.data.interested;
+      updateUser.inProgress = res.data.inProgress;
+      updateUser.complete = res.data.complete;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
+  }
   }
 
   //remove a job from any list
-  removeJob() {
-
+  removeJob(jobData) {
+    let list = jobData.currentList;
+    axios.delete(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser[list] = res.data[list];
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   //update job content

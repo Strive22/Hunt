@@ -9,7 +9,9 @@ const JobList = (props) => {
   if (props.interested) {
     interested = props.interested.map(job => {
       return (
-        <JobListItem 
+        <JobListItem
+          jobId={job._id}
+          currentList="interested"
           jobContent={props.jobContent}
           addJobToInProgress={props.addJobToInProgress}
           addJobToComplete={props.addJobToComplete}
@@ -31,6 +33,8 @@ const JobList = (props) => {
     inProgress = props.inProgress.map(job => {
       return (
         <JobListItem 
+          jobId={job._id}
+          currentList="inProgress"
           jobContent={props.jobContent}
           addJobToComplete={props.addJobToComplete}
           removeJob={props.removeJob}
@@ -51,6 +55,8 @@ const JobList = (props) => {
     complete = props.complete.map(job => {
       return (
         <JobListItem
+          jobId={job._id}
+          currentList="complete"        
           jobContent={props.jobContent}
           removeJob={props.removeJob}
         />
