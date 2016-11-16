@@ -46,18 +46,35 @@ class App extends React.Component {
   }
 
   //add a job to interested
-  addJobToInterested() {
-
+  addJobToInterested(jobData) {
+    let description = jobData.description.substr(0,700) + '...';
+    axios.post(`http://localhost:3000/${this.state.currentUser._id}/jobs?q=interested`, {
+        api: jobData.api,
+        apiSpecificId: jobData.id,
+        title: jobData.title,
+        company: jobData.company,
+        location: jobData.location,
+        link: jobData.url,
+        description: description
+    })
+    .then(res => {
+      const updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.interested = updateUser.interested.concat(res.data.interested)
+      updateUser.jobContent = updateUser.jobContent.concat(res.data.jobContent)
+      this.setState({
+        currentUser: updateUser      
+      })
+    })
   }
 
   //add a job to inProgress
   addJobToInProgress() {
-
+    axios.post()
   }
 
   //add a job to complete
   addJobToComplete() {
-
+    axios.post()
   }
 
   //remove a job from any list
