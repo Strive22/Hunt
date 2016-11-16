@@ -40,6 +40,36 @@ class App extends React.Component {
     )
   }
 
+  //search for jobs via the 3P API calls
+  searchForJobs() {
+
+  }
+
+  //add a job to interested
+  addJobToInterested() {
+
+  }
+
+  //add a job to inProgress
+  addJobToInProgress() {
+
+  }
+
+  //add a job to complete
+  addJobToComplete() {
+
+  }
+
+  //remove a job from any list
+  removeJob() {
+
+  }
+
+  //update job content
+  updateJobContent() {
+
+  }
+
   renderChildrenWithProps () {
     // add props to all the children of app
     return React.Children.map(this.props.children, (child) => {
@@ -51,7 +81,9 @@ class App extends React.Component {
             //in case we want the google pic
             userPhoto: this.state.currentUser.image,
             //potentially for search result stuff
-            interested: this.state.currentUser.interested
+            interested: this.state.currentUser.interested,
+            searchForJobs: this.searchForJobs.bind(this),
+            addJobToInterested: this.addJobToInterested.bind(this)
           });
           break;
         case "Dashboard" :
@@ -61,7 +93,11 @@ class App extends React.Component {
             interested: this.state.currentUser.interested,
             inProgress: this.state.currentUser.inProgress,
             complete: this.state.currentUser.complete,
-            jobContent: this.state.currentUser.jobContent
+            jobContent: this.state.currentUser.jobContent,
+            addJobToInterested: this.addJobToInterested.bind(this),
+            addJobToInProgress: this.addJobToInProgress.bind(this),
+            addJobToComplete: this.addJobToComplete.bind(this),
+            removeJob: this.removeJob.bind(this)
           });
           break;
         case "EditProfile" :
