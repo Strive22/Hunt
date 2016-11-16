@@ -1,14 +1,19 @@
 import React from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+// import ToDash from './ToDash';
+// import EnterJob from './EnterJob';
+import SearchNewJobs from './SearchNewJobs'
 
 const HomeNav = () => {
   return (
     <Grid>
       <Row>
+
         <Col md={4}>
-          {/*<SearchContainer />*/}
+          <SearchNewJobs />
         </Col>
+
         <Col md={4}>
           <div className="selectbox">
             <h2>View Your<br/>Dashboard</h2>
@@ -17,10 +22,13 @@ const HomeNav = () => {
             </LinkContainer>
           </div>
         </Col>
+
         <Col md={4}>
-          {/*<EnterJob />*/}
+          {/* <EnterJob /> */}
         </Col>
+
       </Row>
+
     </Grid>
   )
 }

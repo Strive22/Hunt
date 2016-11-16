@@ -27,9 +27,9 @@ const commonConfig = {
       }
     ]
   }
-}
+};
 
-// development settings 
+// development settings
 const devConfig = {
   devtool: 'source-map',
   devServer: {
@@ -43,7 +43,7 @@ const devConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ]
-}
+};
 
 // production settings
 const prodConfig = {
@@ -61,7 +61,7 @@ const prodConfig = {
       }
     })
   ]
-}
+};
 
 const config = {};
 
@@ -77,4 +77,3 @@ switch (TARGET) {
 } 
 
 module.exports = config;
-

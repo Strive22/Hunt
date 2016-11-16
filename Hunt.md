@@ -90,14 +90,15 @@ Route | Type  | Action
         * ViewDash
         * SearchJobs
         * EnterJob
-      * JOBLIST (R)
-        * JobListItem
-          * Modal (B)
-            * Job
-              * JobContent
-                * Notes
-                * Actions
-                * Details
+      * NewSearchResults
+        * JOBLIST (R)
+          * JobListItem
+            * Modal (B)
+              * Job
+                * JobContent
+                  * Notes
+                  * Actions
+                  * Details
   * DASHBOARD (R)
     * DashLayout
       * JobList (and all assoc'd subcomponents)
