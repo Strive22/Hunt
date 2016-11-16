@@ -177,7 +177,10 @@ router.put('/:userid/jobs/:jobid/content', (req, res) => {
     { new: true },
     (err, jobContent) => {
       if (err) console.log(`Error in jobContent PUT: ${err}`);
-      res.send(jobContent);
+      // res.send(jobContent);
+      Users.findOne({ _id: userId }).then(user => {
+        res.send(user);
+      })
     }
   )
 })
