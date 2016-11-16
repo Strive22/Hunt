@@ -98,7 +98,6 @@ class App extends React.Component {
       })
     })
   }
-  }
 
   //remove a job from any list
   removeJob(jobData) {

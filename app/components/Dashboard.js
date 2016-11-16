@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
+import { Tabs, Tab } from 'react-bootstrap';
 import JobList from './JobList';
 import JobListItem from './JobListItem';
 
@@ -16,12 +17,15 @@ class Dashboard extends React.Component {
   }
 
   handleSelect(key) {
-    this.setState({ key });
+    console.log('getting here key: ', key)
+    this.setState({
+      key: key
+    });
   }
 
   render() {
     return (
-      <Tabs activeKey={this.state.key} onSelect={this.handleSelect} class="dashtabs">
+      <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">
         <Tab eventKey={1} title="Jobs I'm Interested In">
           <JobList 
             jobContent={this.state.jobContent}
