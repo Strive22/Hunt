@@ -31,7 +31,7 @@ const commonConfig = {
 
 // development settings 
 const devConfig = {
-  devtool: 'inline-source-maps',
+  devtool: 'source-map',
   devServer: {
     inline: true,
     historyApiFallback: true,
