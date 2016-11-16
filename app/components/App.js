@@ -41,8 +41,8 @@ class App extends React.Component {
   }
 
   //search for jobs via the 3P API calls
-  searchForJobs() {
-
+  searchForJobs(search) {
+    // axios.get(`${search.name}/`)
   }
 
   //add job to interested
@@ -85,7 +85,7 @@ class App extends React.Component {
   }
 
   //add a job to complete
-  addJobToComplete() {
+  addJobToComplete(jobData) {
     //jobData comes from the props of the JobListItem
     axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
     .then(res => {
@@ -111,6 +111,11 @@ class App extends React.Component {
         currentUser: updateUser
       })
     })
+  }
+
+  //TODO: do we need this?
+  updateUserEnteredJob(jobData) {
+    axios.put(`http://localhost:3000/${jobData._id}`)
   }
 
   //update job content
