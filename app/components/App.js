@@ -5,10 +5,10 @@ const axios = require('axios');
 
 class App extends React.Component {
     constructor (props) {
-    super(props);
-    this.state = {
-      currentUser: {}
-    }
+      super(props);
+      this.state = {
+        currentUser: {}
+      }
   }
 
   componentDidMount () {
