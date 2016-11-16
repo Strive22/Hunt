@@ -12,18 +12,18 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    // check for a currently logged in user - if there is one, they'll go to the react router user path
+    // check for user - if there is one, they'll go to the react router user path
     if (this.state.currentUser._id) {
       const path = `/users/${this.state.currentUser._id}`;
       browserHistory.push(path);
     } else {
       // if no user, get it
-      axios.get('/login')
+      axios.get('http://localhost:3000/login')
         .then((res) => {
           this.setState({
-            loggedInUser: response.data
+            currentUser: res.data
           });
-          const path = `/users/${this.state.loggedInUser.fbid}`;
+          const path = `/users/${this.state.currentUser.fbid}`;
           browserHistory.push(path);
         });
     }
