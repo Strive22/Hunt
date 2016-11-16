@@ -7,7 +7,9 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userName: this.props.userName,
+      userPhoto: this.props.userPhoto,
+      interested: this.props.interested
     }
   }
   render() {

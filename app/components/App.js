@@ -47,13 +47,21 @@ class App extends React.Component {
         case "Home" :
           // home needs . . . 
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser,
+            userName: this.state.currentUser.name,
+            //in case we want the google pic
+            userPhoto: this.state.currentUser.image,
+            //potentially for search result stuff
+            interested: this.state.currentUser.interested
           });
           break;
         case "Dashboard" :
           // dashboard needs . . . 
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser,
+            //duh
+            interested: this.state.currentUser.interested,
+            inProgress: this.state.currentUser.inProgress,
+            complete: this.state.currentUser.complete,
+            jobContent: this.state.currentUser.jobContent
           });
           break;
         case "EditProfile" :
@@ -65,7 +73,10 @@ class App extends React.Component {
         case "Connect" :
           // connect needs . . . 
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser,
+            userName: this.state.currentUser.name,
+            userEmail: this.state.currentUser.email,
+            userTech: this.state.currentUser.tech || '',
+            userLocation: this.state.currentUser.location || '',
           });
           break;        
         default :

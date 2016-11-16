@@ -5,7 +5,10 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      interested: this.props.interested,
+      inProgress: this.props.inProgress,
+      complete: this.props.complete,
+      jobContent: this.props.jobContent
     }
   }
 
