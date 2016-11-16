@@ -16,11 +16,6 @@ class Home extends React.Component {
     }
   }
 
-
-  searchNewJobs(details) {
-
-  }
-
   render() {
     return (
       <div>
@@ -35,7 +30,7 @@ class Home extends React.Component {
             <Grid>
               <Row>
                 <Col sm={2}/>
-                <Col sm={8}> <Button bsSize="large" block>Complete Your Profile</Button>  </Col>
+                <Col sm={8}> <Button bsSize="large" block>Complete Your Profile</Button> </Col>
                 <Col sm={2}/>
               </Row>
             </Grid>

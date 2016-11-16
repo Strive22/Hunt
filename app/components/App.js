@@ -29,6 +29,10 @@ class App extends React.Component {
     }
   }
 
+  getNewJobs(details) {
+    
+  }
+
   render() {
     return (
       <div>

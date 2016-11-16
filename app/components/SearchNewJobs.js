@@ -53,7 +53,7 @@ class SearchNewJobs extends React.Component {
               <option value="aj">Authentic Jobs</option>
             </FormControl>
 
-            <Link to="users/:userid/searchResults">
+            <Link to="/searchResults">
               <Button type="submit" onSubmit={e => {
                 e.preventDefault()
               }}>
@@ -63,6 +63,7 @@ class SearchNewJobs extends React.Component {
 
           </FormGroup>
         </form>
+        <Button onClick={e => {console.log(this.state)}}>Log State</Button>
       </div>
     )
   }
