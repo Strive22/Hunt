@@ -46,6 +46,7 @@ class App extends React.Component {
   }
 
   //add job to interested
+  //TODO: way to make one function that adds a job either to interested or to inProgress
   addJobToInterested(jobData) {
     let description = jobData.description.substr(0,700) + '...';
     axios.post(`http://localhost:3000/${this.state.currentUser._id}/jobs?q=interested`, {
@@ -113,8 +114,15 @@ class App extends React.Component {
   }
 
   //update job content
-  updateJobContent() {
-
+  updateJobContent(content) {
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.jobContent = res.data.jobContent;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   renderChildrenWithProps () {
