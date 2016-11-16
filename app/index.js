@@ -9,7 +9,7 @@ import Home from './components/Home';
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="users/:userid" component={Home}/>
+      <Route path="home/:userid" component={Home}/>
     </Route>
   </Router>
   ), document.getElementById('app')

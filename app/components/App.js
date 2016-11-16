@@ -14,7 +14,7 @@ class App extends React.Component {
   componentDidMount () {
     // check for user - if there is one, they'll go to the react router user path
     if (this.state.currentUser._id) {
-      const path = `/users/${this.state.currentUser._id}`;
+      const path = `/home/${this.state.currentUser._id}`;
       browserHistory.push(path);
     } else {
       // if no user, get it
@@ -23,7 +23,7 @@ class App extends React.Component {
           this.setState({
             currentUser: res.data
           });
-          const path = `/users/${this.state.currentUser._id}`;
+          const path = `/home/${this.state.currentUser._id}`;
           browserHistory.push(path);
         });
     }
