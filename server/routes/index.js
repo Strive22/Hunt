@@ -16,6 +16,7 @@ router.get('/', checkIfLoggedIn, (req, res, next) => {
 
 router.get('/login', (req, res, next) => {
   console.log('login req.user:',  req.user);
+  res.send(req.user);
 })
 
 router.get('/landing', (req, res, next) => {

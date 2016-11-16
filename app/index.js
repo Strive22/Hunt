@@ -2,15 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-
-const App = require('./components/App');
-const Home = require('./components/Home');
+import App from './components/App';
+import Home from './components/Home';
 
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path = "/" component={App}>
-      <Route path="users/:userid" component={Home}/>      
+    <Route path="/" component={App}>
+      <Route path="users/:userid" component={Home}/>
     </Route>
   </Router>
-), document.getElementById('app'));
+  ), document.getElementById('app')
+);
