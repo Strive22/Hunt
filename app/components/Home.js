@@ -14,13 +14,14 @@ class Home extends React.Component {
   }
 
   render() {
+    let name = this.props.userName.split(' ')[0];
     return (
       <div>
         <div>
 
           <Jumbotron bsClass="jumbotron motivate">
 
-            <h1>TEST, you've got this.<br/>
+            <h1>{name}, you've got this.<br/>
             <small>What would you like to do?</small>
             </h1>
 
