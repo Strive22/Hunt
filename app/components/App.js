@@ -4,11 +4,11 @@ import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
 
 class App extends React.Component {
-    constructor (props) {
-      super(props);
-      this.state = {
-        currentUser: {}
-      }
+  constructor (props) {
+    super(props);
+    this.state = {
+      currentUser: {}
+    }
   }
 
   componentDidMount () {
@@ -27,10 +27,6 @@ class App extends React.Component {
           browserHistory.push(path);
         });
     }
-  }
-
-  getNewJobs(details) {
-    
   }
 
   render() {

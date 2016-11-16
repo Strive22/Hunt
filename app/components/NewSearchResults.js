@@ -12,11 +12,6 @@ class NewSearchResults extends React.Component {
     }
   }
 
-  handleSelect(eventKey) {
-    event.preventDefault();
-    alert(`selected ${eventKey}`);
-  }
-
   render() {
     return (
       <Grid>
@@ -25,7 +20,7 @@ class NewSearchResults extends React.Component {
 
           <Col md={12}>
             <div className="selectbox">
-            <Nav bsStyle="tabs" activeKey="1" onSelect={this.handleSelect}>
+            <Nav bsStyle="tabs" activeKey="1">
               <NavItem eventKey="1"> Github{/* {this.props.provider}*/} </NavItem>
               {/* this is where we will render the JobList component */}
             </Nav>
