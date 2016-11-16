@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { PageHeader } from 'react-bootstrap';
-const axios = require('axios');
+import { PageHeader } from 'react-bootstrap';
+import axios from 'axios';
 
 class App extends React.Component {
     constructor (props) {

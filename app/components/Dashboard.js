@@ -1,16 +1,22 @@
-const React = require('react');
-import { browserHistory,Link} from 'react-router';
+import React from 'react';
+import { browserHistory, Link } from 'react-router';
 
-class DashBoard extends React.Component {
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
 
   render() {
     return (
       <div>
-        <h1> Dash Board</h1>
+        <h1>Dashboard</h1>
       </div>
     )
   }
   
 }
 
-module.exports = DashBoard;
+module.exports = Dashboard;
