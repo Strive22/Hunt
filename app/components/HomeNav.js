@@ -5,13 +5,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 // import EnterJob from './EnterJob';
 import SearchNewJobs from './SearchNewJobs'
 
-const HomeNav = () => {
+const HomeNav = (props) => {
   return (
     <Grid>
       <Row>
 
         <Col md={4}>
-          <SearchNewJobs />
+          <SearchNewJobs search={props.searchForJobs}/>
         </Col>
 
         <Col md={4}>

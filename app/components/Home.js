@@ -15,6 +15,21 @@ class Home extends React.Component {
 
   render() {
     let name = this.props.userName.split(' ')[0];
+
+    const childrenWithProps = React.Children.map(this.props.children, (child) => {
+      switch (child.type.name) {
+        case "s" :
+        return React.cloneElement(child, {
+          searchForJobs: this.props.searchForJobs
+        });
+        case "NewSearchResults" :
+        return React.cloneElement(child, {
+          addJobToInterested: this.props.addJobToInterested
+        })
+      }
+    })
+
+
     return (
       <div>
         <div>
@@ -37,7 +52,7 @@ class Home extends React.Component {
 
         </div>
         <div>
-          {this.props.children}
+          {childrenWithProps}
         </div>
       </div>
     )
