@@ -78,8 +78,8 @@ router.get('/aj/:searchterms', (req, res) => {
           desc = desc.replace(/<(?:.|)*?>/gm, '');
           desc = desc.replace(/\n/gm, '  ');
           desc = desc.replace('&amp;', '');
-          //eventually we'll want to do this on the front end I think
-          desc = desc.substr(0,200) + '...';
+          //NOTE: now substringing the description in App.js on the front end
+          // desc = desc.substr(0,200) + '...';
 
           return {
             api: "Authentic Jobs",
@@ -127,8 +127,8 @@ router.get('/in/:searchterms', (req, res) => {
           desc = desc.replace(/<(?:.|)*?>/gm, '');
           desc = desc.replace(/\n/gm, '  ');
           desc = desc.replace('&amp;', '');
-          //eventually we'll want to do this on the front end I think
-          desc = desc.substr(0,200) + '...';
+          //NOTE: now substringing the description in App.js on the front end
+          // desc = desc.substr(0,200) + '...';
 
           return {
             api: "Indeed",
