@@ -6,9 +6,11 @@ module.exports = () => {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,
-    callbackURL: `${process.env.HOST}/auth/callback`
-  }, (accessToken, refreshToken, profile, done) => {
-    Users.findOne({ name: profile.displayName }).then(user => {
+    callbackURL: `${process.env.HOST}/auth/callback`,
+    passReqToCallback: true
+  }, (req, accessToken, refreshToken, profile, done) => {
+    Users.findOne({ name: profile.displayName })
+    .then(user => {
       if (user) {
         console.log('User found.')
         done(null, user);
