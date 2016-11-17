@@ -27,29 +27,34 @@ class Dashboard extends React.Component {
     return (
       <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">
         <Tab eventKey={1} title="Jobs I'm Interested In">
-          <JobList 
-            jobContent={this.state.jobContent}
-            interested={this.state.interested}
-            addJobToInProgress={this.props.addJobToInProgress} 
-            addJobToComplete={this.props.addJobToComplete} 
-            removeJob={this.props.removeJob}
-          />
+          <div className="job-list">
+            <JobList 
+              jobContent={this.state.jobContent}
+              interested={this.state.interested}
+              addJobToInProgress={this.props.addJobToInProgress} 
+              addJobToComplete={this.props.addJobToComplete} 
+              removeJob={this.props.removeJob}
+            />
+          </div>
         </Tab>
         <Tab eventKey={2} title="Job Applications In Progress">
-          <JobList 
-            jobContent={this.state.jobContent}
-            inProgress={this.state.inProgress}
-            addJobToComplete={this.props.addJobToComplete} 
-            removeJob={this.props.removeJob}            
-          />
-
+          <div className="job-list">
+            <JobList 
+              jobContent={this.state.jobContent}
+              inProgress={this.state.inProgress}
+              addJobToComplete={this.props.addJobToComplete} 
+              removeJob={this.props.removeJob}           
+            />
+          </div>
         </Tab>
-        <Tab eventKey={3} title="Job Applications Complete">
-          <JobList 
-            jobContent={this.state.jobContent}
-            complete={this.state.complete}
-            removeJob={this.props.removeJob}            
-          />
+        <Tab eventKey={3} title="Job Applications I've Completed">
+          <div className="job-list">
+            <JobList 
+              jobContent={this.state.jobContent}
+              complete={this.state.complete}
+              removeJob={this.props.removeJob}            
+            />
+          </div>
         </Tab>
       </Tabs>
     )
