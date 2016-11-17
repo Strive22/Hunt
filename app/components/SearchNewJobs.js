@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, FormGroup, HelpBlock, Button } from 'react-bootstrap';
+import { FormControl, ButtonGroup, FormGroup, HelpBlock, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 
@@ -8,22 +8,48 @@ class SearchNewJobs extends React.Component {
   constructor() {
     super()
     this.state = {
-      keyword: '',
-      provider: ''
+      keywords: '',
+      providers: [],
+      toggle: 'primary',
+      active: {
+        gh: false,
+        in: false,
+        aj: false
+      }
     };
   }
 
   handleKeyword(event) {
     this.setState({
-      keyword: event.target.value
+      keywords: event.target.value
     });
   };
 
   handleProvider(event) {
+    let newProvider = event.target.value;
+    let providers = this.state.providers;
+
+    if (providers.includes(newProvider)) {
+      providers = providers.filter(prov => prov !== newProvider)
+    } else {
+      providers.push(newProvider)
+    }
+    this.toggleButton(newProvider)
+
     this.setState({
-      provider: event.target.value
+      providers: providers,
     });
   };
+
+  toggleButton(provider) {
+    let newStatus = this.state.active;
+
+    newStatus[provider] = newStatus[provider] ? false : true;
+
+    this.setState({
+      active: newStatus
+    })
+  }
 
   render() {
     return (
@@ -33,29 +59,34 @@ class SearchNewJobs extends React.Component {
 
         <form>
           <FormGroup
-            controlId="keyword"
+            controlId="keywords"
           >
             <FormControl
               type="text"
-              value={this.state.keyword}
+              value={this.state.keywords}
               placeholder="Get Hired!"
               onChange={this.handleKeyword.bind(this)}
             />
-            <FormControl.Feedback />
+
             <HelpBlock>Enter search terms seperated by commas.</HelpBlock>
 
-            <FormControl
-              componentClass="select"
-              placeholder="select a provider"
-              onChange={this.handleProvider.bind(this)}>
-              <option value="gh">Github</option>
-              <option value="in">Indeed</option>
-              <option value="aj">Authentic Jobs</option>
-            </FormControl>
+            <ButtonGroup>
+              <Button active={ this.state.active.gh } bsStyle={ this.state.toggle } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
+              <Button active={ this.state.active.in } bsStyle={ this.state.toggle } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
+              <Button active={ this.state.active.aj } bsStyle={ this.state.toggle } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
+            </ButtonGroup>
 
             <Link to="/searchResults">
-              <Button type="submit" onSubmit={e => {
-                e.preventDefault()
+              <Button type="submit" onClick={(e) => {
+                // create the object to be passed to the function
+                let details = {}
+
+                // add properties to that object with the stuff in state
+                details.keywords = this.state.keywords
+                details.providers = this.state.providers
+
+                // call that functions with the details object
+                this.props.search(details)
               }}>
                 Submit
               </Button>
@@ -63,7 +94,7 @@ class SearchNewJobs extends React.Component {
 
           </FormGroup>
         </form>
-        <Button onClick={e => {console.log(this.state)}}>Log State</Button>
+        <Button onClick={e => {console.log('State', this.state, 'Props', this.props)}}>Log stuff!</Button>
       </div>
     )
   }

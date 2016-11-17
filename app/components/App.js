@@ -2,12 +2,14 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
+import job from '../models/jobModel'
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentUser: {}
+      currentUser: {},
+      searchResults: []
     }
   }
 
@@ -41,8 +43,16 @@ class App extends React.Component {
   }
 
   //search for jobs via the 3P API calls
-  searchForJobs(search) {
-    // axios.get(`${search.name}/`)
+  searchForJobs(searchDetails) {
+
+    // searchNewJobs returns a promise that resolves into an array of job objects
+    job.searchNewJobs(searchDetails)
+      .then(res => {
+        console.log(res)
+        this.setState({
+          searchResults: res
+        })
+      })
   }
 
   //add job to interested
@@ -134,7 +144,7 @@ class App extends React.Component {
     return React.Children.map(this.props.children, (child) => {
       switch (child.type.name) {
         case "Home" :
-          // home needs . . . 
+          // home needs . . .
           return React.cloneElement(child, {
             userName: this.state.currentUser.name,
             //in case we want the google pic
@@ -142,11 +152,12 @@ class App extends React.Component {
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
             searchForJobs: this.searchForJobs.bind(this),
-            addJobToInterested: this.addJobToInterested.bind(this)
+            addJobToInterested: this.addJobToInterested.bind(this),
+            searchResults: this.state.searchResults
           });
           break;
         case "Dashboard" :
-          // dashboard needs . . . 
+          // dashboard needs . . .
           return React.cloneElement(child, {
             //duh
             interested: this.state.currentUser.interested,
@@ -160,20 +171,20 @@ class App extends React.Component {
           });
           break;
         case "EditProfile" :
-          // editprofile needs . . . 
+          // editprofile needs . . .
           return React.cloneElement(child, {
             currentUser: this.state.currentUser,
           });
           break;
         case "Connect" :
-          // connect needs . . . 
+          // connect needs . . .
           return React.cloneElement(child, {
             userName: this.state.currentUser.name,
             userEmail: this.state.currentUser.email,
             userTech: this.state.currentUser.tech || '',
             userLocation: this.state.currentUser.location || '',
           });
-          break;        
+          break;
         default :
           return child;
       }
