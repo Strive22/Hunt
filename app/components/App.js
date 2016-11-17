@@ -41,33 +41,92 @@ class App extends React.Component {
   }
 
   //search for jobs via the 3P API calls
-  searchForJobs() {
-
+  searchForJobs(search) {
+    // axios.get(`${search.name}/`)
   }
 
-  //add a job to interested
-  addJobToInterested() {
-
+  //add job to interested
+  //TODO: way to make one function that adds a job either to interested or to inProgress
+  addJobToInterested(jobData) {
+    let description = jobData.description.substr(0,700) + '...';
+    axios.post(`http://localhost:3000/${this.state.currentUser._id}/jobs?q=interested`, {
+        api: jobData.api,
+        apiSpecificId: jobData.id,
+        title: jobData.title,
+        company: jobData.company,
+        location: jobData.location,
+        link: jobData.url,
+        description: description
+    })
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      //assuming these return the entire array
+      updateUser.interested = res.data.interested;
+      updateUser.jobContent = res.data.jobContent;
+      this.setState({
+        currentUser: updateUser   
+      })
+    })
   }
 
   //add a job to inProgress
-  addJobToInProgress() {
-
+  addJobToInProgress(jobData) {
+    //jobData comes from the props of the JobListItem
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.interested = res.data.interested;
+      updateUser.inProgress = res.data.inProgress;
+      updateUser.complete = res.data.complete;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   //add a job to complete
-  addJobToComplete() {
-
+  addJobToComplete(jobData) {
+    //jobData comes from the props of the JobListItem
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.interested = res.data.interested;
+      updateUser.inProgress = res.data.inProgress;
+      updateUser.complete = res.data.complete;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   //remove a job from any list
-  removeJob() {
+  removeJob(jobData) {
+    let list = jobData.currentList;
+    axios.delete(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser[list] = res.data[list];
+      this.setState({
+        currentUser: updateUser
+      })
+    })
+  }
 
+  //TODO: do we need this?
+  updateUserEnteredJob(jobData) {
+    axios.put(`http://localhost:3000/${jobData._id}`)
   }
 
   //update job content
-  updateJobContent() {
-
+  updateJobContent(content) {
+    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
+    .then(res => {
+      let updateUser = Object.assign({}, this.state.currentUser);
+      updateUser.jobContent = res.data.jobContent;
+      this.setState({
+        currentUser: updateUser
+      })
+    })
   }
 
   renderChildrenWithProps () {
