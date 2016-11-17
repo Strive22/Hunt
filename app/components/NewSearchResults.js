@@ -27,12 +27,12 @@ class NewSearchResults extends React.Component {
 
           <Col md={12}>
 
-              <Nav bsStyle="tabs" activeKey="1">
-                <NavItem eventKey="1"> Pick your favorites! </NavItem>
-                <div className="search-results">
-                  {/* {searchItems} */}
-                </div>
-              </Nav>
+            <div className="search-results">
+              {/* <Nav bsStyle="tabs" activeKey="1"> */}
+                {/* <NavItem eventKey="1"> Pick your favorites! </NavItem> */}
+                {/* <JobList /> */}
+              {/* </Nav> */}
+            </div>
 
           </Col>
 
