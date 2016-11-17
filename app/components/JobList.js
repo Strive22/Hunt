@@ -10,7 +10,7 @@ const JobList = (props) => {
     interested = props.interested.map(job => {
       return (
         <JobListItem
-          jobId={job._id}
+          jobData={job}
           currentList="interested"
           jobContent={props.jobContent}
           addJobToInProgress={props.addJobToInProgress}

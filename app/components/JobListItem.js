@@ -1,9 +1,16 @@
 import React from 'react';
 import { ListGroupItem } from 'react-bootstrap';
 
-export default (props) => {
-
+const JobListItem = (props) => {
+  let job = props.jobData;
+  console.log("job:", job);
   return (
-    <ListGroupItem header={props.company}>{props.title}</ListGroupItem>
+    <ListGroupItem header={job.title}>
+      {job.company}
+      <br/>
+      {job.location}
+    </ListGroupItem>
   )
 }
+
+module.exports = JobListItem;
