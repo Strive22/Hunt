@@ -31,3 +31,7 @@ h1 small {
   padding: 5px;
   box-shadow: 1px 1px 0px #d7d7d7;
 }
+
+.job-list-item-btns {
+  margin-top: 35px;
+}

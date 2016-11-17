@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
       <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">
         <Tab eventKey={1} title="Jobs I'm Interested In">
           <div className="job-list">
-            <JobList 
+            <JobList
               jobContent={this.state.jobContent}
               interested={this.state.interested}
               addJobToInProgress={this.props.addJobToInProgress} 
