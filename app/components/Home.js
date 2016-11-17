@@ -24,7 +24,8 @@ class Home extends React.Component {
         });
         case "NewSearchResults" :
         return React.cloneElement(child, {
-          addJobToInterested: this.props.addJobToInterested
+          addJobToInterested: this.props.addJobToInterested,
+          searchResults: this.props.searchResults
         })
       }
     })

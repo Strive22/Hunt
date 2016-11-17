@@ -8,7 +8,8 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentUser: {}
+      currentUser: {},
+      searchResults: []
     }
   }
 
@@ -43,8 +44,11 @@ class App extends React.Component {
 
   //search for jobs via the 3P API calls
   searchForJobs(searchDetails) {
+
+    // searchNewJobs returns a promise that resolves into an array of job objects
     job.searchNewJobs(searchDetails)
       .then(res => {
+        console.log(res)
         this.setState({
           searchResults: res
         })
@@ -148,7 +152,8 @@ class App extends React.Component {
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
             searchForJobs: this.searchForJobs.bind(this),
-            addJobToInterested: this.addJobToInterested.bind(this)
+            addJobToInterested: this.addJobToInterested.bind(this),
+            searchResults: this.state.searchResults
           });
           break;
         case "Dashboard" :

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Nav, NavItem } from 'react-bootstrap';
+import { Grid, Row, Col, Nav, NavItem, Button } from 'react-bootstrap';
 // import
 
 
@@ -8,8 +8,14 @@ class NewSearchResults extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      results: props.searchResults
+      results: this.props.searchResults
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      results: this.props.searchResults
+    })
   }
 
   render() {
@@ -29,6 +35,7 @@ class NewSearchResults extends React.Component {
 
         </Row>
 
+        <Button onClick={()=>{console.log(this.state)}}>Get some state</Button>
       </Grid>
     )
   }

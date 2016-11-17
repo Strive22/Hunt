@@ -15,18 +15,21 @@ class SearchNewJobs extends React.Component {
 
   handleKeyword(event) {
     this.setState({
-      keyword: event.target.value
+      keywords: event.target.value
     });
   };
 
   handleProvider(event) {
-    let provider = event.target.value;
-    let providersCopy = [...this.state.providers];
+    let newProvider = event.target.value;
+    let providers = this.state.providers;
 
-    let newProviders = this.state.providers.includes(provider) ? providersCopy.filter(prov => prov !== provider) : providersCopy.push(provider);
+    if (providers.includes(newProvider)) {
+      providers = providers.filter(prov => prov !== newProvider)
+    } else {
+      providers.push(newProvider)
+    }
 
-    console.log(event.target)
-    this.setState({providers: newProviders});
+    this.setState({providers: providers});
 
   };
 
@@ -38,11 +41,11 @@ class SearchNewJobs extends React.Component {
 
         <form>
           <FormGroup
-            controlId="keyword"
+            controlId="keywords"
           >
             <FormControl
               type="text"
-              value={this.state.keyword}
+              value={this.state.keywords}
               placeholder="Get Hired!"
               onChange={this.handleKeyword.bind(this)}
             />
@@ -56,8 +59,8 @@ class SearchNewJobs extends React.Component {
             </ButtonGroup>
 
             <Link to="/searchResults">
-              <Button type="submit" onSubmit={e => {
-                e.preventDefault()
+              <Button type="submit" onClick={(e) => {
+                this.props.search(this.state)
               }}>
                 Submit
               </Button>
