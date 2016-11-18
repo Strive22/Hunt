@@ -58,25 +58,24 @@ handlesubmit(event){
         // self.setState({
         //   users: data
         // })
-          if(this.state.Technology){
+        console.log("hellooo Dattaaa", data);
+          if(this.state.Technology){ 
           for(let i=0; i < data.length; i++){ 
-            console.log("dataa in techhh", data[i].tech[0]) 
              if(data[i].tech[0] === this.state.Technology){ 
              newarr.push(data[i]); 
            }
-            console.log("newwwwww", newarr);
-          }   
-          self.setState({
-              users: newarr
-           })
+           }   
+            self.setState({
+               users: newarr
+              })
        
              } 
            else{
-          console.log("sorryyyy no Technology");
-      self.setState({
-          users: data
-        })
-      }
+          
+            self.setState({
+              users: data
+               })
+           }
       return data
       }).then(data1 => {
       if(data1.length===0){
@@ -94,7 +93,7 @@ handlesubmit(event){
   let Techfilter  = (this.state.users.length) ? <Connectlist userdata={this.state.users}/> :<SweetAlert
        title="Sorry No Users Near by"
         show = {this.state.text}
-        text="SweetAlert in React"
+        text="Please Try Again"
          onConfirm={ () => this.setState({ 
           text :false
          })

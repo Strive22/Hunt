@@ -16,7 +16,7 @@ class ConnecterList extends React.Component{
  <div className="col s12 m7">
     <div className="card horizontal">
       <div className="card-image">
-        <img src="http://lorempixel.com/100/190/nature/6"/>
+        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png"/>
       </div>
       <div className="card-stacked">
       
