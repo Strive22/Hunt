@@ -3,7 +3,6 @@ import { browserHistory, Link} from 'react-router';
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
 import HomeNav from './HomeNav';
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);

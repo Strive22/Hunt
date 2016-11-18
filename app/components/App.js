@@ -88,8 +88,6 @@ class App extends React.Component {
       })
   }
 
-
-
   //add a job to inProgress
   addJobToInProgress(jobData) {
     //jobData comes from the props of the JobListItem
