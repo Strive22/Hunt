@@ -88,6 +88,8 @@ class App extends React.Component {
     })
   }
 
+
+
   //add a job to inProgress
   addJobToInProgress(jobData) {
     //jobData comes from the props of the JobListItem
@@ -156,6 +158,7 @@ class App extends React.Component {
           // home needs . . .
           return React.cloneElement(child, {
             userName: this.state.currentUser.name,
+            userId: this.state.currentUser._id,
             //in case we want the google pic
             userPhoto: this.state.currentUser.image,
             //potentially for search result stuff

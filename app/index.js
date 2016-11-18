@@ -18,7 +18,7 @@ ReactDOM.render((
         <Route path="/searchResults" component={NewSearchResults}/>
       </Route>
       <Route path="/dashboard" component={Dashboard}/>
-      <Route path="/enterJob" component={EnterJob}/>
+      {/* <Route path="/enterJob" component={EnterJob}/> */}
     </Route>
   </Router>
   ), document.getElementById('app')

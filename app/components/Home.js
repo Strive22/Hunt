@@ -14,12 +14,14 @@ class Home extends React.Component {
   }
 
   render() {
-    let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0]; 
+    let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0];
 
     const childrenWithProps = React.Children.map(this.props.children, (child) => {
+      console.log(child.type.name)
       switch (child.type.name) {
-        case "s" :
+        case "p" :
         return React.cloneElement(child, {
+          userId: this.props.userId,
           searchForJobs: this.props.searchForJobs
         });
         case "NewSearchResults" :
