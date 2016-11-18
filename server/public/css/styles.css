@@ -141,7 +141,8 @@ h1 small {
 .search-btn {
   margin-right: 2px;
 }
-.btn:focus, .btn.active:focus {
+
+/*.btn:focus, .btn.active:focus {
   outline: none;
 }*/
 
