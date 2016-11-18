@@ -45,6 +45,11 @@ class Home extends React.Component {
         <div>
           <HomeNav addJob={this.props.addJob} userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
         </div>
+
+        <Link to="/Connect">
+          <Button> Connectttt</Button>
+        </Link> 
+
       </div>
     )
   }

@@ -15,8 +15,10 @@ const User = require('./models/users');
 const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
-const search = require('./routes/search');
-const fallback = require('./routes/fallback');
+const search = require('./routes/search'); 
+const connect = require('./routes/Connect')
+const fallback = require('./routes/fallback'); 
+
 
 const app = express();
 app.use(morgan('dev'));
@@ -54,7 +56,8 @@ require('./config/passport')(app);
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/auth', auth);
+app.use('/auth', auth); 
+app.use('/connect',connect);
 app.use('/search', search);
 app.use('*', fallback);
 
@@ -93,6 +96,8 @@ const server = app.listen(port, () => {
       });
     }
   });
+  
+
 });
 
 module.exports = app;
