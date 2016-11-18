@@ -21,5 +21,17 @@ exports.searchNewJobs = (searchDetails) => {
 }
 
 exports.addJob = (jobDetails) => {
-
+  return axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
+        api: jobData.api,
+        apiSpecificId: jobData.apiSpecificId,
+        title: jobData.title,
+        company: jobData.company,
+        location: jobData.location,
+        link: jobData.link,
+        description: description
+    })
+  ).then(res => {
+    console.log(res)
+    return res
+  })
 }
