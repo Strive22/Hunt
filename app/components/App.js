@@ -76,18 +76,16 @@ class App extends React.Component {
         }
     })
     .then(res => {
-      console.log('res in axios post:', res)
       let userId = this.state.currentUser._id
-      // let updateUser = Object.assign({}, this.state.currentUser);
-      // //assuming these return the entire array
-      // updateUser.interested = res.data.interested;
-      // updateUser.jobContent = res.data.jobContent;
+      let updateUser = Object.assign({}, this.state.currentUser);
+      //assuming these return the entire array
+      updateUser.interested = res.data.interested;
+      updateUser.jobContent = res.data.jobContent;
       axios.get(`/users/${userId}`)
         .then(res => {
-          console.log(res)
-          // this.setState({
-          //   currentUser: updateUser
-          // })
+          this.setState({
+            currentUser: updateUser
+          })
         })
     })
   }
