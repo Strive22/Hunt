@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
+import querystring from 'querystring';
 import job from '../models/jobModel'
 
 class App extends React.Component {
@@ -60,34 +61,28 @@ class App extends React.Component {
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
   addJobToInterested(jobData) {
-    console.log('do the thing?:', jobData)
     let description = jobData.description.substr(0,700) + '...';
-    axios({
-        method: 'post',
-        url: `http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`,
-        data: {
+    axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
           api: jobData.api,
-          apiSpecificId: jobData.id,
+          apiSpecificId: jobData.apiSpecificId,
           title: jobData.title,
           company: jobData.company,
           location: jobData.location,
-          link: jobData.url,
+          link: jobData.link,
           description: description
-        }
-    })
+      })
+    )
     .then(res => {
-      console.log('res in axios post:', res)
       let userId = this.state.currentUser._id
-      // let updateUser = Object.assign({}, this.state.currentUser);
-      // //assuming these return the entire array
-      // updateUser.interested = res.data.interested;
-      // updateUser.jobContent = res.data.jobContent;
-      axios.get(`/users/${userId}`)
+      let updateUser = Object.assign({}, this.state.currentUser);
+      //assuming these return the entire array
+      updateUser.interested = res.data.interested;
+      updateUser.jobContent = res.data.jobContent;
+      axios.get(`http://localhost:3000/users/${userId}`)
         .then(res => {
-          console.log(res)
-          // this.setState({
-          //   currentUser: updateUser
-          // })
+          this.setState({
+            currentUser: updateUser
+          })
         })
     })
   }

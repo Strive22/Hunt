@@ -80,7 +80,6 @@ router.post('/:userid/jobs', (req, res) => {
   //importantly, there needs to be a query string given to this endpoint in order to ascertain which of the user's queues this is going into (so, the value MUST be 'interested', 'inProgress', or 'complete')
   let q = req.query.q;
   
-  console.log("req.body:", req.body);
   //second, put the job in the jobs collection
   //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
   let job = new Jobs({
@@ -93,7 +92,6 @@ router.post('/:userid/jobs', (req, res) => {
     description: req.body.description
   });
   job.save().then(job => {
-    console.log('job inside post after save:', job)
     //next we've gotta update the user with the job in the correct queue
     let jobId = job._id;
     //create the job content doc that'll be associated with this user and job
