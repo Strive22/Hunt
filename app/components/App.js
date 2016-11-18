@@ -27,6 +27,9 @@ class App extends React.Component {
           });
           const path = `/home/${this.state.currentUser._id}`;
           browserHistory.push(path);
+        })
+        .catch(err => {
+          browserHistory.push('/login')
         });
     }
   }
@@ -48,7 +51,6 @@ class App extends React.Component {
     // searchNewJobs returns a promise that resolves into an array of job objects
     job.searchNewJobs(searchDetails)
       .then(res => {
-        console.log(res)
         this.setState({
           searchResults: res
         })
@@ -58,6 +60,7 @@ class App extends React.Component {
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
   addJobToInterested(jobData) {
+    console.log('do the thing?:', jobData)
     let description = jobData.description.substr(0,700) + '...';
     axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, {
         api: jobData.api,
@@ -69,13 +72,18 @@ class App extends React.Component {
         description: description
     })
     .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      //assuming these return the entire array
-      updateUser.interested = res.data.interested;
-      updateUser.jobContent = res.data.jobContent;
-      this.setState({
-        currentUser: updateUser   
-      })
+      let userId = this.state.currentUser._id
+      // let updateUser = Object.assign({}, this.state.currentUser);
+      // //assuming these return the entire array
+      // updateUser.interested = res.data.interested;
+      // updateUser.jobContent = res.data.jobContent;
+      axios.get(`/users/${userId}`)
+        .then(res => {
+          console.log(res)
+          // this.setState({
+          //   currentUser: updateUser
+          // })
+        })
     })
   }
 

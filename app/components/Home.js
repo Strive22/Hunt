@@ -14,7 +14,7 @@ class Home extends React.Component {
   }
 
   render() {
-    let name = this.props.userName.split(' ')[0];
+    let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0]; 
 
     const childrenWithProps = React.Children.map(this.props.children, (child) => {
       switch (child.type.name) {

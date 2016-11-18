@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Nav, NavItem, Button } from 'react-bootstrap';
 import JobList from './JobList'
-
+import SearchResultsList from './SearchResultsList'
 
 class NewSearchResults extends React.Component {
 
@@ -27,12 +27,11 @@ class NewSearchResults extends React.Component {
 
           <Col md={12}>
 
-              <Nav bsStyle="tabs" activeKey="1">
-                <NavItem eventKey="1"> Pick your favorites! </NavItem>
-                <div className="search-results">
-                  {/* {searchItems} */}
-                </div>
-              </Nav>
+              {/* <Nav bsStyle="tabs" activeKey="1"> */}
+                {/* <NavItem eventKey="1"> Pick your favorites! </NavItem> */}
+
+                  <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
+              {/* </Nav> */}
 
           </Col>
 

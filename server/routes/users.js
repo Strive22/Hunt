@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
       console.log(`Find all users: ${users}`);
       res.send(users);
     }
-  })
-})
+  });
+});
 
 //GET specific user
 router.get('/:userid', (req, res) => {
@@ -32,8 +32,8 @@ router.get('/:userid', (req, res) => {
   .then(found => {
     console.log(found)
     res.send(found);
-  })
-})
+  });
+});
 
 //PUT update specific user
 //This route is for updating information on the user's profile and will provide data in the body specifying the elements to be updated
@@ -45,14 +45,14 @@ router.put('/:userid', (req, res) => {
 
   Users.findOneAndUpdate(
     { _id: req.params.userid },
-    toUpdate, 
+    toUpdate,
     { new: true },
     (err, user) => {
-      if (err) console.log(`Error in user PUT: ${err}`);
+      if (err) { console.log(`Error in user PUT: ${err}`); }
       res.send(user);
     }
-  )
-})
+  );
+});
 
 //GET all user's jobs
 router.get('/:userid/jobs', (req, res) => {
@@ -60,7 +60,7 @@ router.get('/:userid/jobs', (req, res) => {
   //may be able to take this populate out later if the populate occurs elsewhere
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
-    if (err) console.log(`Error: ${err}`)
+    if (err) { console.log(`Error: ${err}`); }
   })
   .then(found => {
     let allJobs = {
@@ -70,8 +70,8 @@ router.get('/:userid/jobs', (req, res) => {
       jobContent: found.jobContent
     };
     res.send(allJobs);
-  })
-})
+  });
+});
 
 //POST add a job for a user
 router.post('/:userid/jobs', (req, res) => {
@@ -91,7 +91,7 @@ router.post('/:userid/jobs', (req, res) => {
     location: req.body.location,
     link: req.body.link,
     description: req.body.description
-  })
+  });
   job.save().then(job => {
     console.log('job inside post after save:', job)
     //next we've gotta update the user with the job in the correct queue
@@ -100,7 +100,7 @@ router.post('/:userid/jobs', (req, res) => {
     let jobContent = new JobContent({
       user_id: userId,
       job_id: jobId
-    })
+    });
     jobContent.save().then(content => {
       jobContentId = content._id;
       //toPush has to be separately defined so we can use the query indicating which array the jobId should be pushed into
@@ -108,7 +108,7 @@ router.post('/:userid/jobs', (req, res) => {
       //push to the right job array
       toPush[q] = jobId;
       //also wanna push the new jobContent id into that array
-      toPush.jobContent = jobContentId; 
+      toPush.jobContent = jobContentId;
       Users.findOneAndUpdate(
         { _id: userId },
         { $push: toPush },
@@ -117,10 +117,10 @@ router.post('/:userid/jobs', (req, res) => {
       //return the updated user
       .then(user => {
         res.json(user);
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
 
 //PUT move a job to a new queue or DELETE a job from a queue
 router.route('/:userid/jobs/:jobid/:queue')
@@ -131,7 +131,7 @@ router.route('/:userid/jobs/:jobid/:queue')
     toAdd[queue] = jobId;
     //when we add we want to remove from other lists
     Users.findOneAndUpdate({ _id: req.params.userid },
-      { $push: toAdd, 
+      { $push: toAdd,
         $pull: { interested: jobId, complete: jobId }
       },
       { new: true })
@@ -140,7 +140,7 @@ router.route('/:userid/jobs/:jobid/:queue')
       })
       .catch(error => {
         throw error;
-      })
+      });
   })
   .delete((req, res) => {
     let queue = req.params.queue;
@@ -156,15 +156,15 @@ router.route('/:userid/jobs/:jobid/:queue')
           (err, user) => {
             res.send(user);
           }
-        )
+        );
       }
-    )
-  })
+    );
+  });
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 router.post('/:userid/jobs/:jobid/content', (req, res) => {
 
-})
+});
 
 //PUT update job content specific to a user's job
 router.put('/:userid/jobs/:jobid/content', (req, res) => {
@@ -179,13 +179,13 @@ router.put('/:userid/jobs/:jobid/content', (req, res) => {
     toUpdate,
     { new: true },
     (err, jobContent) => {
-      if (err) console.log(`Error in jobContent PUT: ${err}`);
+      if (err) { console.log(`Error in jobContent PUT: ${err}`); }
       // res.send(jobContent);
       Users.findOne({ _id: userId }, (user) => {
         res.send(user);
-      })
+      });
     }
-  )
-})
+  );
+});
 
 module.exports = router;
