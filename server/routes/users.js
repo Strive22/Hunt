@@ -75,9 +75,6 @@ router.get('/:userid/jobs', (req, res) => {
 
 //POST add a job for a user
 router.post('/:userid/jobs', (req, res) => {
-  console.log("req.body:", req.body);
-  console.log('req', req)
-  console.log('req.data', req.data)
   //we'll utilize this route when a user either adds via the form or clicks on the 'add to interested' button upon searching
   let userId = req.params.userid;
   //importantly, there needs to be a query string given to this endpoint in order to ascertain which of the user's queues this is going into (so, the value MUST be 'interested', 'inProgress', or 'complete')
@@ -95,7 +92,6 @@ router.post('/:userid/jobs', (req, res) => {
     description: req.body.description
   });
   job.save().then(job => {
-    console.log('job inside post after save:', job)
     //next we've gotta update the user with the job in the correct queue
     let jobId = job._id;
     //create the job content doc that'll be associated with this user and job

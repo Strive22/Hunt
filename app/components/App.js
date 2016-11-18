@@ -61,7 +61,6 @@ class App extends React.Component {
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
   addJobToInterested(jobData) {
-    console.log('jobData:', jobData)
     let description = jobData.description.substr(0,700) + '...';
     axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
           api: jobData.api,
@@ -74,7 +73,6 @@ class App extends React.Component {
       })
     )
     .then(res => {
-      console.log('res in front end post:', res)
       let userId = this.state.currentUser._id
       let updateUser = Object.assign({}, this.state.currentUser);
       //assuming these return the entire array
