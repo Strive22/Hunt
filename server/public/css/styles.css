@@ -8,6 +8,11 @@ body {
   background-image: url(../img/peopleBlur.jpg);
 }
 
+.form-control {
+  width: 90%;
+  margin: auto;
+}
+
 /* App Component Styles */
 .page-header {
   margin-top: 50px;
@@ -56,6 +61,7 @@ h1 small {
   padding: 5px;
   color: #f8f8f8;
   box-shadow: 1px 1px 6px rgba(1,1,1,1);
+
 }
 
 .selectbox h2 {
