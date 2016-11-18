@@ -14,7 +14,7 @@ class Home extends React.Component {
   }
 
   render() {
-    let name = this.props.userName.split(' ')[0];
+    let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0]; 
 
     const childrenWithProps = React.Children.map(this.props.children, (child) => {
       switch (child.type.name) {
@@ -24,7 +24,7 @@ class Home extends React.Component {
         });
         case "NewSearchResults" :
         return React.cloneElement(child, {
-          addJobToInterested: this.props.addJobToInterested,
+          addJobToInterested: this.props.addJobToInterested.bind(null),
           searchResults: this.props.searchResults
         })
       }

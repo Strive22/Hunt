@@ -100,10 +100,14 @@ h1 small {
 }
 
 .search-results {
-  height: 275px;
+  height: 400px;
   border: solid 1px #d7d7d7;
-  border-top: solid 0px white;
   border-radius: 5px;
   padding: 5px;
   box-shadow: 1px 1px 0px #d7d7d7;
+  overflow: scroll;
+}
+
+.btn:focus, .btn.active:focus {
+  outline: none;
 }
