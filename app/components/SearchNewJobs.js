@@ -72,7 +72,7 @@ class SearchNewJobs extends React.Component {
               <ButtonGroup className="text-center">
                 <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
                 <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
-                <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
+                <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic</Button>
               </ButtonGroup>
               <br/>
               <Link to="/searchResults">
