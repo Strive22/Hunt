@@ -106,3 +106,14 @@ Route | Type  | Action
     * Materials
   * CONNECT (R)
     * Hunter
+
+
+## Color Palette
+
+Purple from login button: #8a7089, #d0abcf
+Grayish blue from table: #555f68
+Matching paleish blue: #d9edf7
+Light sea green from card: #b3cece
+Pale red: #e3d8da
+Peachy light brown: #d6baa8
+

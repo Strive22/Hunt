@@ -1,28 +1,91 @@
 /*styles.css*/
 
-.hunt {
-  text-align: center;
+h3, h4, h5 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.jumbotron {
+body {
+  background-color: #657680;
+}
+
+/* App Component Styles */
+.page-header {
+  margin-top: 50px;
+  font-size: 40px;
   text-align: center;
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-shadow: 1px 1px 9px rgba(1,1,1,1);
+  color: #f8f8f8;
+  border-bottom: none;
+}
+
+/*Home Component Styles*/
+.jumbotron {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-color: #657680;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 6px rgba(1,1,1,1);
+  padding: 0.6em 0.6em;
 }
 
 h1 small {
   font-size: 45%;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 1px rgba(1,1,1,1);
 }
+
+.complete-profile-btn {
+  background-color: #b99db8;
+  border-color: #040404;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 8px rgba(1,1,1,1);
+}
+
+/*    */
 
 .selectbox {
   height: 275px;
-  border: solid 1px #d7d7d7;
+  border: solid 1px #555;
   border-radius: 5px;
+  background-color: #545e67;
   padding: 5px;
-  box-shadow: 1px 1px 0px #d7d7d7;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
 }
 
 .selectbox h2 {
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 13px rgba(1,1,1,1);
   text-align: center;
-  font-size: 35px;
+  font-size: 30px;
+  font-weight: initial;
+  padding-bottom: 10px
+}
+
+.selectbox.dash {
+  font-size: 50px !important;
+  text-align: center;
+}
+
+.form-group {
+  padding: 5px 5px 5px 0px;
+}
+
+.help-block {
+  text-align: center;
+}
+
+.search-btn-group {
+  text-align: center;
+}
+
+.search-btn {
+  background-color: #b99db8;
+  border-color: #040404;
+  color: #f8f8f8;
+  text-shadow: 1px 1px 4px rgba(1,1,1,1);
 }
 
 .job-list-box {

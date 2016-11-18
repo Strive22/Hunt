@@ -35,16 +35,16 @@ class Home extends React.Component {
       <div>
         <div>
 
-          <Jumbotron bsClass="jumbotron motivate">
+          <Jumbotron bsClass="jumbotron">
 
-            <h1>{name}, you've got this.<br/>
+            <h1 className="motivate">{name}, you've got this.<br/>
             <small>What would you like to do?</small>
             </h1>
 
             <Grid>
               <Row>
                 <Col sm={2}/>
-                <Col sm={8}> <Button bsSize="large" block>Complete Your Profile</Button> </Col>
+                <Col sm={8}> <Button className="complete-profile-btn">Complete Your Profile</Button> </Col>
                 <Col sm={2}/>
               </Row>
             </Grid>
