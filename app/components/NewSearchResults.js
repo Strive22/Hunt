@@ -36,8 +36,6 @@ class NewSearchResults extends React.Component {
           </Col>
 
         </Row>
-
-        <Button onClick={()=>{console.log(this.state)}}>Get some state</Button>
       </Grid>
     )
   }
