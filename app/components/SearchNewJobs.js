@@ -10,7 +10,6 @@ class SearchNewJobs extends React.Component {
     this.state = {
       keywords: '',
       providers: [],
-      toggle: 'primary',
       active: {
         gh: false,
         in: false,
@@ -57,44 +56,43 @@ class SearchNewJobs extends React.Component {
 
         <h2>Search<br/>for a Job</h2>
 
-        <form>
+        <form className="search-form">
           <FormGroup
             controlId="keywords"
           >
             <FormControl
               type="text"
               value={this.state.keywords}
-              placeholder="Get Hired!"
+              placeholder="Separate search terms with commas."
               onChange={this.handleKeyword.bind(this)}
             />
 
-            <HelpBlock>Enter search terms seperated by commas.</HelpBlock>
+              <HelpBlock className="help-block">Select a provider:</HelpBlock>
+            <div className="search-btn-group text-center">
+              <ButtonGroup className="text-center">
+                <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
+                <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
+                <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
+              </ButtonGroup>
+              <br/>
+              <Link to="/searchResults">
+                <Button className="text-center" type="submit" onClick={(e) => {
+                  // create the object to be passed to the function
+                  let details = {}
 
-            <ButtonGroup>
-              <Button active={ this.state.active.gh } bsStyle={ this.state.toggle } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
-              <Button active={ this.state.active.in } bsStyle={ this.state.toggle } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
-              <Button active={ this.state.active.aj } bsStyle={ this.state.toggle } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
-            </ButtonGroup>
+                  // add properties to that object with the stuff in state
+                  details.keywords = this.state.keywords
+                  details.providers = this.state.providers
 
-            <Link to="/searchResults">
-              <Button type="submit" onClick={(e) => {
-                // create the object to be passed to the function
-                let details = {}
-
-                // add properties to that object with the stuff in state
-                details.keywords = this.state.keywords
-                details.providers = this.state.providers
-
-                // call that functions with the details object
-                this.props.search(details)
-              }}>
-                Submit
-              </Button>
-            </Link>
-
+                  // call that functions with the details object
+                  this.props.search(details)
+                }}>
+                  Search
+                </Button>
+              </Link>
+            </div>
           </FormGroup>
         </form>
-        <Button onClick={e => {console.log('State', this.state, 'Props', this.props)}}>Log stuff!</Button>
       </div>
     )
   }

@@ -15,10 +15,10 @@ const HomeNav = (props) => {
         </Col>
 
         <Col md={4}>
-          <div className="selectbox">
+          <div className="selectbox dash">
             <h2>View Your<br/>Dashboard</h2>
             <LinkContainer to={'/dashboard'}>
-              <Button>Go!</Button>
+              <Button className="search-btn">Go!</Button>
             </LinkContainer>
           </div>
         </Col>
