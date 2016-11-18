@@ -59,7 +59,7 @@ class App extends React.Component {
   //TODO: way to make one function that adds a job either to interested or to inProgress
   addJobToInterested(jobData) {
     let description = jobData.description.substr(0,700) + '...';
-    axios.post(`http://localhost:3000/${this.state.currentUser._id}/jobs?q=interested`, {
+    axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, {
         api: jobData.api,
         apiSpecificId: jobData.id,
         title: jobData.title,
@@ -82,7 +82,7 @@ class App extends React.Component {
   //add a job to inProgress
   addJobToInProgress(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
@@ -97,7 +97,7 @@ class App extends React.Component {
   //add a job to complete
   addJobToComplete(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
@@ -112,7 +112,7 @@ class App extends React.Component {
   //remove a job from any list
   removeJob(jobData) {
     let list = jobData.currentList;
-    axios.delete(`http://localhost:3000/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+    axios.delete(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser[list] = res.data[list];
@@ -124,12 +124,12 @@ class App extends React.Component {
 
   //TODO: do we need this?
   updateUserEnteredJob(jobData) {
-    axios.put(`http://localhost:3000/${jobData._id}`)
+    axios.put(`http://localhost:3000/jobs/${jobData._id}`)
   }
 
   //update job content
   updateJobContent(content) {
-    axios.put(`http://localhost:3000/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
+    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.jobContent = res.data.jobContent;
