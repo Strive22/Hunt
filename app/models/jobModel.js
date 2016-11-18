@@ -19,3 +19,7 @@ exports.searchNewJobs = (searchDetails) => {
     res.reduce((results, response) => results.concat(response.data), [])
   )
 }
+
+exports.enterJob = (jobDetails) => {
+  
+}
