@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
 router.get('/:userid', (req, res) => {
   Users.findOne({ _id: req.params.userid })
   // the login route provides the primary populate, here is a backup
-
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
     if (err) console.log(`Error: ${err}`)
