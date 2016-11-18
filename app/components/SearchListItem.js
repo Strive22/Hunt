@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroupItem, Button, Modal } from 'react-bootstrap';
+import { ListGroupItem, ButtonToolbar, Button, Modal, Grid, Row, Col } from 'react-bootstrap';
 
 
 class SearchListItem extends React.Component {
@@ -16,59 +16,72 @@ class SearchListItem extends React.Component {
       showModal: false
     });
   }
-
   open() {
     this.setState({
       showModal: true
     });
   }
 
-  getInterested(job) {
-    // this.props.addIt(job)
-  }
-
-
   render() {
-
+    let jobDesc = this.props.job.description.substr(0,500) + "...";
     return (
-      <ListGroupItem header={this.props.job.title}>
-      {this.props.job.company}
-      <Button
-        bsSize="sm"
-        onClick={this.open.bind(this)}
-      >
-        Get the deets!
-      </Button>
-        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-
-          <Modal.Header closeButton>
-            <Modal.Title>{this.props.job.title}</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <h4>{this.props.job.company}</h4>
-
-            <hr />
-
-            <h4>Description</h4>
-            <p>{this.props.job.description}</p>
-
-            <Button
-              bsSize="sm"
-              onClick={this.props.addIt.bind(null, this.props.job)}
-            >
-              Lets do it!
-            </Button>
-
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button onClick={this.close.bind(this)}>Close</Button>
-          </Modal.Footer>
-
-        </Modal>
-
+    <div>
+      <ListGroupItem>
+        <Grid>
+          <Row className="search-list-item">
+            <Col md={6}>
+              <h3>{this.props.job.title}</h3>
+              <h4>{this.props.job.company}</h4>
+              <h4>{this.props.job.location}</h4>
+            </Col>
+            <Col md={6}>
+              <ButtonToolbar>
+                <Button
+                  onClick={this.open.bind(this)}
+                  className="search-list-item-btns"
+                >
+                  See Job Details
+                </Button>
+                <Button
+                  onClick={this.props.addIt}
+                  className="search-list-item-btns"
+                >
+                  Add Job To Interested List
+                </Button>
+              </ButtonToolbar>
+            </Col>
+          </Row>
+        </Grid>
       </ListGroupItem>
+
+      <Modal 
+        show={this.state.showModal} 
+        bsSize="large" 
+        onHide={this.close.bind(this)}
+        className="job-modal"
+      >
+        <Modal.Header closeButton/>
+        <Modal.Body className="modal-body">
+          <h3>{this.props.job.title}</h3>
+          <h4>{this.props.job.company}</h4>
+
+          <hr />
+
+          <h4>Job Description:</h4>
+          <p>{jobDesc}</p>
+
+          <Button
+            onClick={this.props.addIt.bind(null, this.props.job)}
+            className="modal-btns"
+          >
+            Add Job to Interested List
+          </Button>
+        </Modal.Body>
+      </Modal>
+
+    </div>
+
+      /*</ListGroupItem>*/
     )
   }
 }

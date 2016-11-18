@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonGroup } from 'react-bootstrap';
+import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 
 class JobListItem extends React.Component {
   constructor(props){
@@ -38,15 +38,12 @@ class JobListItem extends React.Component {
               <h4>{this.state.location}</h4>
             </Col>
             <Col md={6}>
-              <ButtonGroup className="job-list-item-btns">
-                <Button bsStyle="success">Open Job Details</Button>
-                <Button bsStyle="primary">Move to {this.state.nextList}</Button>
-                <Button bsStyle="danger">Remove Job From Dashboard</Button>
-              </ButtonGroup>
+              <ButtonToolbar className="job-list-item-btns">
+                <Button className="job-list-item-btn">Open Job Details</Button>
+                <Button className="job-list-item-btn">Move to {this.state.nextList}</Button>
+                <Button className="job-list-item-btn">Remove Job From Dashboard</Button>
+              </ButtonToolbar>
             </Col>
-            {/*<Col md={1}>
-              <Button className="job-list-item-btn"><Glyphicon glyph="remove-circle"/></Button>
-            </Col>*/}
           </Row>
         </Grid>
       </ListGroupItem>
