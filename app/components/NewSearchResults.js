@@ -30,7 +30,7 @@ class NewSearchResults extends React.Component {
               {/* <Nav bsStyle="tabs" activeKey="1"> */}
                 {/* <NavItem eventKey="1"> Pick your favorites! </NavItem> */}
 
-                  <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested.bind(null)}/>
+                  <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
               {/* </Nav> */}
 
           </Col>
