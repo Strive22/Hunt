@@ -62,16 +62,21 @@ class App extends React.Component {
   addJobToInterested(jobData) {
     console.log('do the thing?:', jobData)
     let description = jobData.description.substr(0,700) + '...';
-    axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, {
-        api: jobData.api,
-        apiSpecificId: jobData.id,
-        title: jobData.title,
-        company: jobData.company,
-        location: jobData.location,
-        link: jobData.url,
-        description: description
+    axios({
+        method: 'post',
+        url: `http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`,
+        data: {
+          api: jobData.api,
+          apiSpecificId: jobData.id,
+          title: jobData.title,
+          company: jobData.company,
+          location: jobData.location,
+          link: jobData.url,
+          description: description
+        }
     })
     .then(res => {
+      console.log('res in axios post:', res)
       let userId = this.state.currentUser._id
       // let updateUser = Object.assign({}, this.state.currentUser);
       // //assuming these return the entire array

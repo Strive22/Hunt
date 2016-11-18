@@ -27,7 +27,9 @@ const HomeNav = (props) => {
           <div className="selectbox dash">
             <h2>Enter a<br/>Job</h2>
             <LinkContainer to={'/enterJob'}>
-              <Button bsSize="large" className="search-btn">Go!</Button>
+              <Button bsSize="large" className="search-btn">
+              Go!
+              </Button>
             </LinkContainer>
           </div>
         </Col>
