@@ -20,6 +20,6 @@ exports.searchNewJobs = (searchDetails) => {
   )
 }
 
-exports.enterJob = (jobDetails) => {
-  
+exports.addJob = (jobDetails) => {
+
 }

@@ -3,8 +3,9 @@ import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Modal } from '
 import EnterJobForm from './EnterJobForm'
 
 class EnterJob extends React.Component {
-  constructor(props) {
-    super(props);
+
+  constructor() {
+    super();
     this.state = {
       showModal: false
     }
@@ -22,7 +23,10 @@ class EnterJob extends React.Component {
     })
   }
 
-
+  submitJob(jobDetails) {
+    jobDetails = Object.assign({}, this.props.userId, jobDetails)
+    console.log('yeah??', jobDetails, this.props.userId)
+  }
 
   render() {
     return (
@@ -42,7 +46,7 @@ class EnterJob extends React.Component {
             <Modal.Title>Fill it out, Fill it out!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EnterJobForm />
+            <EnterJobForm submitJob={this.submitJob.bind(this)}/>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close.bind(this)}>Get outta here!</Button>

@@ -23,7 +23,7 @@ const HomeNav = (props) => {
         </Col>
 
         <Col md={4}>
-          <EnterJob />
+          <EnterJob userId={props.userId}/>
         </Col>
 
       </Row>

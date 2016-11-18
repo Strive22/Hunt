@@ -21,6 +21,7 @@ class Home extends React.Component {
       switch (child.type.name) {
         case "p" :
         return React.cloneElement(child, {
+          userId: this.props.userId,
           searchForJobs: this.props.searchForJobs
         });
         case "NewSearchResults" :
