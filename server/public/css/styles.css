@@ -5,7 +5,7 @@ h3, h4, h5 {
 }
 
 body {
-  background-color: #657680;
+  background-image: url(../img/peopleBlur.jpg);
 }
 
 /* App Component Styles */
@@ -19,15 +19,18 @@ body {
   color: #f8f8f8;
   border-bottom: none;
 }
-
+.homeBackground {
+  background-image: url(../img/peoples.jpg);
+}
 /*Home Component Styles*/
 .jumbotron {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
-  background-color: #657680;
+  background-color: rgba(49, 49, 49, 0.61);
   color: #f8f8f8;
   text-shadow: 1px 1px 6px rgba(1,1,1,1);
   padding: 0.6em 0.6em;
+  margin-bottom: 22px;
 }
 
 h1 small {
@@ -49,7 +52,7 @@ h1 small {
   height: 275px;
   border: solid 1px #555;
   border-radius: 5px;
-  background-color: #545e67;
+  background-color:rgba(49, 49, 49, 0.71);
   padding: 5px;
   color: #f8f8f8;
   box-shadow: 1px 1px 6px rgba(1,1,1,1);
