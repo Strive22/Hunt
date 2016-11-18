@@ -94,7 +94,7 @@ h1 small {
   background-color: #b99db8;
   border-color: #040404;
   color: #f8f8f8;
-  text-shadow: 1px 1px 4px rgba(1,1,1,1);
+  /*text-shadow: 1px 1px 4px rgba(1,1,1,1);*/
 }
 
 .job-list-box {
@@ -116,7 +116,13 @@ h1 small {
   box-shadow: 1px 1px 0px #d7d7d7;
   overflow: scroll;
 }
+.text-center {
+  margin-top: 5px;
+}
 
+.search-btn {
+  margin-right: 2px;
+}
 .btn:focus, .btn.active:focus {
   outline: none;
 }
