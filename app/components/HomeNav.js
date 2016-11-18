@@ -11,20 +11,25 @@ const HomeNav = (props) => {
       <Row>
 
         <Col md={4}>
-          <SearchNewJobs search={props.searchForJobs}/>
-        </Col>
-
-        <Col md={4}>
           <div className="selectbox dash">
             <h2>View Your<br/>Dashboard</h2>
             <LinkContainer to={'/dashboard'}>
-              <Button className="search-btn">Go!</Button>
+              <Button bsSize="large" className="search-btn">Go!</Button>
             </LinkContainer>
           </div>
         </Col>
 
         <Col md={4}>
-          {/* <EnterJob /> */}
+          <SearchNewJobs search={props.searchForJobs}/>
+        </Col>
+
+        <Col md={4}>
+          <div className="selectbox dash">
+            <h2>Enter a<br/>Job</h2>
+            <LinkContainer to={'/enterJob'}>
+              <Button bsSize="large" className="search-btn">Go!</Button>
+            </LinkContainer>
+          </div>
         </Col>
 
       </Row>
