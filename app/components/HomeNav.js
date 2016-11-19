@@ -5,7 +5,7 @@ import EnterJob from './EnterJob';
 import SearchNewJobs from './SearchNewJobs'
 
 export default (props) => {
-  console.log(props)
+
   return (
     <Grid>
       <Row>
