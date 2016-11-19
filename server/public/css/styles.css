@@ -27,6 +27,19 @@ body {
 .homeBackground {
   background-image: url(../img/peoples.jpg);
 }
+
+.main-home {
+  text-decoration: none;
+  color: #f8f8f8
+}
+.main-home:hover {
+  text-decoration: none;
+  color: #f8f8f8;
+}
+.main-home:visited {
+  text-decoration: none;
+  color: #f8f8f8;
+}
 /*Home Component Styles*/
 .jumbotron {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -164,6 +177,11 @@ h1 small {
 }
 
 .modal-body h4 {
+  font-weight: bold;
+}
+
+.modal-see-posting {
+  text-decoration: none,
   font-weight: bold;
 }
 

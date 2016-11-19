@@ -39,7 +39,7 @@ class App extends React.Component {
     return (
       <div>
         <PageHeader bsClass="page-header hunt">
-          <Link to ={`/home/${this.state.currentUser._id}`}>
+          <Link className="main-home" to ={`/home/${this.state.currentUser._id}`}>
             Hunt
           </Link>
         </PageHeader>
