@@ -65,7 +65,10 @@ class App extends React.Component {
   addJob(job) {
     // let description = job.description.substr(0,700) + '...';
     console.log(job)
-    job.addJob(job, this.state.currentUser._id)
+    // job.addJob(job, this.state.currentUser._id)
+    //   .then(res => {
+    //
+    //   })
 
     // axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
     //       api: jobData.api,
@@ -162,13 +165,14 @@ class App extends React.Component {
         case "Home" :
           // home needs . . .
           return React.cloneElement(child, {
+            addJob: this.addJob.bind(this),
             userName: this.state.currentUser.name,
             userId: this.state.currentUser._id,
             //in case we want the google pic
             userPhoto: this.state.currentUser.image,
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
-            searchForJobs: this.searchForJobs.bind(this),
+            searchForJobs: this.searchForJobs.bind(this)
           });
           break;
         case "Dashboard" :

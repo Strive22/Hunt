@@ -16,7 +16,7 @@ class Home extends React.Component {
 
   render() {
     let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0];
-
+    console.log(this.props)
     return (
       <div>
         <div>
@@ -43,7 +43,7 @@ class Home extends React.Component {
 
         </div>
         <div>
-          <HomeNav userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
+          <HomeNav addJob={this.props.addJob} userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
         </div>
       </div>
     )

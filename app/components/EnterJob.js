@@ -26,7 +26,7 @@ class EnterJob extends React.Component {
   }
 
   submitJob(job) {
-    // job.addJob(jobDetails);
+    this.props.addJob(job)
   }
 
   render() {
@@ -49,7 +49,7 @@ class EnterJob extends React.Component {
           </Modal.Header>
 
           <Modal.Body>
-            <EnterJobForm submitJob={this.submitJob.bind(this)}/>
+            <EnterJobForm submitJob={this.submitJob.bind(this, )}/>
           </Modal.Body>
 
           <Modal.Footer>
