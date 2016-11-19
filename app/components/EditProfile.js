@@ -1,6 +1,9 @@
 import React from 'react';
 const ReactBootstrap = require('react-bootstrap');
+import { browserHistory, Link} from 'react-router';
 import axios from 'axios';
+import Skills from './SkillsProfile';
+import Zip from './ZipProfile'
 
 // React-Bootstrap form variables
 const Grid = ReactBootstrap.Grid,
@@ -30,7 +33,8 @@ class Profile extends React.Component {
   }
 	render(){
 		return(
-      		<div>
+			<Grid>
+      		<div className="editProfile">
 		      <Form>
 		      <h1>Edit your profile</h1>
 		        <FormGroup
@@ -64,8 +68,9 @@ class Profile extends React.Component {
 		      <Skills />
 		      <Zip />
 		    </div>
+		    </Grid>
 		)
 	}
 }
 
-module.exports = Profile
+module.exports = Profile;

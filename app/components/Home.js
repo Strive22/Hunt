@@ -46,7 +46,11 @@ class Home extends React.Component {
             <Grid>
               <Row>
                 <Col sm={2}/>
-                <Col sm={8}> <Button className="complete-profile-btn">Complete Your Profile</Button> </Col>
+                <Col sm={8}> 
+                <Link to="/edit">
+                <Button className="complete-profile-btn">Complete Your Profile</Button>
+                </Link> 
+                </Col>
                 <Col sm={2}/>
               </Row>
             </Grid>

@@ -70,6 +70,6 @@ class Skills extends React.Component {
     )
   }
 }
-module.exports = Skills
+module.exports = Skills;
 
 
