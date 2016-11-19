@@ -26,11 +26,11 @@ router.get('/:userid', (req, res) => {
   // the login route provides the primary populate, here is a backup
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
-    console.log('result:', result)
-    if (err) console.log(`Error: ${err}`)
+    console.log('result:', result);
+    if (err) { console.log(`Error: ${err}`); }
   })
   .then(found => {
-    console.log(found)
+    console.log(found);
     res.send(found);
   });
 });
@@ -79,9 +79,10 @@ router.post('/:userid/jobs', (req, res) => {
   let userId = req.params.userid;
   //importantly, there needs to be a query string given to this endpoint in order to ascertain which of the user's queues this is going into (so, the value MUST be 'interested', 'inProgress', or 'complete')
   let q = req.query.q;
-  
+
   //second, put the job in the jobs collection
   //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
+  //NOTE: NOTE NOTE NOTE NOTE NOTE ASK BRIT ABOUT WHAT HAPPENS IF THERE IS NO API PASSED IN HERE
   let job = new Jobs({
     api: req.body.api,
     apiSpecificId: req.body.apiSpecificId,

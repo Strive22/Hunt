@@ -57,6 +57,7 @@ class App extends React.Component {
           searchResults: res
         })
       })
+
   }
 
   //add job to interested

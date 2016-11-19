@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Modal } from 'react-bootstrap';
 import EnterJobForm from './EnterJobForm';
-import axios from 'axios';
+import job from '../models/jobModel'
+
 
 class EnterJob extends React.Component {
 
@@ -26,9 +27,10 @@ class EnterJob extends React.Component {
 
   submitJob(jobDetails) {
     let userId = {userid: this.props.userId}
-    // jobDetails = Object.assign({}, userId, jobDetails)
-    console.log('yeah??', jobDetails)
-    // axios.post(`http://localhost:3000/users/${userId.userid}/jobs?q=interested`, querystring.stringify(jobDetails))
+
+    let updatedDetails = Object.assign({}, userId, jobDetails)
+
+    job.addJob(updatedDetails)
   }
 
   render() {

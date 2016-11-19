@@ -16,35 +16,30 @@ class EnterJobForm extends React.Component {
   }
 
   handleTitle(event){
-    console.log(event.target.value)
     this.setState({
       title: event.target.value
     })
   }
 
   handleCompany(event){
-    console.log(event.target.value)
     this.setState({
       company: event.target.value
     })
   }
 
   handleLocation(event){
-    console.log(event.target.value)
     this.setState({
       location: event.target.value
     })
   }
 
   handleLink(event){
-    console.log(event.target.value)
     this.setState({
       link: event.target.value
     })
   }
 
   handleDescription(event){
-    console.log(event.target.value)
     this.setState({
       description: event.target.value
     })
