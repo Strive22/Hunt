@@ -26,11 +26,6 @@ class EnterJob extends React.Component {
   }
 
   submitJob(job) {
-    let jobDetails = {
-      job: job,
-      userId: this.props.userId
-    };
-
     // job.addJob(jobDetails);
   }
 
@@ -48,15 +43,19 @@ class EnterJob extends React.Component {
         </Button>
 
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+
           <Modal.Header closeButton>
             <Modal.Title>Fill it out, Fill it out!</Modal.Title>
           </Modal.Header>
+
           <Modal.Body>
             <EnterJobForm submitJob={this.submitJob.bind(this)}/>
           </Modal.Body>
+
           <Modal.Footer>
             <Button onClick={this.close.bind(this)}>Get outta here!</Button>
           </Modal.Footer>
+
         </Modal>
       </div>
     )

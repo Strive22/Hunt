@@ -62,7 +62,7 @@ class App extends React.Component {
 
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
-  addJobToInterested(job) {
+  addJob(job) {
     // let description = job.description.substr(0,700) + '...';
     console.log(job)
     job.addJob(job, this.state.currentUser._id)
@@ -138,7 +138,7 @@ class App extends React.Component {
     })
   }
 
-  //TODO: do we need this?
+  //TODO: do we need this? NOTE NOTE NOTE: I Do not know.... but my gut says no right now.
   updateUserEnteredJob(jobData) {
     axios.put(`http://localhost:3000/jobs/${jobData._id}`)
   }
@@ -179,7 +179,7 @@ class App extends React.Component {
             inProgress: this.state.currentUser.inProgress,
             complete: this.state.currentUser.complete,
             jobContent: this.state.currentUser.jobContent,
-            addJobToInterested: this.addJobToInterested.bind(this),
+            addJob: this.addJob.bind(this),
             addJobToInProgress: this.addJobToInProgress.bind(this),
             addJobToComplete: this.addJobToComplete.bind(this),
             removeJob: this.removeJob.bind(this)
@@ -202,7 +202,7 @@ class App extends React.Component {
           break;
         case "NewSearchResults" :
           return React.cloneElement(child, {
-            addJobToInterested: this.addJobToInterested.bind(this),
+            addJob: this.addJob.bind(this),
             searchResults: this.state.searchResults
           })
         default :

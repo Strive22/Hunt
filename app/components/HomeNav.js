@@ -23,7 +23,7 @@ export default (props) => {
         </Col>
 
         <Col md={4}>
-          <EnterJob userId={props.userId}/>
+          <EnterJob addJob={props.addJob}/>
         </Col>
 
       </Row>

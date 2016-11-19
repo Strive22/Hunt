@@ -57,6 +57,7 @@ class EnterJobForm extends React.Component {
             onChange={this.handleTitle.bind(this)}
           />
         </FormGroup>
+
         <FormGroup controlId='company'>
           <ControlLabel className="company-label">Company:</ControlLabel>
           <FormControl
@@ -66,6 +67,7 @@ class EnterJobForm extends React.Component {
             onChange={this.handleCompany.bind(this)}
           />
         </FormGroup>
+
         <FormGroup controlId='location'>
           <ControlLabel className="location-label">Location:</ControlLabel>
           <FormControl
@@ -75,6 +77,7 @@ class EnterJobForm extends React.Component {
             onChange={this.handleLocation.bind(this)}
           />
         </FormGroup>
+
         <FormGroup controlId='jobLink'>
           <ControlLabel className="link-label">Link to Job Posting:</ControlLabel>
           <FormControl
@@ -84,6 +87,7 @@ class EnterJobForm extends React.Component {
             onChange={this.handleLink.bind(this)}
           />
         </FormGroup>
+
         <FormGroup controlId='jobDesc'>
           <ControlLabel className="description-label">Job Description:</ControlLabel>
           <FormControl
@@ -93,6 +97,7 @@ class EnterJobForm extends React.Component {
             onChange={this.handleDescription.bind(this)}
           />
         </FormGroup>
+
         <Button onClick={this.props.submitJob.bind(null, this.state)}>Submit Job</Button>
       </form>
     )
