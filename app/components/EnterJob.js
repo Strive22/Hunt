@@ -25,13 +25,13 @@ class EnterJob extends React.Component {
     })
   }
 
-  submitJob(jobDetails) {
-    let details = {
-      jobDetails: jobDetails,
+  submitJob(job) {
+    let jobDetails = {
+      job: job,
       userId: this.props.userId
     };
 
-    job.addJobToList(details, 'interested');
+    // job.addJob(jobDetails);
   }
 
   render() {

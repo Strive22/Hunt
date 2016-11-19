@@ -20,11 +20,10 @@ exports.searchNewJobs = (searchDetails) => {
   )
 }
 
-exports.addJobToList = (details, list) => {
-  console.log(details)
-  axios.post(`http://localhost:3000/users/${details.userId}/jobs?q=${list}`,    querystring.stringify(details.jobDetails) )
-    .then(res => {
-      console.log(res)
-      // return res
-    })
+exports.addJob = (job, userId) => (
+  axios.post(`${userId}/jobs?q=interested`, querystring.stringify(job) )
+)
+
+exports.moveJobToList = (jobId, userId, list) => {
+  axios.put(`/users/${userId}/jobs/${jobId}/${list}`)
 }

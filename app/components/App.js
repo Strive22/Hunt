@@ -62,32 +62,35 @@ class App extends React.Component {
 
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
-  addJobToInterested(jobData) {
-    // let description = jobData.description.substr(0,700) + '...';
-    axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
-          api: jobData.api,
-          apiSpecificId: jobData.apiSpecificId,
-          title: jobData.title,
-          company: jobData.company,
-          location: jobData.location,
-          link: jobData.link,
-          description: jobData.description
-      })
-    )
-    .then(res => {
-      let userId = this.state.currentUser._id
-      axios.get(`http://localhost:3000/users/${userId}`)
-        .then(res => {
-          let updateUser = Object.assign({}, this.state.currentUser);
-          //assuming these return the entire array
-          updateUser.interested = res.data.interested;
-          updateUser.jobContent = res.data.jobContent;
-          console.log('update user:', updateUser)
-          this.setState({
-            currentUser: updateUser
-          })
-        })
-    })
+  addJobToInterested(job) {
+    // let description = job.description.substr(0,700) + '...';
+    console.log(job)
+    job.addJob(job, this.state.currentUser._id)
+
+    // axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
+    //       api: jobData.api,
+    //       apiSpecificId: jobData.apiSpecificId,
+    //       title: jobData.title,
+    //       company: jobData.company,
+    //       location: jobData.location,
+    //       link: jobData.link,
+    //       description: jobData.description
+    //   })
+    // )
+    // .then(res => {
+    //   let userId = this.state.currentUser._id
+    //   axios.get(`http://localhost:3000/users/${userId}`)
+    //     .then(res => {
+    //       let updateUser = Object.assign({}, this.state.currentUser);
+    //       //assuming these return the entire array
+    //       updateUser.interested = res.data.interested;
+    //       updateUser.jobContent = res.data.jobContent;
+    //       console.log('update user:', updateUser)
+    //       this.setState({
+    //         currentUser: updateUser
+    //       })
+    //     })
+    // })
   }
 
 
