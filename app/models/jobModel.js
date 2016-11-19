@@ -21,7 +21,7 @@ exports.searchNewJobs = (searchDetails) => {
 }
 
 exports.addJob = (job, userId) => (
-  axios.post(`${userId}/jobs?q=interested`, querystring.stringify(job) )
+  axios.post(`/users/${userId}/jobs?q=interested`, querystring.stringify(job) )
 )
 
 exports.moveJobToList = (jobId, userId, list) => {

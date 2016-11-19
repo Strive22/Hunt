@@ -27,6 +27,7 @@ class EnterJob extends React.Component {
 
   submitJob(job) {
     this.props.addJob(job)
+    this.close()
   }
 
   render() {

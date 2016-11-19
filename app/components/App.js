@@ -60,40 +60,26 @@ class App extends React.Component {
 
   }
 
-  //add job to interested
-  //TODO: way to make one function that adds a job either to interested or to inProgress
-  addJob(job) {
-    // let description = job.description.substr(0,700) + '...';
-    console.log(job)
-    // job.addJob(job, this.state.currentUser._id)
-    //   .then(res => {
-    //
-    //   })
+  //add job to a user, this defaults to adding it to the interested queue
+  addJob(jobDetails) {
+    // Pull the userId from state
+    let userId = this.state.currentUser._id
 
-    // axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
-    //       api: jobData.api,
-    //       apiSpecificId: jobData.apiSpecificId,
-    //       title: jobData.title,
-    //       company: jobData.company,
-    //       location: jobData.location,
-    //       link: jobData.link,
-    //       description: jobData.description
-    //   })
-    // )
-    // .then(res => {
-    //   let userId = this.state.currentUser._id
-    //   axios.get(`http://localhost:3000/users/${userId}`)
-    //     .then(res => {
-    //       let updateUser = Object.assign({}, this.state.currentUser);
-    //       //assuming these return the entire array
-    //       updateUser.interested = res.data.interested;
-    //       updateUser.jobContent = res.data.jobContent;
-    //       console.log('update user:', updateUser)
-    //       this.setState({
-    //         currentUser: updateUser
-    //       })
-    //     })
-    // })
+    // trim down the descrption to a reasonable length
+    jobDetails.description = jobDetails.description.substr(0,700) + '...';
+
+    // Use our job model to add the job
+    job.addJob(jobDetails, userId)
+      .then(res => {
+        // then our user model to pull the updated information from the database
+        user.getUserById(userId)
+          .then(user => {
+            // and set that to state
+            this.setState({
+              currentUser: user
+            })
+          })
+      })
   }
 
 
@@ -101,14 +87,10 @@ class App extends React.Component {
   //add a job to inProgress
   addJobToInProgress(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
     .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      updateUser.interested = res.data.interested;
-      updateUser.inProgress = res.data.inProgress;
-      updateUser.complete = res.data.complete;
       this.setState({
-        currentUser: updateUser
+        currentUser: res.data
       })
     })
   }
@@ -116,7 +98,7 @@ class App extends React.Component {
   //add a job to complete
   addJobToComplete(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
