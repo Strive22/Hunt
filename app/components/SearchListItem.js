@@ -68,7 +68,7 @@ class SearchListItem extends React.Component {
             <h4>Job Description:</h4>
             <p>{jobDesc}</p>
             <hr />
-            <p><a href={this.props.job.link}>See Posting on {this.props.job.api}</a></p>
+            <p class="modal-see-posting"><a href={this.props.job.link}>See Posting on {this.props.job.api}</a></p>
             <Button
               onClick={this.props.addIt.bind(null, this.props.job)}
               className="modal-btns"

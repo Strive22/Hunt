@@ -11,13 +11,11 @@ class EnterJob extends React.Component {
       showModal: false
     }
   }
-
   open() {
     this.setState({
       showModal: true
     })
   }
-
   close() {
     this.setState({
       showModal: false
@@ -41,7 +39,7 @@ class EnterJob extends React.Component {
           className="search-btn"
           onClick={this.open.bind(this)}
         >
-          Do et!
+          Do it!
         </Button>
 
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
