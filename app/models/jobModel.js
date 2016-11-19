@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import querystring from 'querystring';
 
 exports.searchNewJobs = (searchDetails) => {
   // Pull the array of providers out of the details object
@@ -20,18 +20,10 @@ exports.searchNewJobs = (searchDetails) => {
   )
 }
 
-exports.addJob = (jobDetails) => {
-  return axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
-        api: jobData.api,
-        apiSpecificId: jobData.apiSpecificId,
-        title: jobData.title,
-        company: jobData.company,
-        location: jobData.location,
-        link: jobData.link,
-        description: description
-    })
-  ).then(res => {
-    console.log(res)
-    return res
-  })
+exports.addJob = (job, userId) => (
+  axios.post(`${userId}/jobs?q=interested`, querystring.stringify(job) )
+)
+
+exports.moveJobToList = (jobId, userId, list) => {
+  axios.put(`/users/${userId}/jobs/${jobId}/${list}`)
 }

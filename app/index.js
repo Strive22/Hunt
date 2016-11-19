@@ -6,21 +6,16 @@ import App from './components/App';
 import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import NewSearchResults from './components/NewSearchResults'
-import HomeNav from './components/HomeNav';
-import EnterJob from './components/EnterJob';
 import Profile from './components/EditProfile';
 
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-    <Route path="/edit" component={Profile}/>
-      <Route path="/home/:userid" component={Home}>
-        <IndexRoute component={HomeNav}/>
-        <Route path="/searchResults" component={NewSearchResults}/>
-      </Route>
+      <Route path="/edit" component={Profile}/>
+      <Route path="/home/:userid" component={Home}/>
+      <Route path="/searchResults" component={NewSearchResults}/>
       <Route path="/dashboard" component={Dashboard}/>
-      {/* <Route path="/enterJob" component={EnterJob}/> */}
     </Route>
   </Router>
   ), document.getElementById('app')

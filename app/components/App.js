@@ -3,7 +3,8 @@ import { browserHistory } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
-import job from '../models/jobModel'
+import job from '../models/jobModel';
+import user from '../models/userModel';
 
 class App extends React.Component {
   constructor (props) {
@@ -56,36 +57,40 @@ class App extends React.Component {
           searchResults: res
         })
       })
+
   }
 
   //add job to interested
   //TODO: way to make one function that adds a job either to interested or to inProgress
-  addJobToInterested(jobData) {
-    // let description = jobData.description.substr(0,700) + '...';
-    axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
-          api: jobData.api,
-          apiSpecificId: jobData.apiSpecificId,
-          title: jobData.title,
-          company: jobData.company,
-          location: jobData.location,
-          link: jobData.link,
-          description: jobData.description
-      })
-    )
-    .then(res => {
-      let userId = this.state.currentUser._id
-      axios.get(`http://localhost:3000/users/${userId}`)
-        .then(res => {
-          let updateUser = Object.assign({}, this.state.currentUser);
-          //assuming these return the entire array
-          updateUser.interested = res.data.interested;
-          updateUser.jobContent = res.data.jobContent;
-          console.log('update user:', updateUser)
-          this.setState({
-            currentUser: updateUser
-          })
-        })
-    })
+  addJobToInterested(job) {
+    // let description = job.description.substr(0,700) + '...';
+    console.log(job)
+    job.addJob(job, this.state.currentUser._id)
+
+    // axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
+    //       api: jobData.api,
+    //       apiSpecificId: jobData.apiSpecificId,
+    //       title: jobData.title,
+    //       company: jobData.company,
+    //       location: jobData.location,
+    //       link: jobData.link,
+    //       description: jobData.description
+    //   })
+    // )
+    // .then(res => {
+    //   let userId = this.state.currentUser._id
+    //   axios.get(`http://localhost:3000/users/${userId}`)
+    //     .then(res => {
+    //       let updateUser = Object.assign({}, this.state.currentUser);
+    //       //assuming these return the entire array
+    //       updateUser.interested = res.data.interested;
+    //       updateUser.jobContent = res.data.jobContent;
+    //       console.log('update user:', updateUser)
+    //       this.setState({
+    //         currentUser: updateUser
+    //       })
+    //     })
+    // })
   }
 
 
@@ -164,8 +169,6 @@ class App extends React.Component {
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
             searchForJobs: this.searchForJobs.bind(this),
-            addJobToInterested: this.addJobToInterested.bind(this),
-            searchResults: this.state.searchResults
           });
           break;
         case "Dashboard" :
@@ -185,7 +188,7 @@ class App extends React.Component {
         case "EditProfile" :
           // editprofile needs . . .
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser,
+            currentUser: this.state.currentUser
           });
           break;
         case "Connect" :
@@ -197,6 +200,11 @@ class App extends React.Component {
             userLocation: this.state.currentUser.location || '',
           });
           break;
+        case "NewSearchResults" :
+          return React.cloneElement(child, {
+            addJobToInterested: this.addJobToInterested.bind(this),
+            searchResults: this.state.searchResults
+          })
         default :
           return child;
       }

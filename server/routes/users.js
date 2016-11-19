@@ -26,11 +26,11 @@ router.get('/:userid', (req, res) => {
   // the login route provides the primary populate, here is a backup
   .populate('interested inProgress complete jobContent')
   .exec((err, result) => {
-    console.log('result:', result)
-    if (err) console.log(`Error: ${err}`)
+    console.log('result:', result);
+    if (err) { console.log(`Error: ${err}`); }
   })
   .then(found => {
-    console.log(found)
+    console.log(found);
     res.send(found);
   });
 });
@@ -79,7 +79,7 @@ router.post('/:userid/jobs', (req, res) => {
   let userId = req.params.userid;
   //importantly, there needs to be a query string given to this endpoint in order to ascertain which of the user's queues this is going into (so, the value MUST be 'interested', 'inProgress', or 'complete')
   let q = req.query.q;
-  
+
   //second, put the job in the jobs collection
   //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
   let job = new Jobs({
@@ -92,6 +92,7 @@ router.post('/:userid/jobs', (req, res) => {
     description: req.body.description
   });
   job.save().then(job => {
+    console.log('saved job', job);
     //next we've gotta update the user with the job in the correct queue
     let jobId = job._id;
     //create the job content doc that'll be associated with this user and job

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Nav, NavItem, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Nav, NavItem, Button, Well } from 'react-bootstrap';
 import JobList from './JobList'
 import SearchResultsList from './SearchResultsList'
 
@@ -22,20 +22,19 @@ class NewSearchResults extends React.Component {
 
     return (
       <Grid>
-
         <Row>
-
           <Col md={12}>
-
-              {/* <Nav bsStyle="tabs" activeKey="1"> */}
-                {/* <NavItem eventKey="1"> Pick your favorites! </NavItem> */}
-
-                  <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
-              {/* </Nav> */}
-
+            <Well>
+              <h1>Look at all these jobs!!</h1>
+            </Well>
           </Col>
-
         </Row>
+        <Row>
+          <Col md={12}>
+            <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
+          </Col>
+        </Row>
+
       </Grid>
     )
   }
