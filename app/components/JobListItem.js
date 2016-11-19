@@ -49,37 +49,37 @@ class JobListItem extends React.Component {
               </Col>
               <Col md={6}>
                 <ButtonToolbar className="job-list-item-btns">
-                  <Button className="job-list-item-btn" onClick={this.showModal}>Open Job Details</Button>
-                  <Button className="job-list-item-btn" onClick={nextFunc.bind(this, this.props.jobData)}>Move to {this.state.nextList}</Button>
-                  <Button className="job-list-item-btn" onClick={this.props.removeJob.bind(this, this.props.jobData)}>Remove Job From Dashboard</Button>
+                  <Button className="job-list-item-btn" onClick={this.openModal.bind(this)}>Open Job Details</Button>
+                  <Button className="job-list-item-btn" onClick={() => nextFunc(this.props.jobData)}>Move to {this.state.nextList}</Button>
+                  <Button className="job-list-item-btn" onClick={() => this.props.removeJob(this.props.jobData)}>Remove Job From Dashboard</Button>
                 </ButtonToolbar>
               </Col>
             </Row>
           </Grid>
+          <Modal 
+            show={this.state.showModal}
+            bsSize="large"
+            onHide={this.closeModal.bind(this)}
+            className="job-modal"
+          >
+            <Modal.Header closeButton />
+            <Modal.Body className="modal-body">
+              <h3>{this.state.jobTitle}</h3>
+              <h4>{this.state.company}</h4>
+              <hr />
+              <h4>Job Description:</h4>
+              <p>{jobDesc}</p>
+              <hr />
+              <p><a href={this.state.jobLink}>{jobFrom}</a></p>
+              <Button
+                onClick={() => nextFunc(this.props.jobData)}
+                className="modal-btns"
+              >
+                Move to {this.state.nextList}
+              </Button>
+            </Modal.Body>
+          </Modal>
         </ListGroupItem>
-        <Modal 
-          show={this.state.showModal}
-          bsSize="large"
-          onHide={this.closeModal}
-          className="job-modal"
-        >
-          <Modal.Header closeButton />
-          <Modal.Body className="modal-body">
-            <h3>{this.state.jobTitle}</h3>
-            <h4>{this.state.company}</h4>
-            <hr />
-            <h4>Job Description:</h4>
-            <p>{jobDesc}</p>
-            <hr />
-            <p><a href={this.state.jobLink}>{jobFrom}</a></p>
-            <Button
-              onClick={nextFunc.bind(this)}
-              className="modal-btns"
-            >
-              Move to {this.state.nextList}
-            </Button>
-          </Modal.Body>
-        </Modal>
       </div>
     )
   }
