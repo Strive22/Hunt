@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
@@ -39,7 +39,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <PageHeader bsClass="page-header hunt">Hunt</PageHeader>
+        <PageHeader bsClass="page-header hunt">
+          <Link to ={`/home/${this.state.currentUser._id}`}>
+            Hunt
+          </Link>
+        </PageHeader>
         <div>
           {this.renderChildrenWithProps()}
         </div>
