@@ -128,9 +128,22 @@ router.route('/:userid/jobs/:jobid/:queue')
     let toAdd = {};
     toAdd[queue] = jobId;
     //when we add we want to remove from other lists
+    //if queue = inProgress, remove from interested and complete; if queue == complete, remove from interested and inProgress
+    let toRemove;
+    if (queue === "inProgress") {
+      toRemove = {
+        interested: jobId,
+        complete: jobId
+      }
+    } else {
+      toRemove = {
+        interested: jobId,
+        inProgress: jobId
+      }
+    }
     Users.findOneAndUpdate({ _id: req.params.userid },
       { $push: toAdd,
-        $pull: { interested: jobId, complete: jobId }
+        $pull: toRemove
       },
       { new: true })
       .then(user => {
