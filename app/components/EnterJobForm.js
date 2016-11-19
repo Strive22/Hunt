@@ -98,7 +98,12 @@ class EnterJobForm extends React.Component {
             onChange={this.handleDescription.bind(this)}
           />
         </FormGroup>
-        <Button onClick={this.props.submitJob.bind(null, this.state)}>Submit Job</Button>
+        <Button 
+          onClick={this.props.submitJob.bind(null, this.state)}
+          className="modal-submit-btn"
+        >
+          Save Job to Interested List
+        </Button>
       </form>
     )
   }
