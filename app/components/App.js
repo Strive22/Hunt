@@ -92,8 +92,9 @@ class App extends React.Component {
 
   //add a job to inProgress
   addJobToInProgress(jobData) {
+    console.log('jobData in addJobIP:', jobData)
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData._id}/inProgress`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
@@ -103,12 +104,15 @@ class App extends React.Component {
         currentUser: updateUser
       })
     })
+    .catch(err => {
+      throw err;
+    })
   }
 
   //add a job to complete
   addJobToComplete(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData._id}/complete`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
@@ -117,6 +121,9 @@ class App extends React.Component {
       this.setState({
         currentUser: updateUser
       })
+    })
+    .catch(err => {
+      throw err;
     })
   }
 
