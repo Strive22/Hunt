@@ -8,11 +8,13 @@ import Dashboard from './components/Dashboard';
 import NewSearchResults from './components/NewSearchResults'
 import HomeNav from './components/HomeNav';
 import EnterJob from './components/EnterJob';
+import Profile from './components/EditProfile';
 
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
+    <Route path="/edit" component={Profile}/>
       <Route path="/home/:userid" component={Home}>
         <IndexRoute component={HomeNav}/>
         <Route path="/searchResults" component={NewSearchResults}/>
