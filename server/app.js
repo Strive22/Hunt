@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   console.log('store err:', err);
 // })
 
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 
 //the express session has to be instantiated before the passport session (see passportjs.org/docs/configure)
