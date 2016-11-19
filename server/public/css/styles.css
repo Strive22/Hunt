@@ -101,12 +101,10 @@ h1 small {
 
 .selectbox.dash {
   font-size: 50px !important;
-  text-align: center;
 }
 
 .form-group {
   /*padding: 5px 5px 5px 0px;*/
-  text-align: center;
 }
 .editProfile {
   border-radius: 10px;
@@ -120,8 +118,7 @@ h1 small {
 }
 
 .search-btn-group {
-  text-align: center;
-  
+  text-align: center; 
 }
 
 .search-btn {
@@ -210,4 +207,9 @@ h1 small {
   border-color: #040404;
   color: #f8f8f8;
   text-shadow: 1px 1px 4px rgba(1,1,1,1);
+}
+
+.modal-submit-btn {
+  text-align: center;
+  margin-left: 33%;
 }
