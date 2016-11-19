@@ -93,6 +93,9 @@ class App extends React.Component {
         currentUser: res.data
       })
     })
+    .catch(err => {
+      throw err;
+    })
   }
 
   //add a job to complete
@@ -107,6 +110,9 @@ class App extends React.Component {
       this.setState({
         currentUser: updateUser
       })
+    })
+    .catch(err => {
+      throw err;
     })
   }
 
