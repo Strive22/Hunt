@@ -32,9 +32,10 @@ const JobList = (props) => {
 
   //if we're rendering the inProgress list
   if (props.inProgress) {
-    inProgress = props.inProgress.map(job => {
+    inProgress = props.inProgress.map((job, i) => {
       return (
         <JobListItem 
+          key={i}
           jobData={job}
           prevList="Interested"
           currentList="inProgress"
@@ -56,9 +57,10 @@ const JobList = (props) => {
 
   //if we're rendering the complete list
   if (props.complete) {
-    complete = props.complete.map(job => {
+    complete = props.complete.map((job, i) => {
       return (
         <JobListItem
+          key={i}
           jobData={job}
           prevList="In Progress"
           currentList="complete"      
