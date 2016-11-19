@@ -26,13 +26,7 @@ class NewSearchResults extends React.Component {
         <Row>
 
           <Col md={12}>
-
-              {/* <Nav bsStyle="tabs" activeKey="1"> */}
-                {/* <NavItem eventKey="1"> Pick your favorites! </NavItem> */}
-
                   <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
-              {/* </Nav> */}
-
           </Col>
 
         </Row>

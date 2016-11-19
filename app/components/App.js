@@ -4,6 +4,7 @@ import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
 import job from '../models/jobModel'
+import user from '../models/userModel'
 
 class App extends React.Component {
   constructor (props) {
