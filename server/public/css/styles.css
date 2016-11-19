@@ -40,6 +40,12 @@ body {
   text-decoration: none;
   color: #f8f8f8;
 }
+.main-home:active {
+  text-decoration: none;
+}
+a:-webkit-any-link {
+  text-decoration: none;
+}
 /*Home Component Styles*/
 .jumbotron {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
