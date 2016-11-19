@@ -16,7 +16,7 @@ class Home extends React.Component {
 
   render() {
     let name = this.props.userName === undefined ? 'Hey' : this.props.userName.split(' ')[0];
-    console.log(this.props)
+
     return (
       <div>
         <div>

@@ -25,7 +25,6 @@ class Zip extends React.Component {
 posty(){
 	return axios.post('http://localhost:8080/save/', this.state)
       .then(function(response){
-      console.log('saved successfully')
   })
 }
 getValidationState () {
@@ -36,9 +35,9 @@ getValidationState () {
 	else if (nump || length!== 5) return 'error';
 }
   clicky(event){
-  	console.log("target", event.target.value);
+
   	this.setState({toot: event.target.value});
-  	console.log(this.state.count);
+
   }
 
 	render(){
