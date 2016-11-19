@@ -82,7 +82,6 @@ router.post('/:userid/jobs', (req, res) => {
 
   //second, put the job in the jobs collection
   //TODO: HANDLE THE CASE WHERE THE JOB IS ALREADY IN THE DB
-  //NOTE: NOTE NOTE NOTE NOTE NOTE ASK BRIT ABOUT WHAT HAPPENS IF THERE IS NO API PASSED IN HERE
   let job = new Jobs({
     api: req.body.api,
     apiSpecificId: req.body.apiSpecificId,
@@ -93,6 +92,7 @@ router.post('/:userid/jobs', (req, res) => {
     description: req.body.description
   });
   job.save().then(job => {
+    console.log('saved job', job);
     //next we've gotta update the user with the job in the correct queue
     let jobId = job._id;
     //create the job content doc that'll be associated with this user and job
