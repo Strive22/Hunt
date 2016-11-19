@@ -16,16 +16,22 @@ body {
 /* App Component Styles */
 .page-header {
   margin-top: 50px;
+  margin-left: 50px;
   font-size: 40px;
-  text-align: center;
   font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   text-shadow: 1px 1px 9px rgba(1,1,1,1);
   color: #f8f8f8;
   border-bottom: none;
+  text-align: center;
 }
 .homeBackground {
   background-image: url(../img/peoples.jpg);
+}
+
+.hamburger {
+  float: right;
+  margin-right: 25px;
 }
 
 .main-home {
@@ -46,6 +52,7 @@ body {
 a:-webkit-any-link {
   text-decoration: none;
 }
+
 /*Home Component Styles*/
 .jumbotron {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -77,8 +84,9 @@ h1 small {
   border: solid 1px #555;
   border-radius: 5px;
   background-color:rgba(49, 49, 49, 0.71);
-  padding: 5px;
+  /*padding: 5px;*/
   color: #f8f8f8;
+  text-align: center !important;
   box-shadow: 1px 1px 6px rgba(1,1,1,1);
 }
 
@@ -97,7 +105,8 @@ h1 small {
 }
 
 .form-group {
-  padding: 5px 5px 5px 0px;
+  /*padding: 5px 5px 5px 0px;*/
+  text-align: center;
 }
 .editProfile {
   border-radius: 10px;
@@ -112,6 +121,7 @@ h1 small {
 
 .search-btn-group {
   text-align: center;
+  
 }
 
 .search-btn {
@@ -119,6 +129,10 @@ h1 small {
   border-color: #040404;
   color: #f8f8f8;
   /*text-shadow: 1px 1px 4px rgba(1,1,1,1);*/
+}
+
+.search-btn-enter {
+  text-align: center;
 }
 
 .job-list-box {
@@ -159,13 +173,13 @@ h1 small {
   box-shadow: 1px 1px 0px #d7d7d7;
   overflow: scroll;
 }
-.text-center {
+/*.text-center {
   margin-top: 5px;
 }
 
 .search-btn {
   margin-right: 2px;
-}
+}*/
 
 /*.btn:focus, .btn.active:focus {
   outline: none;

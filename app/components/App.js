@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
-import { PageHeader } from 'react-bootstrap';
+import { PageHeader, Glyphicon } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
 import job from '../models/jobModel';
@@ -42,6 +42,9 @@ class App extends React.Component {
         <PageHeader bsClass="page-header hunt">
           <Link className="main-home" to ={`/home/${this.state.currentUser._id}`}>
             Hunt
+          </Link>
+          <Link className="hamburger" to='/edit'>
+            <Glyphicon glyph="menu-hamburger" />
           </Link>
         </PageHeader>
         <div>
