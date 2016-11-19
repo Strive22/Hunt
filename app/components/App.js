@@ -3,8 +3,8 @@ import { browserHistory } from 'react-router';
 import { PageHeader } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
-import job from '../models/jobModel'
-import user from '../models/userModel'
+import job from '../models/jobModel';
+import user from '../models/userModel';
 
 class App extends React.Component {
   constructor (props) {
@@ -165,8 +165,6 @@ class App extends React.Component {
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
             searchForJobs: this.searchForJobs.bind(this),
-            addJobToInterested: this.addJobToInterested.bind(this),
-            searchResults: this.state.searchResults
           });
           break;
         case "Dashboard" :
@@ -186,7 +184,7 @@ class App extends React.Component {
         case "EditProfile" :
           // editprofile needs . . .
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser,
+            currentUser: this.state.currentUser
           });
           break;
         case "Connect" :
@@ -198,6 +196,11 @@ class App extends React.Component {
             userLocation: this.state.currentUser.location || '',
           });
           break;
+        case "NewSearchResults" :
+          return React.cloneElement(child, {
+            addJobToInterested: this.addJobToInterested.bind(this),
+            searchResults: this.state.searchResults
+          })
         default :
           return child;
       }

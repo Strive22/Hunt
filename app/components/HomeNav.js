@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import EnterJob from './EnterJob';
 import SearchNewJobs from './SearchNewJobs'
 
-const HomeNav = (props) => {
+export default (props) => {
   return (
     <Grid>
       <Row>
@@ -31,5 +31,3 @@ const HomeNav = (props) => {
     </Grid>
   )
 }
-
-module.exports = HomeNav;
