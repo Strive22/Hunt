@@ -22,7 +22,7 @@ class App extends React.Component {
       browserHistory.push(path);
     } else {
       // if no user, get it
-      axios.get('http://localhost:3000/login')
+      axios.get('/login')
         .then((res) => {
           this.setState({
             currentUser: res.data
@@ -126,7 +126,7 @@ class App extends React.Component {
   //remove a job from any list
   removeJob(jobData) {
     let list = jobData.currentList;
-    axios.delete(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+    axios.delete(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser[list] = res.data[list];
@@ -138,12 +138,12 @@ class App extends React.Component {
 
   //TODO: do we need this? NOTE NOTE NOTE: I Do not know.... but my gut says no right now.
   updateUserEnteredJob(jobData) {
-    axios.put(`http://localhost:3000/jobs/${jobData._id}`)
+    axios.put(`/jobs/${jobData._id}`)
   }
 
   //update job content
   updateJobContent(content) {
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.jobContent = res.data.jobContent;

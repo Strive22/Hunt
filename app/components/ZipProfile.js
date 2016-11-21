@@ -22,11 +22,11 @@ class Zip extends React.Component {
 		  this.getValidationState = this.getValidationState.bind(this);
 		  this.posty = this.posty.bind(this);
         }
-posty(){
-	return axios.post('http://localhost:8080/save/', this.state)
-      .then(function(response){
-  })
-}
+// posty(){
+// 	// return axios.post('http://localhost:8080/save/', this.state)
+//       .then(function(response){
+//   })
+// }
 getValidationState () {
 	const length = this.state.toot.length;
 	const nump = isNaN(this.state.toot);
@@ -59,7 +59,7 @@ getValidationState () {
             <FormControl.Feedback />
           </FormGroup>
 
-	      <ReactBootstrap.Button onClick={this.posty} bsStyle="success">Submit Profile</ReactBootstrap.Button>
+	      <ReactBootstrap.Button bsStyle="success">Submit Profile</ReactBootstrap.Button>
       </Form>
 
 		);
