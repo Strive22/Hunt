@@ -1,6 +1,6 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
-import { PageHeader } from 'react-bootstrap';
+import { browserHistory, Link } from 'react-router';
+import { PageHeader, Glyphicon } from 'react-bootstrap';
 import axios from 'axios';
 import querystring from 'querystring';
 import job from '../models/jobModel';
@@ -22,7 +22,7 @@ class App extends React.Component {
       browserHistory.push(path);
     } else {
       // if no user, get it
-      axios.get('http://localhost:3000/login')
+      axios.get('/login')
         .then((res) => {
           this.setState({
             currentUser: res.data
@@ -39,7 +39,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <PageHeader bsClass="page-header hunt">Hunt</PageHeader>
+        <PageHeader bsClass="page-header hunt">
+          <Link className="main-home" to ={`/home/${this.state.currentUser._id}`}>
+            Hunt
+          </Link>
+          <Link className="hamburger" to='/edit'>
+            <Glyphicon glyph="menu-hamburger" />
+          </Link>
+        </PageHeader>
         <div>
           {this.renderChildrenWithProps()}
         </div>
@@ -57,7 +64,6 @@ class App extends React.Component {
           searchResults: res
         })
       })
-
   }
 
   //add job to a user, this defaults to adding it to the interested queue
@@ -93,6 +99,9 @@ class App extends React.Component {
         currentUser: res.data
       })
     })
+    .catch(err => {
+      throw err;
+    })
   }
 
   //add a job to complete
@@ -108,12 +117,15 @@ class App extends React.Component {
         currentUser: updateUser
       })
     })
+    .catch(err => {
+      throw err;
+    })
   }
 
   //remove a job from any list
   removeJob(jobData) {
     let list = jobData.currentList;
-    axios.delete(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+    axios.delete(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser[list] = res.data[list];
@@ -125,12 +137,12 @@ class App extends React.Component {
 
   //TODO: do we need this? NOTE NOTE NOTE: I Do not know.... but my gut says no right now.
   updateUserEnteredJob(jobData) {
-    axios.put(`http://localhost:3000/jobs/${jobData._id}`)
+    axios.put(`/jobs/${jobData._id}`)
   }
 
   //update job content
   updateJobContent(content) {
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${content.job_id}/content`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.jobContent = res.data.jobContent;

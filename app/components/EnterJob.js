@@ -3,7 +3,6 @@ import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Modal } from '
 import EnterJobForm from './EnterJobForm';
 import job from '../models/jobModel'
 
-
 class EnterJob extends React.Component {
 
   constructor() {
@@ -12,13 +11,11 @@ class EnterJob extends React.Component {
       showModal: false
     }
   }
-
   open() {
     this.setState({
       showModal: true
     })
   }
-
   close() {
     this.setState({
       showModal: false
@@ -40,23 +37,16 @@ class EnterJob extends React.Component {
           className="search-btn"
           onClick={this.open.bind(this)}
         >
-          Do et!
+          Do it!
         </Button>
 
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-
           <Modal.Header closeButton>
-            <Modal.Title>Fill it out, Fill it out!</Modal.Title>
+            <Modal.Title>Enter the job details.</Modal.Title>
           </Modal.Header>
-
           <Modal.Body>
             <EnterJobForm submitJob={this.submitJob.bind(this)}/>
           </Modal.Body>
-
-          <Modal.Footer>
-            <Button onClick={this.close.bind(this)}>Get outta here!</Button>
-          </Modal.Footer>
-
         </Modal>
       </div>
     )

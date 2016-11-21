@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, ButtonGroup, FormGroup, HelpBlock, Button } from 'react-bootstrap';
+import { FormControl, ButtonToolbar, FormGroup, HelpBlock, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 
@@ -68,15 +68,17 @@ class SearchNewJobs extends React.Component {
             />
 
               <HelpBlock className="help-block">Select a provider:</HelpBlock>
-            <div className="search-btn-group text-center">
-              <ButtonGroup className="text-center">
-                <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
-                <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
-                <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic</Button>
-              </ButtonGroup>
-              <br/>
+            <div className="search-btn-group">
+              <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
+              {' '}
+              <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic</Button>
+              {' '}
+              <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
+            </div>
+            <br/>
+            <div className="search-btn-enter">
               <Link to="/searchResults">
-                <Button className="text-center" type="submit" onClick={(e) => {
+                <Button type="submit" onClick={(e) => {
                   // create the object to be passed to the function
                   let details = {}
 
