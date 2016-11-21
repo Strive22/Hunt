@@ -3,7 +3,6 @@ import { browserHistory, Link} from 'react-router';
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
 import HomeNav from './HomeNav';
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -45,6 +44,11 @@ class Home extends React.Component {
         <div>
           <HomeNav addJob={this.props.addJob} userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
         </div>
+
+        <Link to="/Connect">
+          <Button> Connectttt</Button>
+        </Link> 
+
       </div>
     )
   }

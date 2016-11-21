@@ -8,6 +8,7 @@ export default (props) => {
 
   return (
     <Grid>
+    
       <Row>
 
         <Col md={4}>
@@ -28,6 +29,8 @@ export default (props) => {
         </Col>
 
       </Row>
+
+      
 
     </Grid>
   )
