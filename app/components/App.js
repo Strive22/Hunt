@@ -64,7 +64,6 @@ class App extends React.Component {
           searchResults: res
         })
       })
-
   }
 
   //add job to a user, this defaults to adding it to the interested queue
