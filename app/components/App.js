@@ -88,13 +88,34 @@ class App extends React.Component {
       })
   }
 
-
+  moveJob(jobData, nextList) {
+    //find where it's going
+    console.log('nextList: ', nextList)
+    console.log('jobData: ', jobData)
+    let next;
+    if (nextList === "In Progress") {
+      next = "inProgress";
+    }
+    if (nextList === "Complete") {
+      next = "complete";
+    }
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${next}`)
+    .then(res => {
+      console.log('updated user in moveJob: ', res.data)
+      this.setState({
+        currentUser: res.data
+      })
+    })
+    .catch(err => {
+      throw err;
+    })
+  }
 
   //add a job to inProgress
-  addJobToInProgress(jobData) {
-    //jobData comes from the props of the JobListItem
+  addJobToInProgress(jobData, nextList) {
     axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
     .then(res => {
+      console.log('updated user data in add to in progress: ', res.data)
       this.setState({
         currentUser: res.data
       })
@@ -109,10 +130,10 @@ class App extends React.Component {
     //jobData comes from the props of the JobListItem
     axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
     .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      updateUser.interested = res.data.interested;
-      updateUser.inProgress = res.data.inProgress;
-      updateUser.complete = res.data.complete;
+      // let updateUser = Object.assign({}, this.state.currentUser);
+      // updateUser.interested = res.data.interested;
+      // updateUser.inProgress = res.data.inProgress;
+      // updateUser.complete = res.data.complete;
       this.setState({
         currentUser: updateUser
       })
@@ -178,8 +199,9 @@ class App extends React.Component {
             complete: this.state.currentUser.complete,
             jobContent: this.state.currentUser.jobContent,
             addJob: this.addJob.bind(this),
-            addJobToInProgress: this.addJobToInProgress.bind(this),
-            addJobToComplete: this.addJobToComplete.bind(this),
+            moveJob: this.moveJob.bind(this),
+            // addJobToInProgress: this.addJobToInProgress.bind(this),
+            // addJobToComplete: this.addJobToComplete.bind(this),
             removeJob: this.removeJob.bind(this)
           });
           break;

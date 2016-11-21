@@ -8,6 +8,7 @@ class JobListItem extends React.Component {
       currentList: props.currentList,
       nextList: props.nextList,
       prevList: props.prevList,
+      jobData: props.jobData,
       jobTitle: props.jobData.title,
       company: props.jobData.company,
       location: props.jobData.location,
@@ -31,7 +32,7 @@ class JobListItem extends React.Component {
   }
 
   render () {
-    let nextFunc = this.state.nextList === "In Progress" ? this.props.addJobToInProgress : this.props.addJobToComplete;
+    // let nextFunc = this.state.nextList === "In Progress" ? this.props.addJobToInProgress : this.props.addJobToComplete;
 
     let jobDesc = this.state.jobDesc.substr(0,10000) + '...' || "test";
 
@@ -50,8 +51,8 @@ class JobListItem extends React.Component {
               <Col md={6}>
                 <ButtonToolbar className="job-list-item-btns">
                   <Button className="job-list-item-btn" onClick={this.openModal.bind(this)}>Open Job Details</Button>
-                  <Button className="job-list-item-btn" onClick={() => nextFunc(this.props.jobData)}>Move to {this.state.nextList}</Button>
-                  <Button className="job-list-item-btn" onClick={() => this.props.removeJob(this.props.jobData)}>Remove Job From Dashboard</Button>
+                  <Button className="job-list-item-btn" onClick={() => this.props.moveJob(this.state.jobData, this.state.nextList)}>Move to {this.state.nextList}</Button>
+                  <Button className="job-list-item-btn" onClick={() => this.props.removeJob(this.state.jobData)}>Remove Job From Dashboard</Button>
                 </ButtonToolbar>
               </Col>
             </Row>
@@ -66,13 +67,14 @@ class JobListItem extends React.Component {
             <Modal.Body className="modal-body">
               <h3>{this.state.jobTitle}</h3>
               <h4>{this.state.company}</h4>
+              <h4>{this.state.location}</h4>
               <hr />
               <h4>Job Description:</h4>
               <p>{jobDesc}</p>
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
               <Button
-                onClick={() => nextFunc(this.props.jobData)}
+                onClick={() => this.props.moveJob(this.state.jobData, this.state.nextList)}
                 className="modal-btns"
               >
                 Move to {this.state.nextList}
