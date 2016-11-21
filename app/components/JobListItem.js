@@ -33,7 +33,7 @@ class JobListItem extends React.Component {
   render () {
     let nextFunc = this.state.nextList === "In Progress" ? this.props.addJobToInProgress : this.props.addJobToComplete;
 
-    let jobDesc = this.state.jobDesc.substr(0,1000) + '...';
+    let jobDesc = this.state.jobDesc.substr(0,10000) + '...' || "test";
 
     let jobFrom = `Link to Job Posting on ${this.state.api}` || "Link to Job Posting"
 

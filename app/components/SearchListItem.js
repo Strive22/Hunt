@@ -23,7 +23,7 @@ class SearchListItem extends React.Component {
   }
 
   render() {
-    let jobDesc = this.props.job.description.substr(0,1000) + "...";
+    let jobDesc = this.props.job.description.substr(0,10000) + "...";
     return (
       <div>
         <ListGroupItem>
