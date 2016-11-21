@@ -30,8 +30,7 @@ class Dashboard extends React.Component {
             <JobList
               jobContent={this.state.jobContent}
               interested={this.state.interested}
-              addJobToInProgress={this.props.addJobToInProgress}
-              addJobToComplete={this.props.addJobToComplete}
+              moveJob={this.props.moveJob}
               removeJob={this.props.removeJob}
             />
           </div>
@@ -41,7 +40,7 @@ class Dashboard extends React.Component {
             <JobList
               jobContent={this.state.jobContent}
               inProgress={this.state.inProgress}
-              addJobToComplete={this.props.addJobToComplete}
+              moveJob={this.props.moveJob}
               removeJob={this.props.removeJob}
             />
           </div>
@@ -51,6 +50,7 @@ class Dashboard extends React.Component {
             <JobList
               jobContent={this.state.jobContent}
               complete={this.state.complete}
+              moveJob={this.props.moveJob}
               removeJob={this.props.removeJob}
             />
           </div>
