@@ -65,8 +65,8 @@ class App extends React.Component {
     // Pull the userId from state
     let userId = this.state.currentUser._id
 
-    // trim down the descrption to a reasonable length
-    jobDetails.description = jobDetails.description.substr(0,700) + '...';
+    // trim down the descrption to a reasonable length NOTE: Changing this because let's add the whole description to the db and trim to render
+//     jobDetails.description = jobDetails.description.substr(0,700) + '...';
 
     // Use our job model to add the job
     job.addJob(jobDetails, userId)
