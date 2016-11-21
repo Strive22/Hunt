@@ -1,25 +1,28 @@
 import React from 'react';
 import { Grid, Row, Col, Nav, NavItem, Button, Well } from 'react-bootstrap';
-import JobList from './JobList'
-import SearchResultsList from './SearchResultsList'
+import JobList from './JobList';
+import SearchResultsList from './SearchResultsList';
+// import Spinner from 'react-spinkit';
 
 class NewSearchResults extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      results: this.props.searchResults
+      results: this.props.searchResults,
+      spinner: true
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      results: nextProps.searchResults
+      results: nextProps.searchResults,
+      spinner: false
     })
   }
 
   render() {
-
+    // let spinner = this.state.spinner ? <Spinner spinnerName="pulse" /> : null;
     return (
       <Grid>
         <Row>
@@ -31,7 +34,8 @@ class NewSearchResults extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <SearchResultsList jobs={this.state.results} addJobToInterested={this.props.addJobToInterested}/>
+            {/* {spinner} */}
+            <SearchResultsList jobs={this.state.results} addJob={this.props.addJob}/>
           </Col>
         </Row>
 

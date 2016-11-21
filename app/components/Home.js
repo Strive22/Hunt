@@ -43,7 +43,7 @@ class Home extends React.Component {
 
         </div>
         <div>
-          <HomeNav userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
+          <HomeNav addJob={this.props.addJob} userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
         </div>
       </div>
     )

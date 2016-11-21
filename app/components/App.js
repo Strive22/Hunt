@@ -60,37 +60,26 @@ class App extends React.Component {
 
   }
 
-  //add job to interested
-  //TODO: way to make one function that adds a job either to interested or to inProgress
-  addJobToInterested(job) {
-    // let description = job.description.substr(0,700) + '...';
-    console.log(job)
-    job.addJob(job, this.state.currentUser._id)
+  //add job to a user, this defaults to adding it to the interested queue
+  addJob(jobDetails) {
+    // Pull the userId from state
+    let userId = this.state.currentUser._id
 
-    // axios.post(`http://localhost:3000/users/${this.state.currentUser._id}/jobs?q=interested`, querystring.stringify({
-    //       api: jobData.api,
-    //       apiSpecificId: jobData.apiSpecificId,
-    //       title: jobData.title,
-    //       company: jobData.company,
-    //       location: jobData.location,
-    //       link: jobData.link,
-    //       description: jobData.description
-    //   })
-    // )
-    // .then(res => {
-    //   let userId = this.state.currentUser._id
-    //   axios.get(`http://localhost:3000/users/${userId}`)
-    //     .then(res => {
-    //       let updateUser = Object.assign({}, this.state.currentUser);
-    //       //assuming these return the entire array
-    //       updateUser.interested = res.data.interested;
-    //       updateUser.jobContent = res.data.jobContent;
-    //       console.log('update user:', updateUser)
-    //       this.setState({
-    //         currentUser: updateUser
-    //       })
-    //     })
-    // })
+    // trim down the descrption to a reasonable length NOTE: Changing this because let's add the whole description to the db and trim to render
+//     jobDetails.description = jobDetails.description.substr(0,700) + '...';
+
+    // Use our job model to add the job
+    job.addJob(jobDetails, userId)
+      .then(res => {
+        // then our user model to pull the updated information from the database
+        user.getUserById(userId)
+          .then(user => {
+            // and set that to state
+            this.setState({
+              currentUser: user
+            })
+          })
+      })
   }
 
 
@@ -98,14 +87,10 @@ class App extends React.Component {
   //add a job to inProgress
   addJobToInProgress(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
     .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      updateUser.interested = res.data.interested;
-      updateUser.inProgress = res.data.inProgress;
-      updateUser.complete = res.data.complete;
       this.setState({
-        currentUser: updateUser
+        currentUser: res.data
       })
     })
   }
@@ -113,7 +98,7 @@ class App extends React.Component {
   //add a job to complete
   addJobToComplete(jobData) {
     //jobData comes from the props of the JobListItem
-    axios.put(`http://localhost:3000/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
     .then(res => {
       let updateUser = Object.assign({}, this.state.currentUser);
       updateUser.interested = res.data.interested;
@@ -138,7 +123,7 @@ class App extends React.Component {
     })
   }
 
-  //TODO: do we need this?
+  //TODO: do we need this? NOTE NOTE NOTE: I Do not know.... but my gut says no right now.
   updateUserEnteredJob(jobData) {
     axios.put(`http://localhost:3000/jobs/${jobData._id}`)
   }
@@ -162,13 +147,14 @@ class App extends React.Component {
         case "Home" :
           // home needs . . .
           return React.cloneElement(child, {
+            addJob: this.addJob.bind(this),
             userName: this.state.currentUser.name,
             userId: this.state.currentUser._id,
             //in case we want the google pic
             userPhoto: this.state.currentUser.image,
             //potentially for search result stuff
             interested: this.state.currentUser.interested,
-            searchForJobs: this.searchForJobs.bind(this),
+            searchForJobs: this.searchForJobs.bind(this)
           });
           break;
         case "Dashboard" :
@@ -179,7 +165,7 @@ class App extends React.Component {
             inProgress: this.state.currentUser.inProgress,
             complete: this.state.currentUser.complete,
             jobContent: this.state.currentUser.jobContent,
-            addJobToInterested: this.addJobToInterested.bind(this),
+            addJob: this.addJob.bind(this),
             addJobToInProgress: this.addJobToInProgress.bind(this),
             addJobToComplete: this.addJobToComplete.bind(this),
             removeJob: this.removeJob.bind(this)
@@ -202,7 +188,7 @@ class App extends React.Component {
           break;
         case "NewSearchResults" :
           return React.cloneElement(child, {
-            addJobToInterested: this.addJobToInterested.bind(this),
+            addJob: this.addJob.bind(this),
             searchResults: this.state.searchResults
           })
         default :

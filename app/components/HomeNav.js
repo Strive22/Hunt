@@ -5,6 +5,7 @@ import EnterJob from './EnterJob';
 import SearchNewJobs from './SearchNewJobs'
 
 export default (props) => {
+
   return (
     <Grid>
       <Row>
@@ -23,7 +24,7 @@ export default (props) => {
         </Col>
 
         <Col md={4}>
-          <EnterJob userId={props.userId}/>
+          <EnterJob addJob={props.addJob}/>
         </Col>
 
       </Row>

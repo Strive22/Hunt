@@ -43,7 +43,7 @@ class SearchListItem extends React.Component {
                   See Job Details
                 </Button>
                 <Button
-                  onClick={this.props.addIt}
+                  onClick={this.props.addJob.bind(null, this.props.job)}
                   className="search-list-item-btns"
                 >
                   Add Job To Interested List
@@ -54,9 +54,9 @@ class SearchListItem extends React.Component {
         </Grid>
       </ListGroupItem>
 
-      <Modal 
-        show={this.state.showModal} 
-        bsSize="large" 
+      <Modal
+        show={this.state.showModal}
+        bsSize="large"
         onHide={this.close.bind(this)}
         className="job-modal"
       >
@@ -71,7 +71,7 @@ class SearchListItem extends React.Component {
           <p>{jobDesc}</p>
 
           <Button
-            onClick={this.props.addIt.bind(null, this.props.job)}
+            onClick={this.props.addJob.bind(null, this.props.job)}
             className="modal-btns"
           >
             Add Job to Interested List
