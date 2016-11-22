@@ -59,9 +59,9 @@ class SearchListItem extends React.Component {
           </Grid>
         </ListGroupItem>
 
-        <Modal 
-          show={this.state.showModal} 
-          bsSize="large" 
+        <Modal
+          show={this.state.showModal}
+          bsSize="large"
           onHide={this.closeModal.bind(this)}
           className="job-modal"
         >
