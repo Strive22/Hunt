@@ -166,12 +166,6 @@ class JobListItem extends React.Component {
                 <p>{jobDesc}</p>
                 <hr />
                 <p><a href={this.state.jobLink}>{jobFrom}</a></p>
-                {/*<Button
-                  onClick={() => this.props.moveJob(this.state.jobData, this.state.nextList)}
-                  className="modal-btns"
-                >
-                  Move to {this.state.nextList}
-                </Button>*/}
               </Modal.Body>
             </Modal>
           </ListGroupItem>
