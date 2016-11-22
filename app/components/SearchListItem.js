@@ -23,7 +23,12 @@ class SearchListItem extends React.Component {
   }
 
   render() {
-    let jobDesc = this.props.job.description.substr(0,10000) + "...";
+    let jobDesc;
+    if (this.props.job.description) {
+      jobDesc = this.props.job.description.substr(0,5000) + "...";
+    } else {
+      jobDesc = "No description provided.  See the full posting at the link below."
+    }
     return (
       <div>
         <ListGroupItem>
@@ -68,7 +73,7 @@ class SearchListItem extends React.Component {
             <h4>Job Description:</h4>
             <p>{jobDesc}</p>
             <hr />
-            <p class="modal-see-posting"><a href={this.props.job.link}>See Posting on {this.props.job.api}</a></p>
+            <p className="modal-see-posting"><a href={this.props.job.link}>See Posting on {this.props.job.api}</a></p>
             <Button
               onClick={() => this.props.addJob(this.props.job)}
               className="modal-btns"
