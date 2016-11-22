@@ -1,11 +1,10 @@
 
 import React from 'react';
-// import SweetAlert from 'sweetalert-react';
-class ConnecterList extends React.Component{
 
+
+class ConnecterList extends React.Component {
 
  render() {
-
 	return (
      <div>
 
@@ -32,16 +31,15 @@ class ConnecterList extends React.Component{
   </div>
 
 
-
-
     </div>
 
    )
        })}
      </div>
-
+  
     )
 }
 }
 
 module.exports = ConnecterList;
+
