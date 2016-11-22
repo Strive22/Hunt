@@ -1,6 +1,8 @@
 import React from 'react';
 import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 
+import JobContent from './JobContent';
+
 class JobListItem extends React.Component {
   constructor(props){
     super(props);
@@ -63,20 +65,23 @@ class JobListItem extends React.Component {
               <h3>{this.state.jobTitle}</h3>
               <h4>{this.state.company}</h4>
               <h4>{this.state.location}</h4>
-              <hr />
-              <h4>Job Description:</h4>
-              <p>{jobDesc}</p>
-              <hr />
-              <p><a href={this.state.jobLink}>{jobFrom}</a></p>
-              <Button
-                onClick={() => this.props.moveJob(this.state.jobData, "inProgress")}
-                className="modal-btns"
-              >
-                Move to In Progress
-              </Button>
-            </Modal.Body>
-          </Modal>
-        </ListGroupItem>
+                <hr />
+                <h4>Job Description:</h4>
+                <p>{jobDesc}</p>
+                <hr />
+                <p><a href={this.state.jobLink}>{jobFrom}</a></p>
+                <hr/>
+                <JobContent />
+                <Button
+                  onClick={() => this.props.moveJob(this.state.jobData, "inProgress")}
+                  className="modal-btns"
+                >
+                  Move to In Progress
+                </Button>
+              </Modal.Body>
+            </Modal>
+          </ListGroupItem>
+        </div>
       )
 
     } else if (this.state.currentList == "inProgress") {
@@ -115,6 +120,8 @@ class JobListItem extends React.Component {
               <p>{jobDesc}</p>
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
+              <hr/>
+              <JobContent />                
               <Button
                 onClick={() => this.props.moveJob(this.state.jobData, "complete")}
                 className="modal-btns"
@@ -125,6 +132,7 @@ class JobListItem extends React.Component {
           </Modal>
         </ListGroupItem>
       )
+
     } else if (this.state.currentList == "complete") {
       return (
         <ListGroupItem className="job-list-item">
@@ -160,6 +168,8 @@ class JobListItem extends React.Component {
               <p>{jobDesc}</p>
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
+              <hr/>
+              <JobContent />
             </Modal.Body>
           </Modal>
         </ListGroupItem>
