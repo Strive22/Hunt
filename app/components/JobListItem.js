@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
-
+import Task from './Task';
 class JobListItem extends React.Component {
   constructor(props){
     super(props);
@@ -76,6 +76,7 @@ class JobListItem extends React.Component {
                   Move to In Progress
                 </Button>
               </Modal.Body>
+              <Task  userid={this.state.userid} Jobid={this.state.Jobid}/>
             </Modal>
           </ListGroupItem>
         </div>
@@ -166,7 +167,10 @@ class JobListItem extends React.Component {
                 <p>{jobDesc}</p>
                 <hr />
                 <p><a href={this.state.jobLink}>{jobFrom}</a></p>
+                 <h1>Hellooo Robert </h1>
+              
               </Modal.Body>
+
             </Modal>
           </ListGroupItem>
         </div>
