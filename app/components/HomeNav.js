@@ -26,7 +26,7 @@ export default (props) => {
         <Col md={4}>
           <EnterJob addJob={props.addJob}/>
         </Col>
-
+     
       </Row>
 
     </Grid>

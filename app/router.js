@@ -6,11 +6,14 @@ import App from './App';
 
 // Layouts
 import Dashboard from './components/layouts/Dashboard';
-import Connect from './components/layouts/Connect';
+// import Connect from './components/layouts/Connect';
 import EditProfile from './components/layouts/EditProfile';
 
 // Containers
-import HomeContainer from './components/containers/HomeContainer';
+import HomeContainer from './components/containers/HomeContainer'; 
+
+import Connect from './components/ConnectContainer';
+
 
 
 export default (
