@@ -87,14 +87,9 @@ class App extends React.Component {
   moveJob(jobData, nextList) {
     //find where it's going
     console.log('jobData in moveJob: ', jobData)
-    let next;
-    if (nextList === "In Progress") {
-      next = "inProgress";
-    }
-    if (nextList === "Complete") {
-      next = "complete";
-    }
-    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${next}`)
+    console.log('nextList: ', nextList)
+
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${nextList}`, jobData)
     .then(res => {
       console.log('updated user in moveJob: ', res.data)
       this.setState({
