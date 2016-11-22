@@ -1,0 +1,37 @@
+.card {
+
+    width: 30%; 
+    height: 30%;
+    border-radius: 100px;  
+    border-color: red;
+    background-color: #FFF8DC;
+    float: left; 
+  
+    
+  
+}
+
+.col s12 m7{
+    background-color:#F5F5F5;
+}
+.whitecolor {
+  color: white;
+}
+.card-image {
+  float: left;
+  width: 40%;
+  }
+
+.right-content {
+  width: 60%;
+  float: left;
+}
+.card-content {
+  padding-left:50px;
+  font-family: "Times New Roman"
+}
+
+.form-error is-visible{
+    color:  red;
+    text-decoration-color: red;
+}
