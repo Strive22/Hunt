@@ -13,7 +13,9 @@ class JobListItem extends React.Component {
       jobDesc: props.jobData.description,
       api: props.jobData.api || null,
       jobLink: props.jobData.link,
-      showModal: false
+      showModal: false, 
+       Jobid : props.jobData._id,   
+      userid : props.jobContent[0].user_id
     }
   }
 

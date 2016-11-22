@@ -188,6 +188,25 @@ router.route('/:userid/jobs/:jobid/:queue')
     );
   });
 
+// Adding notes to jobcontent
+router.post('/:userid/:jobid/:content', (req, res) => { 
+  console.log("it workkssss"); 
+  let userid = req.params.userid; 
+  let jobid  = req.params.jobid; 
+  let content = req.params.content; 
+  console.log("the user_id", userid, "jobid", jobid, "content", content); 
+JobContent.findOneAndUpdate({ "user_id": userid, "job_id":jobid },{$push:{"notes":content}})
+.then(user =>{
+    console.log("hellooo responseee in ", user); 
+    res.send(user);
+  }).catch(err =>{
+    console.log("helloo errr", err);
+  })
+
+
+ 
+}) 
+
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests
 router.post('/:userid/jobs/:jobid/content', (req, res) => {
 

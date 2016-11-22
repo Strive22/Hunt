@@ -35,6 +35,8 @@ class Task extends React.Component{
 		let userid = this.props.userid; 
 		let jobid = this.props.Jobid;
 		let content = this.enterTask.value;  
+		console.log("the user id", userid); 
+		console.log("the job id", jobid); 
 		 axios.post(`/users/${userid}/${jobid}/${content}`)
 	 	.then(response => {
 	 		console.log("hello response", response);
@@ -57,7 +59,7 @@ class Task extends React.Component{
         <div className="todoListMain">
           <div className="header">
             <form onSubmit= {this.addItem.bind(this)}>
-              <input placeholder = "enterTask" className = "whitecolor" ref = {(value) => this.enterTask = value}/>
+              <input placeholder = "enterTask"  ref = {(value) => this.enterTask = value}/>
               <button type="submit">add</button>
             </form>
           </div>
