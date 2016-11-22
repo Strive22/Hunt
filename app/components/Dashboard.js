@@ -23,7 +23,6 @@ class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('new dash props:', newProps)
     this.setState({
       interested: newProps.interested,
       inProgress: newProps.inProgress,
