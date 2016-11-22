@@ -118,7 +118,7 @@ h1 small {
 }
 
 .search-btn-group {
-  text-align: center; 
+  text-align: center;
 }
 
 .search-btn {
@@ -137,6 +137,15 @@ h1 small {
   border-radius: 5px;
   padding: 5px;
   box-shadow: 1px 1px 0px #d7d7d7;
+}
+
+.job-list-item {
+  border: solid 1px #555;
+  border-radius: 5px;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
+  background-color: rgba(49, 49, 49, 0.71);
+  margin-bottom: 5px;
 }
 
 .job-list-item-btns {
@@ -164,10 +173,7 @@ h1 small {
 
 .search-results {
   height: 500px;
-  border: solid 1px #d7d7d7;
-  border-radius: 5px;
   padding: 10px;
-  box-shadow: 1px 1px 0px #d7d7d7;
   overflow: scroll;
 }
 /*.text-center {
