@@ -32,9 +32,20 @@ class JobListItem extends React.Component {
   }
 
   render () {
-    // let nextFunc = this.state.nextList === "In Progress" ? this.props.addJobToInProgress : this.props.addJobToComplete;
+    let buttonMsg;
+    let queueForBackend;
+    if (this.state.nextList == "In Progress") {
+      buttonMsg = "Move to In Progress";
+      queueForBackend = "In Progress";
+    } else if (this.state.nextList == "Complete") {
+      buttonMsg = "Move to Complete"
+      queueForBackend = "Complete"
+    } else if (this.state.currentList == "complete") {
+      buttonMsg = "Move Back to In Progress";
+      queueForBackend = "In Progress"
+    }
 
-    let jobDesc = this.state.jobDesc.substr(0,10000) + '...' || "test";
+    // let jobDesc = this.state.jobDesc.substr(0,10000) + '...' || "test";
 
     let jobFrom = `Link to Job Posting on ${this.state.api}` || "Link to Job Posting"
 
@@ -51,8 +62,8 @@ class JobListItem extends React.Component {
               <Col md={6}>
                 <ButtonToolbar className="job-list-item-btns">
                   <Button className="job-list-item-btn" onClick={this.openModal.bind(this)}>Open Job Details</Button>
-                  <Button className="job-list-item-btn" onClick={() => this.props.moveJob(this.state.jobData, this.state.nextList)}>Move to {this.state.nextList}</Button>
-                  <Button className="job-list-item-btn" onClick={() => this.props.removeJob(this.state.jobData)}>Remove Job From Dashboard</Button>
+                  <Button className="job-list-item-btn" onClick={() => this.props.moveJob(this.state.jobData, queueForBackend)}>{buttonMsg}</Button>
+                  <Button className="job-list-item-btn" onClick={() => this.props.removeJob(this.state.jobData, this.state.currentList)}>Remove Job From Dashboard</Button>
                 </ButtonToolbar>
               </Col>
             </Row>
@@ -70,7 +81,7 @@ class JobListItem extends React.Component {
               <h4>{this.state.location}</h4>
               <hr />
               <h4>Job Description:</h4>
-              <p>{jobDesc}</p>
+              <p>{this.state.jobDesc}</p>
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
               <Button
