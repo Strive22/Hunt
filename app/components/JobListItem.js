@@ -45,7 +45,7 @@ class JobListItem extends React.Component {
       queueForBackend = "In Progress"
     }
 
-    // let jobDesc = this.state.jobDesc.substr(0,10000) + '...' || "test";
+    let jobDesc = this.state.jobDesc.substr(0,5000) + '...' || "test";
 
     let jobFrom = `Link to Job Posting on ${this.state.api}` || "Link to Job Posting"
 
@@ -81,7 +81,7 @@ class JobListItem extends React.Component {
               <h4>{this.state.location}</h4>
               <hr />
               <h4>Job Description:</h4>
-              <p>{this.state.jobDesc}</p>
+              <p>{jobDesc}</p>
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
               <Button

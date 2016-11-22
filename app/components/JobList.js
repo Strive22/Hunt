@@ -10,7 +10,7 @@ const JobList = (props) => {
     interested = props.interested.map((job, i) => {
       return (
         <JobListItem
-          key={i}
+          key={job._id}
           jobData={job}
           currentList="interested"
           nextList="In Progress"
@@ -34,7 +34,7 @@ const JobList = (props) => {
     inProgress = props.inProgress.map((job, i) => {
       return (
         <JobListItem 
-          key={i}
+          key={job._id}
           jobData={job}
           prevList="Interested"
           currentList="inProgress"
@@ -59,7 +59,7 @@ const JobList = (props) => {
     complete = props.complete.map((job, i) => {
       return (
         <JobListItem
-          key={i}
+          key={job._id}
           jobData={job}
           prevList="In Progress"
           currentList="complete"      
