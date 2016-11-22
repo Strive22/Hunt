@@ -85,71 +85,28 @@ class App extends React.Component {
       })
   }
 
-
-
-  // //add a job to inProgress
-  // addJobToInProgress(jobData) {
-  //   //jobData comes from the props of the JobListItem
-  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
-  //   .then(res => {
-  //     this.setState({
-  //       currentUser: res.data
-  //     })
-  //   })
-  //   .catch(er
-  //     throw err;
-  //   })
-  // }
-
-  // //add a job to complete
-  // addJobToComplete(jobData) {
-  //   //jobData comes from the props of the JobListItem
-  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
-  //   .then(res => {
-  //     let updateUser = Object.assign({}, this.state.currentUser);
-  //     updateUser.interested = res.data.interested;
-  //     updateUser.inProgress = res.data.inProgress;
-  //     updateUser.complete = res.data.complete;
-  //     this.setState({
-  //       currentUser: updateUser
-  //     })
-  //   })
-  //   .catch(err => {
-  //     throw err;
-  //   })
-  // }
-
-  // //add a job to inProgress
-  // addJobToInProgress(jobData) {
-  //   //jobData comes from the props of the JobListItem
-  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
-  //   .then(res => {
-  //     this.setState({
-  //       currentUser: res.data
-  //     })
-  //   })
-  //   .catch(er
-  //     throw err;
-  //   })
-  // }
-
-  // //add a job to complete
-  // addJobToComplete(jobData) {
-  //   //jobData comes from the props of the JobListItem
-  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
-  //   .then(res => {
-  //     let updateUser = Object.assign({}, this.state.currentUser);
-  //     updateUser.interested = res.data.interested;
-  //     updateUser.inProgress = res.data.inProgress;
-  //     updateUser.complete = res.data.complete;
-  //     this.setState({
-  //       currentUser: updateUser
-  //     })
-  //   })
-  //   .catch(err => {
-  //     throw err;
-  //   })
-  // }
+  moveJob(jobData, nextList) {
+    //find where it's going
+    console.log('nextList: ', nextList)
+    console.log('jobData: ', jobData)
+    let next;
+    if (nextList === "In Progress") {
+      next = "inProgress";
+    }
+    if (nextList === "Complete") {
+      next = "complete";
+    }
+    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${next}`)
+    .then(res => {
+      console.log('updated user in moveJob: ', res.data)
+      this.setState({
+        currentUser: res.data
+      })
+    })
+    .catch(err => {
+      throw err;
+    })
+  }
 
   //remove a job from any list
   removeJob(jobData) {
