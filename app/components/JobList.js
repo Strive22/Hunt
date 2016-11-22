@@ -15,8 +15,7 @@ const JobList = (props) => {
           currentList="interested"
           nextList="In Progress"
           jobContent={props.jobContent}
-          addJobToInProgress={props.addJobToInProgress}
-          addJobToComplete={props.addJobToComplete}
+          moveJob={props.moveJob}
           removeJob={props.removeJob}
         />
       )
@@ -41,7 +40,7 @@ const JobList = (props) => {
           currentList="inProgress"
           nextList="Complete"
           jobContent={props.jobContent}
-          addJobToComplete={props.addJobToComplete}
+          moveJob={props.moveJob}
           removeJob={props.removeJob}
         />
       )
@@ -65,6 +64,7 @@ const JobList = (props) => {
           prevList="In Progress"
           currentList="complete"      
           jobContent={props.jobContent}
+          moveJob={props.moveJob}
           removeJob={props.removeJob}
         />
       )
