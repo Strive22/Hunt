@@ -13,7 +13,7 @@ class Zip extends React.Component {
 
   posty() {
   	// axios.put(`${this.props.currentUser}`, {
-   //    name: 
+   //    name:
    //  })
   }
 
