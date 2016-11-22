@@ -1,14 +1,6 @@
 import React from 'react';
-const ReactBootstrap = require('react-bootstrap');
+import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
-const Grid = ReactBootstrap.Grid,
-      Row = ReactBootstrap.Row,
-      Col = ReactBootstrap.Col,
-      Form = ReactBootstrap.Form,
-      FormGroup = ReactBootstrap.FormGroup,
-      ControlLabel = ReactBootstrap.ControlLabel,
-      FormControl = ReactBootstrap.FormControl,
-      HelpBlock = ReactBootstrap.HelpBlock;
 
 class Skills extends React.Component {
   constructor(props){
@@ -20,18 +12,20 @@ class Skills extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  checkValue(){
+  checkValue() {
     var result = 0;
     for(var i = 0; i<this.state.value.length; i++){
       if(this.state.value[i] === ","){result += 1;}
     } return result;
   }
+
   getValidationState () {
     const length = this.state.value.length;
     if (length > 0) return 'success';
     else if (length === 0) return 'error';
     // else if (length > 0) return 'error';
   }
+
   commaCount(){
     // const monkey = this.getValidationState();
     const commas = this.checkValue()
@@ -43,10 +37,12 @@ class Skills extends React.Component {
         this.setState({prompt: "Wow, you got skills.. Can you think of any more?" })
         } else if (commas === 0) {this.setState({ prompt: "List your tech skills -- separated by commas"})}
   }
+
   handleChange (event) {
     this.setState({ value: event.target.value});
     this.commaCount();
   }
+
   render () {
 
     return (
@@ -70,6 +66,7 @@ class Skills extends React.Component {
     )
   }
 }
+
 module.exports = Skills;
 
 

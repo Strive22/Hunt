@@ -71,9 +71,6 @@ class App extends React.Component {
     // Pull the userId from state
     let userId = this.state.currentUser._id
 
-    // trim down the descrption to a reasonable length NOTE: Changing this because let's add the whole description to the db and trim to render
-//     jobDetails.description = jobDetails.description.substr(0,700) + '...';
-
     // Use our job model to add the job
     job.addJob(jobDetails, userId)
       .then(res => {
@@ -90,37 +87,37 @@ class App extends React.Component {
 
 
 
-  //add a job to inProgress
-  addJobToInProgress(jobData) {
-    //jobData comes from the props of the JobListItem
-    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
-    .then(res => {
-      this.setState({
-        currentUser: res.data
-      })
-    })
-    .catch(err => {
-      throw err;
-    })
-  }
+  // //add a job to inProgress
+  // addJobToInProgress(jobData) {
+  //   //jobData comes from the props of the JobListItem
+  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/inProgress`)
+  //   .then(res => {
+  //     this.setState({
+  //       currentUser: res.data
+  //     })
+  //   })
+  //   .catch(er
+  //     throw err;
+  //   })
+  // }
 
-  //add a job to complete
-  addJobToComplete(jobData) {
-    //jobData comes from the props of the JobListItem
-    axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
-    .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      updateUser.interested = res.data.interested;
-      updateUser.inProgress = res.data.inProgress;
-      updateUser.complete = res.data.complete;
-      this.setState({
-        currentUser: updateUser
-      })
-    })
-    .catch(err => {
-      throw err;
-    })
-  }
+  // //add a job to complete
+  // addJobToComplete(jobData) {
+  //   //jobData comes from the props of the JobListItem
+  //   axios.put(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/complete`)
+  //   .then(res => {
+  //     let updateUser = Object.assign({}, this.state.currentUser);
+  //     updateUser.interested = res.data.interested;
+  //     updateUser.inProgress = res.data.inProgress;
+  //     updateUser.complete = res.data.complete;
+  //     this.setState({
+  //       currentUser: updateUser
+  //     })
+  //   })
+  //   .catch(err => {
+  //     throw err;
+  //   })
+  // }
 
   //remove a job from any list
   removeJob(jobData) {
@@ -131,6 +128,24 @@ class App extends React.Component {
       updateUser[list] = res.data[list];
       this.setState({
         currentUser: updateUser
+      })
+    })
+  }
+
+  //submit user-entered profile updates
+  submitProfile(profileData) {
+    axios.put(`/users/${this.state.currentUser._id}`,
+      {
+        name: profileData.name,
+        email: profileData.email,
+        tech: profileData.tech,
+        location: profileData.location,
+        otherHunters: profileData.otherHunters
+      })
+    .then(res => {
+      console.log('res.data:', res.data)
+      this.setState({
+        currentUser: res.data
       })
     })
   }
@@ -186,7 +201,8 @@ class App extends React.Component {
         case "EditProfile" :
           // editprofile needs . . .
           return React.cloneElement(child, {
-            currentUser: this.state.currentUser
+            currentUser: this.state.currentUser,
+            submitProfile: this.submitProfile.bind(this)
           });
           break;
         case "Connect" :
