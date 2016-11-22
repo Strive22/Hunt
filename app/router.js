@@ -17,9 +17,9 @@ export default (
   <Router history={browserHistory}>
     <Route component={App}>
       <Route path="/" component={HomeContainer}/>
-      {/* <Route path="/dashboard" component={Dashboard}/>
+      <Route path="/dashboard" component={Dashboard}/>
       <Route path="/connect" component={Connect}/>
-      <Route path="/editProfile" component={EditProfile}/> */}
+      <Route path="/edit" component={EditProfile}/>
     </Route>
   </Router>
 );
