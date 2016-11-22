@@ -143,14 +143,19 @@ router.route('/:userid/jobs/:jobid/:queue')
     } else if (queue === "interested") {
       toRemove = {
         inProgress: jobId,
-        interested: jobId
+        complete: jobId
       }
     }
-
+    
     Users.findOneAndUpdate({ _id: req.params.userid },
       { $push: toAdd, $pull: toRemove },
       { new: true })
+      .populate('interested inProgress complete jobContent')
+      .exec((err, user) => {
+        if (err) { console.log(`Error: ${err}`) }
+      })
       .then(user => {
+        console.log('popd post-move user:', user);
         res.send(user);
       })
       .catch(error => {
@@ -167,11 +172,18 @@ router.route('/:userid/jobs/:jobid/:queue')
       (err, content) => {
         Users.findOneAndUpdate( { _id: req.params.userid },
           { $pull: toDelete },
-          { new: true },
-          (err, user) => {
-            res.send(user);
-          }
-        );
+          { new: true })
+        .populate('interested inProgress complete jobContent')
+        .exec((err, user) => {
+          if (err) { console.log(`Error: ${err}`) }
+        })
+        .then(user => {
+          console.log('popd post-delete user:', user);
+          res.send(user);
+        })
+        .catch(err => {
+          throw err;
+        })
       }
     );
   });
