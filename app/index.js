@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import NewSearchResults from './components/NewSearchResults'
 import Profile from './components/EditProfile';
+import Connect from './components/ConnectContainer';
 
 
 ReactDOM.render((
@@ -15,6 +16,8 @@ ReactDOM.render((
       <Route path="/edit" component={Profile}/>
       <Route path="/home/:userid" component={Home}/>
       <Route path="/searchResults" component={NewSearchResults}/>
+      <Route path="/connect" component={Connect}/>
+
       <Route path="/dashboard" component={Dashboard}/>
     </Route>
   </Router>

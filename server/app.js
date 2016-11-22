@@ -16,6 +16,7 @@ const routes = require('./routes/index');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const search = require('./routes/search');
+const connect = require('./routes/Connect');
 const fallback = require('./routes/fallback');
 
 const app = express();
@@ -56,6 +57,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
+app.use('/connect',connect);
 app.use('*', fallback);
 
 //404 handler
