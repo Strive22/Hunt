@@ -86,8 +86,7 @@ class App extends React.Component {
 
   moveJob(jobData, nextList) {
     //find where it's going
-    console.log('nextList: ', nextList)
-    console.log('jobData: ', jobData)
+    console.log('jobData in moveJob: ', jobData)
     let next;
     if (nextList === "In Progress") {
       next = "inProgress";
@@ -109,10 +108,8 @@ class App extends React.Component {
 
   //remove a job from any list
   removeJob(jobData, currentList) {
-    console.log('jobData in remove:', jobData)
     axios.delete(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${currentList}`)
     .then(res => {
-      console.log('res after remove:', res.data)
       this.setState({
         currentUser: res.data
       })
@@ -130,7 +127,6 @@ class App extends React.Component {
         otherHunters: profileData.otherHunters
       })
     .then(res => {
-      console.log('res.data:', res.data)
       this.setState({
         currentUser: res.data
       })

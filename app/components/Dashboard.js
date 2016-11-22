@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('new props:', newProps)
+    console.log('new dash props:', newProps)
     this.setState({
       interested: newProps.interested,
       inProgress: newProps.inProgress,
@@ -31,7 +31,7 @@ class Dashboard extends React.Component {
       jobContent: newProps.jobContent
     })
   }
-  
+
   render() {
     return (
       <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">
