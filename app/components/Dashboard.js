@@ -22,6 +22,16 @@ class Dashboard extends React.Component {
     });
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log('new props:', newProps)
+    this.setState({
+      interested: newProps.interested,
+      inProgress: newProps.inProgress,
+      complete: newProps.complete,
+      jobContent: newProps.jobContent
+    })
+  }
+  
   render() {
     return (
       <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">

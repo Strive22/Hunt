@@ -169,6 +169,7 @@ router.route('/:userid/jobs/:jobid/:queue')
           { $pull: toDelete },
           { new: true },
           (err, user) => {
+            console.log('user after delete:', user)
             res.send(user);
           }
         );

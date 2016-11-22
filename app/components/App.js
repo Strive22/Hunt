@@ -56,7 +56,6 @@ class App extends React.Component {
 
   //search for jobs via the 3P API calls
   searchForJobs(searchDetails) {
-
     // searchNewJobs returns a promise that resolves into an array of job objects
     job.searchNewJobs(searchDetails)
       .then(res => {
@@ -109,14 +108,13 @@ class App extends React.Component {
   }
 
   //remove a job from any list
-  removeJob(jobData) {
-    let list = jobData.currentList;
-    axios.delete(`/users/${this.state.currentUser._id}/jobs/${jobData.jobId}/${jobData.currentList}`)
+  removeJob(jobData, currentList) {
+    console.log('jobData in remove:', jobData)
+    axios.delete(`/users/${this.state.currentUser._id}/jobs/${jobData._id}/${currentList}`)
     .then(res => {
-      let updateUser = Object.assign({}, this.state.currentUser);
-      updateUser[list] = res.data[list];
+      console.log('res after remove:', res.data)
       this.setState({
-        currentUser: updateUser
+        currentUser: res.data
       })
     })
   }
@@ -158,11 +156,12 @@ class App extends React.Component {
 
   renderChildrenWithProps () {
     // add props to all the children of app
-    return React.Children.map(this.props.children, (child) => {
+    return React.Children.map(this.props.children, (child, idx) => {
       switch (child.type.name) {
         case "Home" :
           // home needs . . .
           return React.cloneElement(child, {
+            key: idx,
             addJob: this.addJob.bind(this),
             userName: this.state.currentUser.name,
             userId: this.state.currentUser._id,
@@ -177,20 +176,20 @@ class App extends React.Component {
           // dashboard needs . . .
           return React.cloneElement(child, {
             //duh
+            key: idx,
             interested: this.state.currentUser.interested,
             inProgress: this.state.currentUser.inProgress,
             complete: this.state.currentUser.complete,
             jobContent: this.state.currentUser.jobContent,
             addJob: this.addJob.bind(this),
             moveJob: this.moveJob.bind(this),
-            // addJobToInProgress: this.addJobToInProgress.bind(this),
-            // addJobToComplete: this.addJobToComplete.bind(this),
             removeJob: this.removeJob.bind(this)
           });
           break;
         case "EditProfile" :
           // editprofile needs . . .
           return React.cloneElement(child, {
+            key: idx,
             currentUser: this.state.currentUser,
             submitProfile: this.submitProfile.bind(this)
           });
@@ -198,6 +197,7 @@ class App extends React.Component {
         case "Connect" :
           // connect needs . . .
           return React.cloneElement(child, {
+            key: idx,
             userName: this.state.currentUser.name,
             userEmail: this.state.currentUser.email,
             userTech: this.state.currentUser.tech || '',
@@ -206,6 +206,7 @@ class App extends React.Component {
           break;
         case "NewSearchResults" :
           return React.cloneElement(child, {
+            key: idx,
             addJob: this.addJob.bind(this),
             searchResults: this.state.searchResults
           })
