@@ -1,48 +1,38 @@
 import React from 'react';
-const ReactBootstrap = require('react-bootstrap');
+import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 import axios from 'axios';
 
- const Grid = ReactBootstrap.Grid,
-      Row = ReactBootstrap.Row,
-      Col = ReactBootstrap.Col,
-      Form = ReactBootstrap.Form,
-      FormGroup = ReactBootstrap.FormGroup,
-      ControlLabel = ReactBootstrap.ControlLabel,
-      FormControl = ReactBootstrap.FormControl,
-      HelpBlock = ReactBootstrap.HelpBlock;
-
 class Zip extends React.Component {
-		constructor(props){
-		  super(props)
-		  this.state = {
-			value:'Tickleberries',
+	constructor(props) {
+	  super(props)
+	  this.state = {
+			value: 'Tickleberries',
 			toot: '',
-		  }
-		  this.clicky =  this.clicky.bind(this);
-		  this.getValidationState = this.getValidationState.bind(this);
-		  this.posty = this.posty.bind(this);
-        }
-// posty(){
-// 	// return axios.post('http://localhost:8080/save/', this.state)
-//       .then(function(response){
-//   })
-// }
-getValidationState () {
-	const length = this.state.toot.length;
-	const nump = isNaN(this.state.toot);
-	if (!nump && length === 5) return 'success';
-
-	else if (nump || length!== 5) return 'error';
-}
-  clicky(event){
-
-  	this.setState({toot: event.target.value});
-
+		}
   }
 
-	render(){
-      var check = this.getValidationState() === "success"? "Valid Zip" : "Zipcode must be 5 numbers";
-		return(
+  posty() {
+  	// axios.put(`${this.props.currentUser}`, {
+   //    name: 
+   //  })
+  }
+
+  getValidationState () {
+  	const length = this.state.toot.length;
+  	const nump = isNaN(this.state.toot);
+  	if (!nump && length === 5) return 'success';
+  	else if (nump || length!== 5) return 'error';
+  }
+
+  clicky(event) {
+    this.setState({
+      toot: event.target.value
+    });
+  }
+
+	render() {
+    var check = this.getValidationState() === "success"? "Valid Zip" : "Zipcode must be 5 numbers";
+		return (
 
 	  <Form>
         <FormGroup
@@ -54,14 +44,13 @@ getValidationState () {
               type="text"
               value={this.state.toot}
               placeholder="Find me!"
-              onChange={this.clicky}
+              onChange={this.clicky.bind(this)}
             />
             <FormControl.Feedback />
           </FormGroup>
 
-	      <ReactBootstrap.Button bsStyle="success">Submit Profile</ReactBootstrap.Button>
+	      <Button bsStyle="success">Submit Profile</Button>
       </Form>
-
 		);
 	}
 
