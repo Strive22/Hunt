@@ -1,12 +1,13 @@
 const webpack = require('webpack');
+// const path = require('path');
 
 // settings for all environments
 const commonConfig = {
   entry: './app/index.js',
   output: {
     path: './server/public/',
-    filename: 'bundle.js',
-  },
+    filename: 'bundle.js'
+},
 
   resolve: {
     extensions: ['.jsx', '.js', '']
