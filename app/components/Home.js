@@ -48,15 +48,13 @@ class Home extends React.Component {
         {' '}
         <Grid>
           <Row>
-            <Col sm={1}></Col>
-            <Col className="connect-navigation" sm={10}>
+            <Col className="connect-navigation" sm={12}>
               <Link to="/connect">
                 <Well className="home-footer">
                   <Button className="complete-profile-btn"> Connect with other Hunters </Button>
                 </Well>
               </Link>
             </Col>
-            <Col sm={1}></Col>
           </Row>
         </Grid>
       </div>

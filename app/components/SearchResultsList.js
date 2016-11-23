@@ -15,7 +15,7 @@ export default (props) => {
   )
 
   return (
-    <div className="search-results">
+    <div className="job-list-box">
       <ListGroup>
         {list}
       </ListGroup>

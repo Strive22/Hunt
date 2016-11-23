@@ -96,6 +96,7 @@ class ConnectContainer extends React.Component {
               <input value={this.state.technology} placeholder="Technology" className="form-text-input connect" ref={(input) => this.Technology = input}/>
             </Col>
             <Col sm={2}>
+              <ControlLabel>Within</ControlLabel>
               <FormControl componentClass="select" onChange={this.handleDistance.bind(this)}>
                 <option value="5">5 Miles</option>
                 <option value="10">10 Miles</option>

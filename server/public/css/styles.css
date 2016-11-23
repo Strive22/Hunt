@@ -9,7 +9,10 @@ body {
 }
 
 .form-control {
+  color: white;
+  background-color: rgba(49, 49, 49, 0.71);
   width: 90%;
+  height: 20px;
   margin: auto;
 }
 
@@ -74,7 +77,6 @@ h1 small {
   background-color: #b99db8;
   border-color: #040404;
   color: #f8f8f8;
-  text-shadow: 1px 1px 8px rgba(1,1,1,1);
 }
 
 /*    */
@@ -133,10 +135,9 @@ h1 small {
 }
 
 .job-list-box {
-  border: solid 1px #d7d7d7;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 1px 1px 0px #d7d7d7;
+  height: 700px;
+  padding: 10px;
+  overflow: scroll;
 }
 
 .job-list-item {
@@ -234,12 +235,10 @@ h1 small {
 }
 
 .home-footer {
-  border: solid 1px #555;
-  border-radius: 5px;
+  border: none;
   color: #f8f8f8;
-  box-shadow: 1px 1px 6px rgba(1,1,1,1);
   background-color: rgba(49, 49, 49, 0.71);
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .form-text-input {
@@ -259,10 +258,4 @@ h1 small {
 .form-label {
   color: white;
   font-size: 10px;
-}
-
-select, .form-control {
-  color: white;
-  height: 30px;
-  background-color: rgba(49, 49, 49, 0.71);
 }

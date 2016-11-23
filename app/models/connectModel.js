@@ -5,7 +5,6 @@ exports.getNearbyUsers = (dist, zip, technology) => {
   return axios.get(`/connect/${zip}/${dist}`)
     .then((response) => response.data)
     .then(users => {
-
       if (technology) {
         return users.filter((user) => user.tech.includes(technology))
       } else {
