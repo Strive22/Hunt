@@ -31,7 +31,6 @@ class JobContent extends React.Component {
             <FormControl className="modal-notes" componentClass="textarea" placeholder="Your notes here" />
           </FormGroup>
           <Button className="modal-btns">Save This Note</Button>
-          <HelpBlock>Your saved notes will be displayed below.</HelpBlock>
         </Form>
         <hr/>
         Some dummy text where other things will go
