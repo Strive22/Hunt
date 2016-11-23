@@ -17,7 +17,6 @@ ReactDOM.render((
       <Route path="/home/:userid" component={Home}/>
       <Route path="/searchResults" component={NewSearchResults}/>
       <Route path="/connect" component={Connect}/>
-
       <Route path="/dashboard" component={Dashboard}/>
     </Route>
   </Router>

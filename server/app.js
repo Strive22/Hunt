@@ -6,7 +6,6 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 const morgan = require('morgan');
-// const MongoDBStore = require('connect-mongodb-session')(session);
 const bodyParser = require('body-parser');
 
 const db = require('./config/db');
@@ -23,14 +22,6 @@ const app = express();
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
-// const store = new MongoDBStore({
-//   uri: `mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`,
-//   collection: 'huntSessions'
-// });
-
-// store.on('error', err => {
-//   console.log('store err:', err);
-// })
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
@@ -39,12 +30,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({ 
   //used to sign the session ID cookie
   secret: 'huntersrule',
-  // cookie: {
-  //   //number in milliseconds to use in calculating expiration of cookie
-  //   maxAge: 1000 * 60 * 60 * 24 * 7     // one week
-  // },
-  // store: store,
-  //force session to save to the store - needed b/c this store sets an expiration date
   resave: true,
   //force new both not modified sessions (uninitialized) to save to the store
   saveUninitialized: true
@@ -58,7 +43,7 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/search', search);
 app.use('/connect',connect);
-app.use('*', fallback);
+// app.use('*', fallback);
 
 //404 handler
 app.use((req, res, next) => {
