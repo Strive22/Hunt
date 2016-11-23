@@ -6,7 +6,7 @@ const commonConfig = {
   entry: './app/index.js',
   output: {
     filename: 'bundle.js',
-    path: './server/public'
+    path: './server/public/'
   },
 
   resolve: {
