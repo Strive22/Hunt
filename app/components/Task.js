@@ -64,7 +64,7 @@ class Task extends React.Component{
             </form>
           </div>
        
-			
+			<Tasklist notes = {this.state.items}/>
 			 </div>
 
 	 )
