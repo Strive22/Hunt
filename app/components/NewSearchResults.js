@@ -25,7 +25,7 @@ class NewSearchResults extends React.Component {
       <Grid>
         <Row>
           <Col md={12}>
-            <Well>
+            <Well className="search-results-header">
               <h1>Look at all these jobs!!</h1>
             </Well>
           </Col>

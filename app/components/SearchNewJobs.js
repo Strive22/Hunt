@@ -61,6 +61,7 @@ class SearchNewJobs extends React.Component {
             controlId="keywords"
           >
             <FormControl
+              className="form-text-input"
               type="text"
               value={this.state.keywords}
               placeholder="Separate search terms with commas."

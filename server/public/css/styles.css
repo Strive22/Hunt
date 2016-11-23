@@ -172,7 +172,7 @@ h1 small {
 }
 
 .search-results {
-  height: 500px;
+  height: 700px;
   padding: 10px;
   overflow: scroll;
 }
@@ -218,4 +218,51 @@ h1 small {
 .modal-submit-btn {
   text-align: center;
   margin-left: 33%;
+}
+
+.search-results-header {
+  border: solid 1px #555;
+  border-radius: 5px;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
+  background-color: rgba(49, 49, 49, 0.71);
+  margin-bottom: 5px;
+}
+
+.connect-navigation {
+  text-align: center;
+}
+
+.home-footer {
+  border: solid 1px #555;
+  border-radius: 5px;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
+  background-color: rgba(49, 49, 49, 0.71);
+  margin-top: 20px;
+}
+
+.form-text-input {
+  color: white;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+  text-align: center;
+  box-shadow: none;
+}
+
+.form-text-input, .connect::-webkit-input-placeholder {
+  color: white;
+}
+
+.form-label {
+  color: white;
+  font-size: 10px;
+}
+
+select, .form-control {
+  color: white;
+  height: 30px;
+  background-color: rgba(49, 49, 49, 0.71);
 }

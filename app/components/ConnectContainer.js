@@ -1,28 +1,24 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
-import { Jumbotron, Button, Grid, Row, Col, FormControl} from 'react-bootstrap';
+import { Jumbotron, Button, Grid, Row, Col, FormControl, ControlLabel } from 'react-bootstrap';
 import Connectlist from './ConnecterList';
 import Validation from './Validation';
 import { Component, PropTypes } from 'react';
 import SweetAlert from 'sweetalert-react';
 import axios from 'axios';
-
+import connect from '../models/connectModel';
 
 class ConnectContainer extends React.Component {
 
   constructor(){
     super();
     this.state = {
-      Zipcode : '',
-      Distance: '',
-      Technology: '',
+      zipcode : '',
+      distance: '5',
+      technology: '',
       users: [],
       sweetAlert: false
     };
-  }
-
-  componentDidMount () {
-
   }
 
   closeSweetAlert() {
@@ -34,53 +30,46 @@ class ConnectContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    let Zipcode = this.ZIP.state.value;
-    let Distance = this.Distance.value;
-    console.log(Distance)
-    let Technology = this.Technology.value;
+    // Grab the data we need from state
+    let zipcode = this.state.zipcode;
+    let distance = this.state.distance;
+    let technology = this.state.technology;
 
-    this.setState({
-       Zipcode:Zipcode,
-       Distance: Distance,
-       Technology:Technology,
-    })
-
-    let self = this;
-    let newarr = []
-
-    axios.get(`/connect/${Zipcode}/${Distance}`)
-      .then((response) => {
-        return response.data
+    // call our function to get nearby users
+      // this function handles searching by technology
+    connect.getNearbyUsers(distance, zipcode, technology)
+      .then(users => {
+        this.setState({
+          users: users
+        })
+        return users
       })
-      .then(data => {
-        if (this.state.Technology) {
-          for (let i=0; i < data.length; i++) {
-            if (data[i].tech[0] === this.state.Technology) {
-              newarr.push(data[i]);
-            }
-          }
-          self.setState({
-            users: newarr
-          })
-        } else {
-          self.setState({
-            users: data
-          })
-        }
-
-        return data
-
-      })
-      .then(data1 => {
-        if (data1.length === 0) {
+      .then(users => {
+        // if there are no nearby users, alert the user with SOME SWEETNESS!!!!!
+        if (!users.length) {
           this.setState({
             sweetAlert: true
           })
         }
       })
-      .catch(err => {
-        console.log('I\'m Sorry, something went wrong', err.message)
-      })
+      .catch(err => { throw err })
+
+  }
+
+  handleDistance(e) {
+    let newDistance = e.target.value;
+
+    this.setState({
+      distance: newDistance
+    })
+  }
+
+  handleZip(e) {
+    let zip = e.target.value;
+
+    this.setState({
+      zipcode: zip
+    })
   }
 
   render() {
@@ -97,31 +86,35 @@ class ConnectContainer extends React.Component {
 
     return (
       <div>
-        <Validation.components.Form ref={c => { this.form = c }} onSubmit = {this.handleSubmit.bind(this)}>
-        <Validation.components.Input placeholder="ZIP" className="whitecolor" ref = {(value) => this.ZIP = value} validations={['required','length']}/>
-        <FormControl componentClass="select" placeholder="Distance" ref={(value) => this.Distance = value}>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-        </FormControl>
-        {/* <input placeholder= "Distance" className = "whitecolor" ref = {(value) => this.Distance = value}/> */}
-        <input placeholder = "Technology" className ="whitecolor" ref = {(input) => this.Technology = input}/>
-        <button type = "submit"> Search For Hunters </button>
+        <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)}>
+        <Grid>
+          <Row>
+            <Col sm={2}>
+              <Validation.components.Input className="form-text-input connect" placeholder="ZIP" value={this.state.zipcode} onChange={this.handleZip.bind(this)} validations={['required','length']}/>
+            </Col>
+            <Col sm={2}>
+              <input value={this.state.technology} placeholder="Technology" className="form-text-input connect" ref={(input) => this.Technology = input}/>
+            </Col>
+            <Col sm={2}>
+              <FormControl componentClass="select" onChange={this.handleDistance.bind(this)}>
+                <option value="5">5 Miles</option>
+                <option value="10">10 Miles</option>
+                <option value="20">20 Miles</option>
+                <option value="50">50 Miles</option>
+              </FormControl>
+            </Col>
+            <Col sm={6}>
+              <button className="search-btn btn btn-default" type="submit"> Search For Hunters </button>
+            </Col>
+          </Row>
+        </Grid>
+
         </Validation.components.Form>
-        {Techfilter }
+        {Techfilter}
       </div>
-
-
-      )
-
-
+    )
   }
-
 }
-
-
-
 
 
 module.exports = ConnectContainer;

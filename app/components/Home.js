@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
-import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Button, Grid, Row, Col, Well } from 'react-bootstrap';
 import HomeNav from './HomeNav';
 
 
@@ -45,10 +45,20 @@ class Home extends React.Component {
         <div>
           <HomeNav addJob={this.props.addJob} userId={this.props.userId} searchForJobs={this.props.searchForJobs}/>
         </div>
-        
-         <Link to="/connect">
-          <Button> Connectttt</Button>
-        </Link> 
+        {' '}
+        <Grid>
+          <Row>
+            <Col sm={1}></Col>
+            <Col className="connect-navigation" sm={10}>
+              <Link to="/connect">
+                <Well className="home-footer">
+                  <Button className="complete-profile-btn"> Connect with other Hunters </Button>
+                </Well>
+              </Link>
+            </Col>
+            <Col sm={1}></Col>
+          </Row>
+        </Grid>
       </div>
     )
   }
