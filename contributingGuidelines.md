@@ -2,43 +2,60 @@
 
 1. Clone down the master directly (do not fork):
 
-  -> git clone masterURL yourdirectory
+  ```
+  $ git clone masterURL yourdirectory
+  ```
 
 2. Create a new feature branch from master, If it's a new feature, name the branch "featureDescription". If it's a bug fix, name the branch "bugFixDescription".
 
-  -> git checkout -b featureDescription  OR  -> git checkout -b bugFixDescription
+  ```
+  $ git checkout -b featureDescription  OR  -> git checkout -b bugFixDescription
+  ```
 
 3. Repeat this cycle for every commit
 
   1. Make changes and stage them for a commit to your feature branch.
+
     ```
     $ git add -p
     ```
+
   2. Commit changes (see commit message guidelines below)
+
     ```
     $ git commit -m 'message'
     ```
+
   3. Ensure your remote master is up to date:
+
     ```
     $ git checkout master
     ```
+
     ```
     $ git pull
     ```
+
   4. Go back to your feature branch:
+
     ```
     $ git checkout branchname
     ```
+
   5. Sync up with latest master before pushing to remote feature branch:
+
     ```
     $ git pull --rebase origin master
     ```
+
   6. Fix any merge conflicts if necessary.
     * If you have more work to do, go back to 3.1. If you're finished move to 4.
 
 4. After testing your work and confirming this is ready to go into master, push changes to remote feature branch:
 
-  -> git push origin branchname
+  ```
+  $ git push origin branchname
+  ```
 
 5. Generate pull request on GitHub:
 
