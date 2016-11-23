@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 
 // settings for all environments
 const commonConfig = {
@@ -30,7 +29,7 @@ const devConfig = {
   devServer: {
     inline: true,
     historyApiFallback: true,
-    contentBase: './server/public'
+    contentBase: './server/public/'
   }
 };
 
