@@ -9,7 +9,7 @@ Object.assign(Validation.rules, {
       return value
     },
     hint: value => {
-      return <span className='form-error is-visible'>please Enter ZipCode</span>
+      return <span className='form-error is-visible'>Please enter your zipcode.</span>
     }
   },
 
@@ -18,7 +18,7 @@ Object.assign(Validation.rules, {
       return value.length == 5;
     },
     hint: value => {
-      return <span className=' whitecolor '>please Enter  5 digits ZipCode</span>
+      return <span className=' whitecolor '>Please enter a 5-digit zipcode.</span>
     }
   },
 
@@ -27,7 +27,7 @@ Object.assign(Validation.rules, {
       return isNumeric(value);
     },
     hint: value => {
-      return <span className='form-error is-visible'>please Enter only numbers</span>
+      return <span className='form-error is-visible'>Please enter only numbers.</span>
     }
   },
 
@@ -37,7 +37,7 @@ Object.assign(Validation.rules, {
       return validator.isEmail(value);
     },
     hint: value => {
-      return <span className='form-error is-visible'>{value} isnt an Email.</span>
+      return <span className='form-error is-visible'>{value} is not a valid email address.</span>
     }
   },
 
