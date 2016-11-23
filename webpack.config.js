@@ -4,8 +4,9 @@ const webpack = require('webpack');
 const commonConfig = {
   entry: './app/index.js',
   output: {
+    path: './server/public/',
+    publicPath: '/'
     filename: 'bundle.js',
-    path: './server/public/'
   },
 
   resolve: {
