@@ -77,7 +77,7 @@ class ConnectContainer extends React.Component {
       <Connectlist userdata={this.state.users}/>
     ) : (
       <SweetAlert
-        title="Sorry No Users Near by"
+        title="Sorry, No Users Nearby"
         show = {this.state.sweetAlert}
         text="Please Try Again"
         onConfirm={this.closeSweetAlert.bind(this)}
