@@ -37,6 +37,7 @@ class Dashboard extends React.Component {
         <Tab eventKey={1} title="Jobs I'm Interested In">
           <div className="job-list">
             <JobList
+              userId={this.props.userId}
               jobContent={this.state.jobContent}
               interested={this.state.interested}
               moveJob={this.props.moveJob}
@@ -47,6 +48,7 @@ class Dashboard extends React.Component {
         <Tab eventKey={2} title="Job Applications In Progress">
           <div className="job-list">
             <JobList
+              userId={this.props.userId}
               jobContent={this.state.jobContent}
               inProgress={this.state.inProgress}
               moveJob={this.props.moveJob}
@@ -57,6 +59,7 @@ class Dashboard extends React.Component {
         <Tab eventKey={3} title="Job Applications I've Completed">
           <div className="job-list">
             <JobList
+              userId={this.props.userId}
               jobContent={this.state.jobContent}
               complete={this.state.complete}
               moveJob={this.props.moveJob}
