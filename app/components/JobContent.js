@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, FormControl, FormGroup, ControlLabel, Grid, Col, Row, HelpBlock, Popover, OverlayTrigger } from 'react-bootstrap';
-import picker from '../picker';
+// import picker from '../../server/config/picker';
 
 class JobContent extends React.Component {
   constructor(props) {
@@ -39,6 +39,18 @@ class JobContent extends React.Component {
           <Button className="modal-btns">Save This Note</Button>
         </Form>
         <hr/>
+        {/*<OverlayTrigger
+          trigger={['hover', 'focus']}
+          placement="right"
+          overlay={pickerPop}
+        >
+          <Button  
+            className="open-picker"
+            onClick={() => Picker(this.props.userId)}
+          >
+            Select Google Docs to Associate With This Job
+          </Button>
+        </OverlayTrigger>*/}
       </div>
     )
   }
