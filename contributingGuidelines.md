@@ -2,49 +2,72 @@
 
 1. Clone down the master directly (do not fork):
 
-  -> git clone masterURL yourdirectory
+  ```
+  $ git clone masterURL yourdirectory
+  ```
 
 2. Create a new feature branch from master, If it's a new feature, name the branch "featureDescription". If it's a bug fix, name the branch "bugFixDescription".
 
-  -> git checkout -b featureDescription  OR  -> git checkout -b bugFixDescription
+  ```
+  $ git checkout -b featureDescription  OR  -> git checkout -b bugFixDescription
+  ```
 
-3. Make changes and stage them for a commit to your feature branch.
+3. Repeat this cycle for every commit
 
-  -> git add -p
+  1. Make changes and stage them for a commit to your feature branch.
 
-4. Commit changes (see commit message guidelines below)  
+    ```
+    $ git add -p
+    ```
 
-  -> git commit -m 'message'
+  2. Commit changes (see commit message guidelines below)
 
-5. Ensure your remote master is up to date:
+    ```
+    $ git commit -m 'message'
+    ```
 
-  -> git checkout master
-  -> git pull
+  3. Ensure your remote master is up to date:
 
-6. Go back to your feature branch:
+    ```
+    $ git checkout master
+    ```
 
-  -> git checkout branchname
+    ```
+    $ git pull
+    ```
 
-7. Sync up with latest master before pushing to remote feature branch:
+  4. Go back to your feature branch:
 
-  -> git pull --rebase origin master
+    ```
+    $ git checkout branchname
+    ```
 
-8. Fix any merge conflicts if necessary.
+  5. Sync up with latest master before pushing to remote feature branch:
 
-9. Push changes to remote feature branch:
+    ```
+    $ git pull --rebase origin master
+    ```
 
-  -> git push origin branchname
+  6. Fix any merge conflicts if necessary.
+    * If you have more work to do, go back to 3.1. If you're finished move to 4.
 
-10. Generate pull request on GitHub:
+4. After testing your work and confirming this is ready to go into master, push changes to remote feature branch:
+
+  ```
+  $ git push origin branchname
+  ```
+
+5. Generate pull request on GitHub:
 
   ensure base: master
+
   ensure compare: branchname
 
-11. Fix any issues highlighted by reviewer if necessary.
+6. Fix any issues highlighted by reviewer if necessary.
 
-12. When everything checks out, reviewer merges pull request to master.
+7. When everything checks out, reviewer merges pull request to master.
 
-13. When a pull request is merged and closed, delete branchname branch.
+8. When a pull request is merged and closed, delete branchname branch.
 
 
 
@@ -53,10 +76,10 @@
 ### Cut a namespaced feature branch from master
 
 Your branch should follow this naming convention:
-  - #[issue#]-bugFix/Description
-  - #[issue#]-feature/Description
-  - #[issue#]-doc/Description
-  - #[issue#]-refactor/Description
+  - [issue#]-bug/Description
+  - [issue#]-feat/Description
+  - [issue#]-doc/Description
+  - [issue#]-clean/Description
 
 These commands will help you do this:
 
