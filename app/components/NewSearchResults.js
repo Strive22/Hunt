@@ -9,14 +9,12 @@ class NewSearchResults extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      results: this.props.searchResults,
       spinner: true
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      results: nextProps.searchResults,
       spinner: false
     })
   }
@@ -27,7 +25,7 @@ class NewSearchResults extends React.Component {
       <Grid>
         <Row>
           <Col md={12}>
-            <Well>
+            <Well className="search-results-header">
               <h1>Look at all these jobs!!</h1>
             </Well>
           </Col>
@@ -35,7 +33,7 @@ class NewSearchResults extends React.Component {
         <Row>
           <Col md={12}>
             {/* {spinner} */}
-            <SearchResultsList jobs={this.state.results} addJob={this.props.addJob}/>
+            <SearchResultsList jobs={this.props.searchResults} addJob={this.props.addJob}/>
           </Col>
         </Row>
 

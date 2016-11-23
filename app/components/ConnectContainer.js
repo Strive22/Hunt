@@ -1,126 +1,121 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
-
-import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
-
-// import ConnectReducer from '../../reducers/ConnectReducer'; 
-import Connectlist from './ConnecterList';  
+import { Jumbotron, Button, Grid, Row, Col, FormControl, ControlLabel } from 'react-bootstrap';
+import Connectlist from './ConnecterList';
 import Validation from './Validation';
-import  {Component, PropTypes} from 'react'; 
-import SweetAlert from 'sweetalert-react'; 
-import axios from 'axios'; 
-
-
-
-
+import { Component, PropTypes } from 'react';
+import SweetAlert from 'sweetalert-react';
+import axios from 'axios';
+import connect from '../models/connectModel';
 
 class ConnectContainer extends React.Component {
+
   constructor(){
-    super(); 
-    this.state = { 
-      Zipcode :'', 
-      Distance: '', 
-      Technology : '', 
-      users :[], 
-      text : false   
+    super();
+    this.state = {
+      zipcode : '',
+      distance: '5',
+      technology: '',
+      users: [],
+      sweetAlert: false
     };
   }
-  
-componentDidMount () {
-      
- }
- 
-handlesubmit(event){ 
-  console.log("Hellooo U called", event.target);
-  event.preventDefault();  
- let Zipcode = this.ZIP.state.value;  
-  let Distance = this.Distance.value; 
-  let Technology = this.Technology.value; 
-   console.log("Zipcode", Zipcode);
-   console.log("Distance", Distance);
-   console.log("Technology", Technology);
-  this.setState({
-     Zipcode:Zipcode,
-     Distance: Distance,
-     Technology:Technology,
-     })
 
- let self = this; 
-  let newarr = []
+  closeSweetAlert() {
+    this.setState({
+      sweetAlert: false
+    })
+  }
 
- 
-  axios.get(`http://localhost:3000/connect/${Zipcode}/${Distance}`)
-      .then(response => {  
-        return response.data
-      })
-      .then(data => {
-        // self.setState({
-        //   users: data
-        // })
-        console.log("hellooo Dattaaa", data);
-          if(this.state.Technology){ 
-          for(let i=0; i < data.length; i++){ 
-             if(data[i].tech[0] === this.state.Technology){ 
-             newarr.push(data[i]); 
-           }
-           }   
-            self.setState({
-               users: newarr
-              })
-       
-             } 
-           else{
-          
-            self.setState({
-              users: data
-               })
-           }
-      return data
-      }).then(data1 => {
-      if(data1.length===0){
-       this.setState({
-          text: true
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Grab the data we need from state
+    let zipcode = this.state.zipcode;
+    let distance = this.state.distance;
+    let technology = this.state.technology;
+
+    // call our function to get nearby users
+      // this function handles searching by technology
+    connect.getNearbyUsers(distance, zipcode, technology)
+      .then(users => {
+        this.setState({
+          users: users
         })
-
-         }
+        return users
       })
-      .catch(err => {
-        console.log('dddd', err.message)
-      })  
+      .then(users => {
+        // if there are no nearby users, alert the user with SOME SWEETNESS!!!!!
+        if (!users.length) {
+          this.setState({
+            sweetAlert: true
+          })
+        }
+      })
+      .catch(err => { throw err })
+
   }
-  render() {  
-  let Techfilter  = (this.state.users.length) ? <Connectlist userdata={this.state.users}/> :<SweetAlert
-       title="Sorry No Users Near by"
-        show = {this.state.text}
+
+  handleDistance(e) {
+    let newDistance = e.target.value;
+
+    this.setState({
+      distance: newDistance
+    })
+  }
+
+  handleZip(e) {
+    let zip = e.target.value;
+
+    this.setState({
+      zipcode: zip
+    })
+  }
+
+  render() {
+    let Techfilter = (this.state.users.length) ? (
+      <Connectlist userdata={this.state.users}/>
+    ) : (
+      <SweetAlert
+        title="Sorry, No Users Nearby"
+        show = {this.state.sweetAlert}
         text="Please Try Again"
-         onConfirm={ () => this.setState({ 
-          text :false
-         })
-       }
-        />;
+        onConfirm={this.closeSweetAlert.bind(this)}
+      />
+    )
+
     return (
-       <div>
-     <Validation.components.Form ref={c => { this.form = c }} onSubmit = {this.handlesubmit.bind(this)}> 
-     <Validation.components.Input placeholder = "ZIP" className="whitecolor" ref = {(value) => this.ZIP = value} validations={['required','lenght']}/>
-     <input placeholder = "Distance" className = "whitecolor" ref = {(value) => this.Distance = value}/>
-     <input placeholder = "Technology" className ="whitecolor" ref = {(input) => this.Technology = input}/>
-     <button type = "submit"> Search For Hunters </button>
-      </Validation.components.Form> 
-      {Techfilter } 
-      
-     
-       </div>
+      <div>
+        <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)}>
+        <Grid>
+          <Row>
+            <Col sm={2}>
+              <Validation.components.Input className="form-text-input connect" placeholder="ZIP" value={this.state.zipcode} onChange={this.handleZip.bind(this)} validations={['required','length']}/>
+            </Col>
+            <Col sm={2}>
+              <input value={this.state.technology} placeholder="Technology" className="form-text-input connect" ref={(input) => this.Technology = input}/>
+            </Col>
+            <Col sm={2}>
+              <ControlLabel>Within</ControlLabel>
+              <FormControl componentClass="select" onChange={this.handleDistance.bind(this)}>
+                <option value="5">5 Miles</option>
+                <option value="10">10 Miles</option>
+                <option value="20">20 Miles</option>
+                <option value="50">50 Miles</option>
+              </FormControl>
+            </Col>
+            <Col sm={6}>
+              <button className="search-btn btn btn-default" type="submit"> Search For Hunters </button>
+            </Col>
+          </Row>
+        </Grid>
 
-
-      )
-      
-   
+        </Validation.components.Form>
+        {Techfilter}
+      </div>
+    )
   }
-
 }
-
-
-
 
 
 module.exports = ConnectContainer;

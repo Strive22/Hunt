@@ -5,10 +5,10 @@ class ConnecterList extends React.Component{
 
 
  render() {
- 	console.log("the ConnecterList")
+
 	return (
      <div>
- 
+
  {this.props.userdata.map(function (user,i) {
    return (
    <div key ={i}>
@@ -19,7 +19,7 @@ class ConnecterList extends React.Component{
         <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png"/>
       </div>
       <div className="card-stacked">
-      
+
         <div className="card-content">
         <p><i className="fa fa-user" aria-hidden="true">{user.name}</i></p>
          <p><i className="fa fa-envelope" aria-hidden="true">{user.email}</i></p>
@@ -31,18 +31,17 @@ class ConnecterList extends React.Component{
     </div>
   </div>
 
-  
-  
+
+
 
     </div>
 
    )
        })}
      </div>
-  
+
     )
 }
 }
 
 module.exports = ConnecterList;
-

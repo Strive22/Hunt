@@ -30,10 +30,9 @@ class SearchListItem extends React.Component {
       jobDesc = "No description provided.  See the full posting at the link below."
     }
     return (
-      <div>
-        <ListGroupItem>
-          <Grid>
-            <Row className="search-list-item">
+      <ListGroupItem className="job-list-item">
+        <Grid>
+            <Row>
               <Col md={6}>
                 <h3>{this.props.job.title}</h3>
                 <h4>{this.props.job.company}</h4>
@@ -56,12 +55,11 @@ class SearchListItem extends React.Component {
                 </ButtonToolbar>
               </Col>
             </Row>
-          </Grid>
-        </ListGroupItem>
+        </Grid>
 
-        <Modal 
-          show={this.state.showModal} 
-          bsSize="large" 
+        <Modal
+          show={this.state.showModal}
+          bsSize="large"
           onHide={this.closeModal.bind(this)}
           className="job-modal"
         >
@@ -82,7 +80,8 @@ class SearchListItem extends React.Component {
             </Button>
           </Modal.Body>
         </Modal>
-      </div>
+
+      </ListGroupItem>
     )
   }
 }
