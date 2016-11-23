@@ -27,38 +27,33 @@ class ConnectContainer extends React.Component {
     })
   }
 
- 
-  axios.get(`http://localhost:3000/connect/${zipcode}/${distance}`)
-    .then(response => {  
-      return response.data
-    })
-    .then(data => {
-      if (this.state.technology) { 
-        for (let i=0; i < data.length; i++) { 
-          if (data[i].tech[0] === this.state.technology) { 
-            newarr.push(data[i]); 
-          }
-        }   
-        self.setState({
-          users: newarr
-        })
-      } else {
-        self.setState({
-          users: data
-        })
-      }
-      return data;
-    })
-    .then(data1 => {
-      if (data1.length === 0) {
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Grab the data we need from state
+    let zipcode = this.state.zipcode;
+    let distance = this.state.distance;
+    let technology = this.state.technology;
+
+    // call our function to get nearby users
+      // this function handles searching by technology
+    connect.getNearbyUsers(distance, zipcode, technology)
+      .then(users => {
         this.setState({
-          text: true
+          users: users
         })
-      }
-    })
-    .catch(err => {
-      throw err;
-    })  
+        return users
+      })
+      .then(users => {
+        // if there are no nearby users, alert the user with SOME SWEETNESS!!!!!
+        if (!users.length) {
+          this.setState({
+            sweetAlert: true
+          })
+        }
+      })
+      .catch(err => { throw err })
+
   }
 
   handleDistance(e) {
