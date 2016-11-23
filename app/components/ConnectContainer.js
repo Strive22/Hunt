@@ -2,7 +2,6 @@ import React from 'react';
 import { browserHistory, Link} from 'react-router';
 
 import { Jumbotron, Button, Grid, Row, Col } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 // import ConnectReducer from '../../reducers/ConnectReducer'; 
 import Connectlist from './ConnecterList';  
