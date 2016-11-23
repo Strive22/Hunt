@@ -83,7 +83,6 @@ class JobListItem extends React.Component {
               </Modal.Body>
             </Modal>
           </ListGroupItem>
-        </div>
       )
 
     } else if (this.state.currentList == "inProgress") {
