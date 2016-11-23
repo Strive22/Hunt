@@ -79,7 +79,7 @@ class JobListItem extends React.Component {
                   </Button>
                 </ButtonToolbar>
                 <hr/>
-                <JobContent />
+                <JobContent userId={this.props.userId} />
               </Modal.Body>
             </Modal>
           </ListGroupItem>

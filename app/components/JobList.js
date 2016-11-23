@@ -11,6 +11,7 @@ const JobList = (props) => {
       return (
         <JobListItem
           key={job._id}
+          userId={props.userId}
           jobData={job}
           currentList="interested"
           jobContent={props.jobContent}
@@ -34,6 +35,7 @@ const JobList = (props) => {
       return (
         <JobListItem 
           key={job._id}
+          userId={props.userId}
           jobData={job}
           currentList="inProgress"
           jobContent={props.jobContent}
@@ -57,6 +59,7 @@ const JobList = (props) => {
       return (
         <JobListItem
           key={job._id}
+          userId={props.userId}
           jobData={job}
           currentList="complete"      
           jobContent={props.jobContent}

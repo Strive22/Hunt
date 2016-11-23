@@ -163,6 +163,7 @@ class App extends React.Component {
           return React.cloneElement(child, {
             //duh
             key: idx,
+            userId: this.state.currentUser._id,
             interested: this.state.currentUser.interested,
             inProgress: this.state.currentUser.inProgress,
             complete: this.state.currentUser.complete,
