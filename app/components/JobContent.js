@@ -20,7 +20,7 @@ class JobContent extends React.Component {
         <Form>
           <FormGroup className="modal-form" controlId="notes">
             <OverlayTrigger
-              trigger="hover"
+              trigger={["hover", "focus"]}
               placement="right"
               overlay={notesPop}
             >
