@@ -18,6 +18,7 @@ class JobListItem extends React.Component {
       api: props.jobData.api || null,
       jobLink: props.jobData.link,
       showModal: false,
+      //Passing values to Task
        Jobid : props.jobData._id,   
       userid : props.jobContent[0].user_id
     }
