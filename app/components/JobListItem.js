@@ -2,6 +2,8 @@ import React from 'react';
 import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 
 import JobContent from './JobContent';
+import Task from './Task';
+
 
 class JobListItem extends React.Component {
   constructor(props){
@@ -15,7 +17,10 @@ class JobListItem extends React.Component {
       jobDesc: props.jobData.description,
       api: props.jobData.api || null,
       jobLink: props.jobData.link,
-      showModal: false
+      showModal: false,
+      //Passing values to Task
+       Jobid : props.jobData._id,   
+      userid : props.jobContent[0].user_id
     }
   }
 
@@ -80,6 +85,7 @@ class JobListItem extends React.Component {
                 </ButtonToolbar>
                 <hr/>
                 <JobContent userId={this.props.userId} />
+                <Task  userid={this.state.userid} Jobid={this.state.Jobid}/>
               </Modal.Body>
             </Modal>
           </ListGroupItem>
