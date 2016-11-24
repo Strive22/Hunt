@@ -1,18 +1,13 @@
 const webpack = require('webpack');
-const path = require('path');
+// const path = require('path');
 
 // settings for all environments
 const commonConfig = {
-  entry: [
-    // 'webpack-dev-server/client?http://localhost:8080',
-    // 'webpack/hot/only-dev-server',
-    './app/index.js'
-  ],
-
+  entry: './app/index.js',
   output: {
-    path: path.resolve(__dirname, 'server/public'),
+    path: './server/public/',
     filename: 'bundle.js'
-  },
+},
 
   resolve: {
     extensions: ['.jsx', '.js', '']
@@ -23,7 +18,7 @@ const commonConfig = {
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel'
       }
     ]
   }
@@ -35,14 +30,8 @@ const devConfig = {
   devServer: {
     inline: true,
     historyApiFallback: true,
-    contentBase: 'server/public'
-    // proxy: {
-    //   '*': 'http://localhost:3000'
-    // }
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    contentBase: './server/public/'
+  }
 };
 
 // production settings
