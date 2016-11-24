@@ -8,15 +8,16 @@ class ConnecterList extends React.Component {
 	return (
      <div>
 
- {this.props.userdata.map(function (user,i) {
+ {this.props.userdata.map(function (user,i) { 
+  console.log("the value of user is ", user)
    return (
    <div key ={i}>
 
  <div className="col s12 m7">
     <div className="card horizontal">
       <div className="card-image">
-        <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png"/>
-      </div>
+     <img src={user.image} alt="http://simpleicon.com/wp-content/uploads/user-5.png"/>
+         </div>
       <div className="card-stacked">
 
         <div className="card-content">
