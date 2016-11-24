@@ -53,7 +53,7 @@ class Task extends React.Component{
 	render(){ 
 	 console.log("the items in theee", this.state.items);
 		return(
-        <div className="quote-container note yellow">
+        <div className="sticky">
         
           <div>
           <i class="pin"></i>
