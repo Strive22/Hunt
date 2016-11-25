@@ -11,8 +11,8 @@ const request = require('request');
 //github
 router.get('/gh/:searchterms/:location', (req, res) => {
   //search terms and location (if separate terms, e.g san+francisco) MUST be delimited by commas or a + sign
-  let searchTerms = req.params.searchterms;
-  let location = req.query.loc || 'san+francisco';
+  let searchTerms = req.params.searchterms; 
+  let location = req.params.location;
   let options = {
     url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=${location}`
   }
@@ -55,13 +55,13 @@ router.get('/gh/:searchterms/:location', (req, res) => {
 })
 
 //authentic jobs
-router.get('/aj/:searchterms', (req, res) => {
+router.get('/aj/:searchterms/:location', (req, res) => {
   //search terms must be delimited by a COMMA (NOT a plus sign)
   let searchTerms = req.params.searchterms;
   //location will be a query string
-  let location = req.query.loc;
+  let location = req.params.location;
   let options = {
-    url: `https://authenticjobs.com/api/?api_key=${process.env.AJ_KEY}&method=aj.jobs.search&format=json&location=austintxus&keywords=${searchTerms}`
+    url: `https://authenticjobs.com/api/?api_key=${process.env.AJ_KEY}&method=aj.jobs.search&format=json&location=${location}&keywords=${searchTerms}`
   }
 
   function getAuthenticJobs(err, response, body) {
@@ -106,10 +106,9 @@ router.get('/aj/:searchterms', (req, res) => {
 router.get('/in/:searchterms/:location', (req, res) => {
   //search terms must be delimited by a comma or a plus sign
   let searchTerms = req.params.searchterms; 
-  let location = req.params.location; 
-  console.log("hellooo Tulasi Location", location);
+
   //location must be city,state or a zipcode
-  // let location = req.query.loc || 'austin,texas';
+  let location = req.params.location;
   let options = {
     url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=${location}&v=2`
   }
