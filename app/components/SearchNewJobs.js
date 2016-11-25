@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, ButtonToolbar, FormGroup, HelpBlock, Button } from 'react-bootstrap';
+import { Form,FormControl, ButtonToolbar, FormGroup, HelpBlock, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 
@@ -9,7 +9,8 @@ class SearchNewJobs extends React.Component {
     super()
     this.state = {
       keywords: '',
-      providers: [],
+      providers: [], 
+      location:'',
       active: {
         gh: false,
         in: false,
@@ -18,11 +19,20 @@ class SearchNewJobs extends React.Component {
     };
   }
 
-  handleKeyword(event) {
+  handleKeyword(event) { 
+    console.log("the value of even is event",event);
     this.setState({
       keywords: event.target.value
     });
   };
+
+  handleLocation(event) { 
+    console.log("the value of even is event Location",event);
+    this.setState({
+      location: event.target.value
+    });
+  };
+
 
   handleProvider(event) {
     let newProvider = event.target.value;
@@ -56,17 +66,29 @@ class SearchNewJobs extends React.Component {
 
         <h2>Search<br/>for a Job</h2>
 
-        <form className="search-form">
-          <FormGroup
-            controlId="keywords"
-          >
+        <Form inline className="search-form">
+     
+          <FormGroup controlId="keywords">
             <FormControl
               className="form-text-input search"
               type="text"
               value={this.state.keywords}
               placeholder="Separate search terms with commas."
               onChange={this.handleKeyword.bind(this)}
-            />
+            /> 
+            </FormGroup>
+
+
+            <FormGroup controlId="Location">
+            <FormControl
+              className="form-text-input search"
+              type="text"
+              value={this.state.Location}
+              placeholder="Separate search terms with commas."
+              onChange={this.handleLocation.bind(this)}
+            /> 
+            </FormGroup>
+
 
               <HelpBlock className="help-block">Select a provider:</HelpBlock>
             <div className="search-btn-group">
@@ -94,8 +116,9 @@ class SearchNewJobs extends React.Component {
                 </Button>
               </Link>
             </div>
-          </FormGroup>
-        </form>
+       
+
+        </Form>
       </div>
     )
   }
