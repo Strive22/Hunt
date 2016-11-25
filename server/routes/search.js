@@ -9,7 +9,7 @@ const request = require('request');
 //PLEASE NOTE: Github and Indeed routes currently support the addition of a user-specified location, while Authentic Jobs does not (it's hard coded to Austin)
 
 //github
-router.get('/gh/:searchterms', (req, res) => {
+router.get('/gh/:searchterms/:location', (req, res) => {
   //search terms and location (if separate terms, e.g san+francisco) MUST be delimited by commas or a + sign
   let searchTerms = req.params.searchterms;
   let location = req.query.loc || 'san+francisco';
@@ -103,11 +103,13 @@ router.get('/aj/:searchterms', (req, res) => {
 })
 
 //indeed
-router.get('/in/:searchterms', (req, res) => {
+router.get('/in/:searchterms/:location', (req, res) => {
   //search terms must be delimited by a comma or a plus sign
-  let searchTerms = req.params.searchterms;
+  let searchTerms = req.params.searchterms; 
+  let location = req.params.location; 
+  console.log("hellooo Tulasi Location", location);
   //location must be city,state or a zipcode
-  let location = req.query.loc || 'austin,texas';
+  // let location = req.query.loc || 'austin,texas';
   let options = {
     url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=${location}&v=2`
   }

@@ -20,14 +20,14 @@ class SearchNewJobs extends React.Component {
   }
 
   handleKeyword(event) { 
-    console.log("the value of even is event",event);
+    console.log("the value of even is event keywords",event.target.value);
     this.setState({
       keywords: event.target.value
     });
   };
 
   handleLocation(event) { 
-    console.log("the value of even is event Location",event);
+    console.log("the value of even is event Location",event.target.value);
     this.setState({
       location: event.target.value
     });
@@ -107,7 +107,8 @@ class SearchNewJobs extends React.Component {
 
                   // add properties to that object with the stuff in state
                   details.keywords = this.state.keywords
-                  details.providers = this.state.providers
+                  details.providers = this.state.providers 
+                  details.location = this.state.location
 
                   // call that functions with the details object
                   this.props.search(details)
