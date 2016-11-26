@@ -13,6 +13,7 @@ exports.searchNewJobs = (searchDetails) => {
   //let keywords = searchDetails.keywords.split('').filter(letter => letter !== ' ').join('')
   let keywords = searchDetails.keywords;
   // Map the providers array into an array of Promises, and wrap them in Promise.all to wait for them to finish
+   
   return Promise.all(
     providers.map(provider =>
       axios.get(`/search/${provider}/${keywords}/${location}`)

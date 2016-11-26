@@ -93,7 +93,7 @@ class SearchNewJobs extends React.Component {
               className="form-text-input search"
               type="text"
               value={this.state.Location}
-              placeholder="Separate City and State with commas."
+              placeholder="Zip Code."
               onChange={this.handleLocation.bind(this)}
             /> 
             </FormGroup>

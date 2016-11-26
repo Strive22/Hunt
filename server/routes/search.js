@@ -132,16 +132,15 @@ router.get('/aj/:searchterms/:location', (req, res) => {
 })
 
 //indeed
-router.get('/in/:searchterms/:location', (req, res) => {
-  //search terms must be delimited by a comma or a plus sign
+router.get('/in/:searchterms/:location', (req, res) => { 
+  // console.log("helloooo u r in indeed");
+  // //search terms must be delimited by a comma or a plus sign 
+  console.log("request parameters in Indeed", req.params);
   let searchTerms = req.params.searchterms; 
+ let location = req.params.location;
 
-  //location must be city,state or a zipcode
-  let location = req.params.location; 
-  console.log("helloooo searchterms in indeed", searchterms); 
-  console.log("hello location in indeed", location);
   let options = {
-    url: `http://api.indeed.com/ads/apisearch?publisher=6889432854812726&format=json&q=Javadeveloper&l=Austin,Texas&v=2`
+    url: `http://api.indeed.com/ads/apisearch?publisher=6889432854812726&format=json&q=${searchTerms}&l=${location}&v=2`
   }
 
   function getIndeedJobs(err, response, body) {
