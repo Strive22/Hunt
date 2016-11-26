@@ -14,6 +14,7 @@ body {
   width: 90%;
   height: 20px;
   margin: auto;
+  padding-bottom: 2px;
 }
 
 /* App Component Styles */
@@ -122,12 +123,14 @@ h1 small {
 
 .search-btn-group {
   text-align: center;
+  padding-bottom: 4px;
 }
 
 .search-btn {
   background-color: #b99db8;
   border-color: #040404;
   color: #f8f8f8;
+  padding-bottom: 4px;
   /*text-shadow: 1px 1px 4px rgba(1,1,1,1);*/
 }
 
@@ -229,6 +232,9 @@ h1 small {
   box-shadow: 1px 1px 6px rgba(1,1,1,1);
   background-color: rgba(49, 49, 49, 0.71);
   margin-bottom: 5px;
+  text-align: center;
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 13px rgba(1,1,1,1);
 }
 
 .connect-navigation {

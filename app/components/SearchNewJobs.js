@@ -1,7 +1,6 @@
 import React from 'react';
-import { Form,FormControl, ButtonToolbar, FormGroup, HelpBlock, Button } from 'react-bootstrap';
+import { FormControl, ButtonToolbar, FormGroup, HelpBlock, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-import axios from 'axios';
 
 
 class SearchNewJobs extends React.Component {
@@ -10,8 +9,8 @@ class SearchNewJobs extends React.Component {
     super()
     this.state = {
       keywords: '',
-      providers: [], 
-      location:'',
+      providers: [],
+      location: '',
       active: {
         gh: false,
         in: false,
@@ -20,28 +19,17 @@ class SearchNewJobs extends React.Component {
     };
   }
 
-  handleKeyword(event) { 
-
-
-    console.log("the value of even is event keywords",event.target.value);
+  handleKeyword(event) {
     this.setState({
       keywords: event.target.value
     });
   };
 
-  handleLocation(event) { 
-    console.log("the value of even is event Location",event.target.value); 
-    let add = event.target.value;
-    axios.get(`/search/${add}`)
-    .then((res)=>
-     this.setState({
-      location: res.data
-    })
-
-      )
-    
+  handleLocation(event) {
+    this.setState({
+      location: event.target.value
+    });
   };
-
 
   handleProvider(event) {
     let newProvider = event.target.value;
@@ -75,39 +63,32 @@ class SearchNewJobs extends React.Component {
 
         <h2>Search<br/>for a Job</h2>
 
-        <Form inline className="search-form">
-     
-          <FormGroup controlId="keywords">
+        <form className="search-form">
+          <FormGroup
+            controlId="keywords"
+          >
             <FormControl
               className="form-text-input search"
               type="text"
               value={this.state.keywords}
               placeholder="Separate search terms with commas."
               onChange={this.handleKeyword.bind(this)}
-            /> 
-            </FormGroup>
-
-
-            <FormGroup controlId="Location">
+            /><br/>
             <FormControl
               className="form-text-input search"
               type="text"
-              value={this.state.Location}
-              placeholder="Zip Code."
+              value={this.state.location}
+              placeholder="Enter location in format: Austin,TX"
               onChange={this.handleLocation.bind(this)}
-            /> 
-            </FormGroup>
-
-
-              <HelpBlock className="help-block">Select a provider:</HelpBlock>
+            />
+            <br/>
             <div className="search-btn-group">
               <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
               {' '}
-              <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic</Button>
+              <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
               {' '}
               <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
             </div>
-            <br/>
             <div className="search-btn-enter">
               <Link to="/searchResults">
                 <Button type="submit" onClick={(e) => {
@@ -116,19 +97,18 @@ class SearchNewJobs extends React.Component {
 
                   // add properties to that object with the stuff in state
                   details.keywords = this.state.keywords
-                  details.providers = this.state.providers 
+                  details.providers = this.state.providers
                   details.location = this.state.location
 
-                  // call that functions with the details object
+                  // call that function with the details object
                   this.props.search(details)
                 }}>
                   Search
                 </Button>
               </Link>
             </div>
-       
-
-        </Form>
+          </FormGroup>
+        </form>
       </div>
     )
   }
