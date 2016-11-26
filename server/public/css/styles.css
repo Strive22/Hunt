@@ -156,14 +156,14 @@ h1 small {
   margin-top: 35px;
   border-color: #040404;
   color: #f8f8f8;
-  text-shadow: 1px 1px 4px rgba(1,1,1,1);
+  /*text-shadow: 1px 1px 4px rgba(1,1,1,1);*/
 }
 
 .job-list-item-btn {
   background-color: #b99db8;
   border-color: #040404;
   color: #f8f8f8;
-  text-shadow: 1px 1px 4px rgba(1,1,1,1);
+  /*text-shadow: 1px 1px 4px rgba(1,1,1,1);*/
 }
 
 .search-list-item-btns {
@@ -191,6 +191,35 @@ h1 small {
 /*.btn:focus, .btn.active:focus {
   outline: none;
 }*/
+
+/* Dashboard */
+
+.nav-tabs>li>a {
+  background-color: rgba(248, 248, 248, 0.69);
+}
+
+.nav-tabs>li.active>a:hover {
+    background-color: #f8f8f8;
+    color: #337ab7;    
+    cursor: default;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.nav-tabs>li.active>a {
+    background-color: #f8f8f8;
+    color: #337ab7; 
+}
+
+.dash-tab.nav-tabs {
+  background-color: #f8f8f8;
+}
+
+.dash-tab.nav-tabs:hover {
+  background-color: #23527c;
+  color: #f8f8f8;
+}
+
 
 /* Modals */
 
