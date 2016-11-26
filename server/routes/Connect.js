@@ -14,7 +14,7 @@ router.get('/:zipcode/:distance', (req, res) => {
   let distance = req.params.distance;
 
   let options = {
-    url: `https://www.zipcodeapi.com/rest/ziIVUJdcmcwd75mQj678WcCpZMBTyGU7YD3Smh5ItCWAHir1py9lKMLJymC62xe1/radius.json/${zip}/${distance}/mile`,
+    url: `https://www.zipcodeapi.com/rest/${process.env.ZIP_API}/radius.json/${zip}/${distance}/mile`,
     json: true
   };
 
