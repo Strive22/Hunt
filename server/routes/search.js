@@ -9,7 +9,7 @@ const request = require('request');
 router.get('/gh/:searchterms', (req, res) => {
   //search terms and location (if separate terms, e.g san+francisco) MUST be delimited by commas or a + sign
   let searchTerms = req.params.searchterms;
-  let location = req.query.loc || 'san+francisco';
+  let location = req.query.loc;
   let options = {
     url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=${location}`
   }
