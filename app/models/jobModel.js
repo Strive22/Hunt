@@ -9,10 +9,12 @@ exports.searchNewJobs = (searchDetails) => {
     // NOTE: who's got that regex to handle this stuff? :P
   let keywords = searchDetails.keywords.split('').filter(letter => letter !== ' ').join('')
 
+  let location = searchDetails.location.split('').filter(letter => letter !== ' ').join('')
+
   // Map the providers array into an array of Promises, and wrap them in Promise.all to wait for them to finish
   return Promise.all(
     providers.map(provider =>
-      axios.get(`/search/${provider}/${keywords}`)
+      axios.get(`/search/${provider}/${keywords}/?loc=${location}`)
     )
   ).then(res =>
     // and our .then reduces the nested arrays of response objects down into a flat array of job objects

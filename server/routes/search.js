@@ -3,16 +3,13 @@ const router = express.Router();
 const path = require('path');
 const request = require('request');
 
-// const model = require('./models/search_models.js')
-
 //search the API of the user's choice for jobs
-//PLEASE NOTE: Github and Indeed routes currently support the addition of a user-specified location, while Authentic Jobs does not (it's hard coded to Austin)
 
 //github
 router.get('/gh/:searchterms', (req, res) => {
   //search terms and location (if separate terms, e.g san+francisco) MUST be delimited by commas or a + sign
   let searchTerms = req.params.searchterms;
-  let location = req.query.loc || 'san+francisco';
+  let location = req.query.loc;
   let options = {
     url: `https://jobs.github.com/positions.json?description=${searchTerms}&location=${location}`
   }
@@ -59,9 +56,12 @@ router.get('/aj/:searchterms', (req, res) => {
   //search terms must be delimited by a COMMA (NOT a plus sign)
   let searchTerms = req.params.searchterms;
   //location will be a query string
-  let location = req.query.loc;
+  let location = req.query.loc.toLowerCase();
+  location = location.replace(/,/g , "");
+  location = location + "us";
+  console.log('aj location', location);
   let options = {
-    url: `https://authenticjobs.com/api/?api_key=${process.env.AJ_KEY}&method=aj.jobs.search&format=json&location=austintxus&keywords=${searchTerms}`
+    url: `https://authenticjobs.com/api/?api_key=${process.env.AJ_KEY}&method=aj.jobs.search&format=json&location=${location}&keywords=${searchTerms}`
   }
 
   function getAuthenticJobs(err, response, body) {
@@ -78,8 +78,6 @@ router.get('/aj/:searchterms', (req, res) => {
           desc = desc.replace(/<(?:.|)*?>/gm, '');
           desc = desc.replace(/\n/gm, '  ');
           desc = desc.replace('&amp;', '');
-          //NOTE: now substringing the description in App.js on the front end
-          // desc = desc.substr(0,200) + '...';
 
           return {
             api: "Authentic Jobs",
@@ -107,7 +105,7 @@ router.get('/in/:searchterms', (req, res) => {
   //search terms must be delimited by a comma or a plus sign
   let searchTerms = req.params.searchterms;
   //location must be city,state or a zipcode
-  let location = req.query.loc || 'austin,texas';
+  let location = req.query.loc;
   let options = {
     url: `http://api.indeed.com/ads/apisearch?publisher=${process.env.INDEED_KEY}&format=json&q=${searchTerms}&l=${location}&v=2`
   }
@@ -127,8 +125,6 @@ router.get('/in/:searchterms', (req, res) => {
           desc = desc.replace(/<(?:.|)*?>/gm, '');
           desc = desc.replace(/\n/gm, '  ');
           desc = desc.replace('&amp;', '');
-          //NOTE: now substringing the description in App.js on the front end
-          // desc = desc.substr(0,200) + '...';
 
           return {
             api: "Indeed",

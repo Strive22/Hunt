@@ -10,6 +10,7 @@ class SearchNewJobs extends React.Component {
     this.state = {
       keywords: '',
       providers: [],
+      location: '',
       active: {
         gh: false,
         in: false,
@@ -21,6 +22,12 @@ class SearchNewJobs extends React.Component {
   handleKeyword(event) {
     this.setState({
       keywords: event.target.value
+    });
+  };
+
+  handleLocation(event) {
+    this.setState({
+      location: event.target.value
     });
   };
 
@@ -66,17 +73,22 @@ class SearchNewJobs extends React.Component {
               value={this.state.keywords}
               placeholder="Separate search terms with commas."
               onChange={this.handleKeyword.bind(this)}
+            /><br/>
+            <FormControl
+              className="form-text-input search"
+              type="text"
+              value={this.state.location}
+              placeholder="Enter location in format: Austin,TX"
+              onChange={this.handleLocation.bind(this)}
             />
-
-              <HelpBlock className="help-block">Select a provider:</HelpBlock>
+            <br/>
             <div className="search-btn-group">
               <Button className="search-btn" active={ this.state.active.gh } value="gh" onClick={ this.handleProvider.bind(this) }>Github</Button>
               {' '}
-              <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic</Button>
+              <Button className="search-btn" active={ this.state.active.aj } value="aj" onClick={ this.handleProvider.bind(this) }>Authentic Jobs</Button>
               {' '}
               <Button className="search-btn" active={ this.state.active.in } value="in" onClick={ this.handleProvider.bind(this) }>Indeed</Button>
             </div>
-            <br/>
             <div className="search-btn-enter">
               <Link to="/searchResults">
                 <Button type="submit" onClick={(e) => {
@@ -86,8 +98,9 @@ class SearchNewJobs extends React.Component {
                   // add properties to that object with the stuff in state
                   details.keywords = this.state.keywords
                   details.providers = this.state.providers
+                  details.location = this.state.location
 
-                  // call that functions with the details object
+                  // call that function with the details object
                   this.props.search(details)
                 }}>
                   Search
