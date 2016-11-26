@@ -11,8 +11,8 @@ class EditProfile extends React.Component {
       email: props.currentUser.email,
       tech: props.currentUser.tech,
       prompt: 'Tech Skills (separate by commas)',
-      location: '',
-      otherHunters: false,
+      location: props.currentUser.location || '',
+      otherHunters: props.currentUser.otherHunters || false
 		}
 	}
 
@@ -69,14 +69,19 @@ class EditProfile extends React.Component {
     })
   }
 
-  getValidationState () {
-    const length = this.state.location.length;
-    const nump = isNaN(this.state.location);
-    if (!nump && length === 5) return 'success';
-    else if (nump || length!== 5) return 'error';
-  }
+  // getValidationState () {
+  //   const length = this.state.location.length;
+  //   const nump = isNaN(this.state.location);
+  //   if (!nump && length === 5) return 'success';
+  //   else if (nump || length!== 5) return 'error';
+  // }
 
 	render() {
+    let otherHuntersBox = this.state.otherHunters ? 
+      <Checkbox onChange={this.handleAllowChange.bind(this)} checked>Allow Other Hunters to Find Me?</Checkbox>
+      :
+      <Checkbox onChange={this.handleAllowChange.bind(this)}>Allow Other Hunters to Find Me?</Checkbox>
+
 		return (
     	<div className="editProfile">
 	      <Form>
@@ -85,6 +90,7 @@ class EditProfile extends React.Component {
             <ControlLabel>Name</ControlLabel>
             <FormControl
               type="text"
+              className="edit-profile-input"
               value={this.state.name}
               placeholder="Enter your name."
               onChange={this.handleNameChange.bind(this)}
@@ -95,6 +101,7 @@ class EditProfile extends React.Component {
             <ControlLabel>E-mail</ControlLabel>
             <FormControl
               type="text"
+              className="edit-profile-input"
               value={this.state.email}
               placeholder="Enter your email."
               onChange={this.handleEmailChange.bind(this)}
@@ -105,27 +112,28 @@ class EditProfile extends React.Component {
             <ControlLabel>{this.state.prompt}</ControlLabel>
             <FormControl
               type="text"
+              className="edit-profile-input"
               value={this.state.tech}
-              placeholder="List Your Tech Skills"
+              placeholder="List your tech skills."
               onChange={this.handleSkillsChange.bind(this)}
             />
           </FormGroup>
           <FormGroup 
             controlId="formBasicText"
-            validationState={this.getValidationState()}
           >
             <ControlLabel>Zipcode</ControlLabel>
             <FormControl
               type="text"
+              className="edit-profile-input"
               value={this.state.location}
-              placeholder="Find me!"
+              placeholder="Enter your zipcode, if you wish."
               onChange={this.handleZipcodeChange.bind(this)}
             />
           </FormGroup>
-          <Checkbox onChange={this.handleAllowChange.bind(this)}>Allow Other Hunters to Find Me</Checkbox>
-          <HelpBlock>If you check this box, other hunters in your area will be shown your name, email address, and tech skills.<br/>Connect with others in your area and get networking!</HelpBlock>
+          {otherHuntersBox}
+          <HelpBlock className='edit-profile-help'>If this box is checked and you enter your zipcode, other hunters in your area will be shown your name, email address, and tech skills in our Connect with Other Hunters page. Connect with others in your area and get networking!</HelpBlock>
           <Button 
-            bsStyle="success"
+            className='search-btn'
             onClick={() => this.props.submitProfile({
               name: this.state.name,
               email: this.state.email,

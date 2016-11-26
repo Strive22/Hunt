@@ -110,15 +110,29 @@ h1 small {
 .form-group {
   /*padding: 5px 5px 5px 0px;*/
 }
+
 .editProfile {
-  border-radius: 10px;
-  background-color:rgba(255, 255, 255, 0.79);
-  padding: 5% 7% 5% 7%;
-  width: 90%;
-  margin: auto;
+    border-radius: 10px;
+    background-color: rgba(49, 49, 49, 0.71);
+    padding: 5% 7% 5% 7%;
+    width: 90%;
+    margin: auto;
+    color: #f8f8f8;
 }
+
+.editProfile h1 {
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 13px rgba(1,1,1,1);
+  margin-bottom: 20px;
+}
+
+.edit-profile-input {
+  background-color: rgba (0,0,0,0);
+}
+
 .help-block {
-  text-align: center;
+  text-align: left;
+  color: rgba(248, 248, 248, 0.64);
 }
 
 .search-btn-group {
