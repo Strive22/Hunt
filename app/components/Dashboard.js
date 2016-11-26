@@ -34,7 +34,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <Tabs defaultActiveKey={this.state.key} onSelect={this.handleSelect} id="dashtabs">
-        <Tab eventKey={1} title="Jobs I'm Interested In">
+        <Tab eventKey={1} title="Jobs I'm Interested In" className="dash-tab">
           <div className="job-list">
             <JobList
               userId={this.props.userId}
@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
             />
           </div>
         </Tab>
-        <Tab eventKey={2} title="Job Applications In Progress">
+        <Tab eventKey={2} title="Job Applications In Progress" className="dash-tab">
           <div className="job-list">
             <JobList
               userId={this.props.userId}
@@ -56,7 +56,7 @@ class Dashboard extends React.Component {
             />
           </div>
         </Tab>
-        <Tab eventKey={3} title="Job Applications I've Completed">
+        <Tab eventKey={3} title="Job Applications I've Completed" className="dash-tab">
           <div className="job-list">
             <JobList
               userId={this.props.userId}
