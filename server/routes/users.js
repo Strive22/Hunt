@@ -191,34 +191,31 @@ router.route('/:userid/jobs/:jobid/:queue')
 
   // Adding notes to jobcontent
 router.post('/:userid/:jobid/:content', (req, res) => { 
-  console.log("it workkssss"); 
   let userid = req.params.userid; 
   let jobid  = req.params.jobid; 
   let content = req.params.content; 
-  console.log("the user_id", userid, "jobid", jobid, "content", content); 
-JobContent.findOneAndUpdate({ "user_id": userid, "job_id":jobid },{$push:{"notes":content}})
-.then(user =>{
-    console.log("hellooo responseee in ", user); 
-    res.send(user);
-  }).catch(err =>{
-    console.log("helloo errr", err);
-  })
-
-
- 
+  JobContent.findOneAndUpdate(
+    { "user_id": userid, "job_id": jobid },
+    { $push: { "notes": content } })
+    .then(user =>{
+      res.send(user);
+    })
+    .catch(err =>{
+      console.log("helloo errr", err);
+    })
 }) 
 
 // Getting all note values from the Jobcontents
 router.get('/:user/:job', (req, res) => {
-  console.log("hellooo u r in notes getttt",req.params.user, "job id", req.params.job)
   let userid = req.params.user; 
   let jobid = req.params.job;
- JobContent.findOne({"user_id": userid, "job_id":jobid}).then(notes =>{
-  console.log("the values from users are", notes); 
-  res.send(notes);
- }).catch(err =>{
-  console.log("helloo errrr", err);
- })
+  JobContent.findOne({"user_id": userid, "job_id":jobid})
+    .then(notes =>{
+      res.send(notes);
+    })
+    .catch(err =>{
+      console.log("helloo errrr", err);
+    })
 });
 
 //POST route for job content is not needed because new jobContent is created at the moment the job is saved (see job POST route).  All updates to job content should be PUT requests

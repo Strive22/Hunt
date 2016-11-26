@@ -2,7 +2,6 @@ import React from 'react';
 import { ListGroupItem, Modal, Grid, Row, Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 
 import JobContent from './JobContent';
-import Task from './Task';
 
 
 class JobListItem extends React.Component {
@@ -17,10 +16,7 @@ class JobListItem extends React.Component {
       jobDesc: props.jobData.description,
       api: props.jobData.api || null,
       jobLink: props.jobData.link,
-      showModal: false,
-      //Passing values to Task
-       Jobid : props.jobData._id,   
-      userid : props.jobContent[0].user_id
+      showModal: false
     }
   }
 
@@ -84,8 +80,10 @@ class JobListItem extends React.Component {
                   </Button>
                 </ButtonToolbar>
                 <hr/>
-                <JobContent userId={this.props.userId} />
-                <Task  userid={this.state.userid} Jobid={this.state.Jobid}/>
+                <JobContent 
+                  userId={this.props.userId}
+                  jobId={this.props.jobData._id}
+                />
               </Modal.Body>
             </Modal>
           </ListGroupItem>
@@ -128,13 +126,17 @@ class JobListItem extends React.Component {
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
               <hr/>
-              <JobContent />                
               <Button
                 onClick={() => this.props.moveJob(this.state.jobData, "complete")}
                 className="modal-btns"
               >
                 Move to Complete
               </Button>
+              <hr/>
+              <JobContent 
+                userId={this.props.userId}
+                jobId={this.props.jobData._id}
+              />                         
             </Modal.Body>
           </Modal>
         </ListGroupItem>
@@ -176,7 +178,10 @@ class JobListItem extends React.Component {
               <hr />
               <p><a href={this.state.jobLink}>{jobFrom}</a></p>
               <hr/>
-              <JobContent />
+              <JobContent 
+                userId={this.props.userId}
+                jobId={this.props.jobData._id}
+              />
             </Modal.Body>
           </Modal>
         </ListGroupItem>

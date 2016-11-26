@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button, Form, FormControl, FormGroup, ControlLabel, Grid, Col, Row, HelpBlock, Popover, OverlayTrigger } from 'react-bootstrap';
+import Notes from './Notes';
+
 // import picker from '../../server/config/picker';
 
 class JobContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      //Passing values to Notes
+      Jobid: props.jobId,   
+      userid: props.userId
     }
   }
 
@@ -23,8 +27,8 @@ class JobContent extends React.Component {
 
     return (
       <div>
-        <Form>
-          <FormGroup className="modal-form" controlId="notes">
+        {/*<Form>
+          <FormGroup className="modal-form" controlId="notes">*/}
             <OverlayTrigger
               trigger={["hover", "focus"]}
               placement="right"
@@ -34,10 +38,14 @@ class JobContent extends React.Component {
                   My Notes About This Job
               </ControlLabel>
             </OverlayTrigger>
-            <FormControl className="modal-notes" componentClass="textarea" placeholder="Your notes here" />
-          </FormGroup>
-          <Button className="modal-btns">Save This Note</Button>
-        </Form>
+            <Notes 
+              userid={this.state.userid} 
+              Jobid={this.state.Jobid}
+            />
+            {/*<FormControl className="modal-notes" componentClass="textarea" placeholder="Your notes here" />*/}
+          {/*</FormGroup>*/}
+          {/*<Button className="modal-btns">Save This Note</Button>*/}
+        {/*</Form>*/}
         <hr/>
         {/*<OverlayTrigger
           trigger={['hover', 'focus']}
