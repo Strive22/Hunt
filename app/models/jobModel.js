@@ -4,15 +4,14 @@ import querystring from 'querystring';
 exports.searchNewJobs = (searchDetails) => {
   // Pull the array of providers out of the details object 
 
-  console.log("the Tulasi!!!!!!!!!!", searchDetails);
 
-  let providers = searchDetails.providers; 
-  let location  = searchDetails.location;
+  let location = searchDetails.location;
+  let providers = searchDetails.providers
 
   // Grab the string of keywords from the details object and strip them of whitespace
     // NOTE: who's got that regex to handle this stuff? :P
-  let keywords = searchDetails.keywords.split('').filter(letter => letter !== ' ').join('')
-
+  //let keywords = searchDetails.keywords.split('').filter(letter => letter !== ' ').join('')
+  let keywords = searchDetails.keywords;
   // Map the providers array into an array of Promises, and wrap them in Promise.all to wait for them to finish
   return Promise.all(
     providers.map(provider =>
