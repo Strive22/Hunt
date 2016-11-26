@@ -1,5 +1,6 @@
 import React from 'react';  
 import axios from 'axios';  
+import { Button } from 'react-bootstrap';
 import notesModel from '../models/notesmodel';
 
 class Notes extends React.Component{ 
@@ -33,7 +34,8 @@ class Notes extends React.Component{
   	 		notesModel.getNotes(userid,jobid))
       .then(response => 
   	 	  this.setState({
-  		  notes: response.notes
+  		  notes: response.notes,
+        enterNotes: ""
   		}))
   	 	.catch(error => {
   	 		console.log("the error", error);
@@ -46,19 +48,23 @@ class Notes extends React.Component{
         <div>
         <i className="pin"></i>
           <form onSubmit= {this.addNote.bind(this)}>
-            <input placeholder="Enter a note." ref={(value) => this.enterNotes = value}/>
-            <button type="submit">Add Note</button>
+            <input className="sticky-note" placeholder="Enter a note." ref={(value) => this.enterNotes = value}/>
+            <Button className="sticky-button" type="submit">Add Note</Button>
           </form>
         </div>
-    			{this.state.notes.map((item, i) => {
-     			  return (
-              <div key={i}>
-               {item}
-              </div>
-     				)
-     		    })
-          }
+        <div>
+          <ul>
+            {this.state.notes.map((item, i) => {
+       			  return (
+                <li key={i}>
+                 {item}
+                 <br/>
+                </li>
+       				)
+            })}
+          </ul>
         </div>
+      </div>
     )
 	}
 	
