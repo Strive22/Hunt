@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, Link} from 'react-router';
-import { Jumbotron, Button, Grid, Row, Col, FormControl, ControlLabel } from 'react-bootstrap';
+import { Jumbotron, Well, Button, Grid, Row, Col, FormControl, ControlLabel } from 'react-bootstrap';
 import Connectlist from './ConnecterList';
 import Validation from './Validation';
 import { Component, PropTypes } from 'react';
@@ -10,7 +10,7 @@ import connect from '../models/connectModel';
 
 class ConnectContainer extends React.Component {
 
-  constructor(){
+  constructor() {
     super();
     this.state = {
       zipcode : '',
@@ -86,6 +86,9 @@ class ConnectContainer extends React.Component {
 
     return (
       <div>
+        <Well className="connect-results">
+          <h1>Find Hunters in Your Area</h1>
+          <br/>
         <Validation.components.Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)}>
         <Grid>
           <Row>
@@ -111,6 +114,8 @@ class ConnectContainer extends React.Component {
         </Grid>
 
         </Validation.components.Form>
+        </Well>
+        <br/>
         {Techfilter}
       </div>
     )

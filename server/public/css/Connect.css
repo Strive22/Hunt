@@ -1,31 +1,43 @@
+.connect-results {
+  border: solid 1px #555;
+  border-radius: 5px;
+  color: #f8f8f8;
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
+  background-color: rgba(49, 49, 49, 0.71);
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.connect-results h1 {
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 13px rgba(1,1,1,1);
+}
+
 .card {
-  width: 30%;
-  height: 30%;
-  border-radius: 100px;
-  border-color: red;
-  background-color: #FFF8DC;
+  width: 400px;
+  height: 150px;
+  background-color: rgba(49,49,49,0.81);
+  box-shadow: 1px 1px 6px rgba(1,1,1,1);
   float: left;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 10px;
+  margin: 10px;
+  color: #f8f8f8;
 }
 
-.col s12 m7{
-  background-color: #F5F5F5;
-}
-
-.whitecolor{
-  /*color: white;*/
-}
 .card-image {
   float: left;
-  width: 40%;
+  margin-right: 20px;
 }
 
-.right-content {
-  width: 60%;
-  float: left;
+.card-action {
+  padding-left: 70px;
 }
+
 .card-content {
   padding-left: 20px;
-  font-family: "Times New Roman"
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .form-error is-visible{

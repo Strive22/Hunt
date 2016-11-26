@@ -51,7 +51,7 @@ class Home extends React.Component {
             <Col className="connect-navigation" sm={12}>
               <Link to="/connect">
                 <Well className="home-footer">
-                  <Button className="complete-profile-btn"> Connect with other Hunters </Button>
+                  <Button className="complete-profile-btn"> Connect with Other Hunters </Button>
                 </Well>
               </Link>
             </Col>
