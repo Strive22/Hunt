@@ -71,7 +71,10 @@ class JobListItem extends React.Component {
                 <p>{jobDesc}</p>
                 <hr />
                 <ButtonToolbar>
-                  <Button href={this.state.jobLink}>{jobFrom}</Button>
+                  <Button 
+                    href={this.state.jobLink}
+                    target="_blank"
+                  >{jobFrom}</Button>
                   <Button
                     onClick={() => this.props.moveJob(this.state.jobData, "inProgress")}
                     className="modal-btns"
@@ -124,14 +127,18 @@ class JobListItem extends React.Component {
               <h4>Job Description:</h4>
               <p>{jobDesc}</p>
               <hr />
-              <p><a href={this.state.jobLink}>{jobFrom}</a></p>
-              <hr/>
-              <Button
-                onClick={() => this.props.moveJob(this.state.jobData, "complete")}
-                className="modal-btns"
-              >
-                Move to Complete
-              </Button>
+              <ButtonToolbar>
+                <Button 
+                  href={this.state.jobLink}
+                  target="_blank"
+                >{jobFrom}</Button>
+                <Button
+                  onClick={() => this.props.moveJob(this.state.jobData, "complete")}
+                  className="modal-btns"
+                >
+                  Move to Complete
+                </Button>
+              </ButtonToolbar>
               <hr/>
               <JobContent 
                 userId={this.props.userId}
@@ -176,8 +183,11 @@ class JobListItem extends React.Component {
               <h4>Job Description:</h4>
               <p>{jobDesc}</p>
               <hr />
-              <p><a href={this.state.jobLink}>{jobFrom}</a></p>
-              <hr/>
+              <Button 
+                href={this.state.jobLink}
+                target="_blank"
+              >{jobFrom}</Button>
+              <hr />
               <JobContent 
                 userId={this.props.userId}
                 jobId={this.props.jobData._id}
