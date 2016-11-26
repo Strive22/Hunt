@@ -71,13 +71,19 @@ class SearchListItem extends React.Component {
             <h4>Job Description:</h4>
             <p>{jobDesc}</p>
             <hr />
-            <p className="modal-see-posting"><a href={this.props.job.link}>See Posting on {this.props.job.api}</a></p>
-            <Button
-              onClick={() => this.props.addJob(this.props.job)}
-              className="modal-btns"
-            >
-              Add Job to Interested List
-            </Button>
+            <ButtonToolbar>
+              <Button 
+                className="modal-btns" 
+                href={this.props.job.link} 
+                target="_blank"
+              >See Posting on {this.props.job.api}</Button>
+              <Button
+                onClick={() => this.props.addJob(this.props.job)}
+                className="modal-btns"
+              >
+                Add Job to Interested List
+              </Button>
+            </ButtonToolbar>
           </Modal.Body>
         </Modal>
 
