@@ -360,3 +360,36 @@ h1 small {
   background-color: #f8f8f8;
   color: black;
 }
+
+/* Enter Job Form */
+
+.enter-job {
+    color: #f8f8f8;
+}
+
+.enter-job-form {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: rgb(85,85,85);
+}
+
+.enter-job-submit-btn {
+  background-color: #b99db8;
+  color: #f8f8f8;
+  text-align: center;
+  margin-left: 33%;
+}
+
+.enter-job-title {
+    background-color: rgb(85,85,85);
+}
+
+.enter-job-title h1 {
+    font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    text-shadow: 2px 2px 13px rgba(1,1,1,1);
+    font-size: 35px;
+    color: #f8f8f8;
+}
+
+.enter-job-modal-body {
+    background-color: rgb(85,85,85);  
+}
