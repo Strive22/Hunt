@@ -391,5 +391,12 @@ h1 small {
 }
 
 .enter-job-modal-body {
-    background-color: rgb(85,85,85);  
+    background-color: rgb(85,85,85);
+    color: #f8f8f8;  
 }
+
+.enter-job-modal {
+
+}
+
+
