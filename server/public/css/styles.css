@@ -110,6 +110,19 @@ h1 small {
 .form-group {
   /*padding: 5px 5px 5px 0px;*/
 }
+.EnterJobFormText{
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.EnterJobForm{
+  border-radius: 10px;
+    background-color: rgba(49, 49, 49, 0.71);
+    padding: 5% 7% 5% 7%;
+    width: 90%;
+    margin: auto;
+    color: #f8f8f8;
+
+}
 
 .editProfile {
     border-radius: 10px;

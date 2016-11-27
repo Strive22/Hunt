@@ -27,7 +27,9 @@ class EnterJob extends React.Component {
     this.close()
   }
 
+
   render() {
+
     return (
 
       <div className="selectbox dash">
@@ -39,15 +41,17 @@ class EnterJob extends React.Component {
         >
           Do it!
         </Button>
-
+       
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
-            <Modal.Title>Enter the job details.</Modal.Title>
+            <Modal.Title className="EnterJobFormText">Enter the job details.</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <EnterJobForm submitJob={this.submitJob.bind(this)}/>
           </Modal.Body>
-        </Modal>
+        </Modal>  
+     
+      
       </div>
     )
   }
