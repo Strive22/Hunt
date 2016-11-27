@@ -47,7 +47,7 @@ class EnterJobForm extends React.Component {
 
   render() {
     return (
-      <div className="EnterJobForm">
+      <div className="editProfile">
       <form className="enter-job">
         <FormGroup controlId='jobTitle'>
           <ControlLabel className="job-label">Job Title:</ControlLabel>

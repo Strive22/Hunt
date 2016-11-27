@@ -41,15 +41,16 @@ class EnterJob extends React.Component {
         >
           Do it!
         </Button>
-       
-        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-          <Modal.Header closeButton>
+      
+        <Modal show={this.state.showModal} onHide={this.close.bind(this)} className="EnterJobModal">
+          <Modal.Header closeButton style={{background: '#3b3935'}}>
             <Modal.Title className="EnterJobFormText">Enter the job details.</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body style={{background: '#3b3935'}}>
             <EnterJobForm submitJob={this.submitJob.bind(this)}/>
           </Modal.Body>
         </Modal>  
+    
      
       
       </div>
