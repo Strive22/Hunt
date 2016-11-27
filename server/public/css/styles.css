@@ -110,6 +110,29 @@ h1 small {
 .form-group {
   /*padding: 5px 5px 5px 0px;*/
 }
+.EnterJobFormText{
+  font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 
+  margin-bottom: 20px; 
+  color:white;
+}
+
+.EnterJobForm{
+  border-radius: 10px;
+   /* background-color: rgba(49, 49, 49, 0.71);*/
+    padding: 5% 7% 5% 7%;
+    width: 70%;
+    margin: auto;
+     background-color: #f8f8f8;
+
+}
+.EnterJobModal{
+
+    padding: 10% 10% 10% 10%; 
+    width:  :70%;
+    
+
+}
 
 .editProfile {
     border-radius: 10px;
@@ -336,4 +359,37 @@ h1 small {
 .sticky-button {
   background-color: #f8f8f8;
   color: black;
+}
+
+/* Enter Job Form */
+
+.enter-job {
+    color: #f8f8f8;
+}
+
+.enter-job-form {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: rgb(85,85,85);
+}
+
+.enter-job-submit-btn {
+  background-color: #b99db8;
+  color: #f8f8f8;
+  text-align: center;
+  margin-left: 33%;
+}
+
+.enter-job-title {
+    background-color: rgb(85,85,85);
+}
+
+.enter-job-title h1 {
+    font-family: "Pacifico", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    text-shadow: 2px 2px 13px rgba(1,1,1,1);
+    font-size: 35px;
+    color: #f8f8f8;
+}
+
+.enter-job-modal-body {
+    background-color: rgb(85,85,85);  
 }

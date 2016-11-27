@@ -47,7 +47,7 @@ class EnterJobForm extends React.Component {
 
   render() {
     return (
-      <form className="enter-job">
+      <form className="enter-job-form">
         <FormGroup controlId='jobTitle'>
           <ControlLabel className="job-label">Job Title:</ControlLabel>
           <FormControl
@@ -99,7 +99,7 @@ class EnterJobForm extends React.Component {
         </FormGroup>
         <Button 
           onClick={() => this.props.submitJob(this.state)}
-          className="modal-submit-btn"
+          className="enter-job-submit-btn"
         >
           Save Job to Interested List
         </Button>
