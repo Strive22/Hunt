@@ -56,6 +56,12 @@ class ConnectContainer extends React.Component {
 
   }
 
+  handleTech(e) {
+    this.setState({
+      technology: e.target.value
+    })
+  }
+
   handleDistance(e) {
     let newDistance = e.target.value;
 
@@ -96,7 +102,12 @@ class ConnectContainer extends React.Component {
               <Validation.components.Input className="form-text-input connect" placeholder="ZIP" value={this.state.zipcode} onChange={this.handleZip.bind(this)} validations={['required','length']}/>
             </Col>
             <Col sm={2}>
-              <input value={this.state.technology} placeholder="Technology" className="form-text-input connect" ref={(input) => this.Technology = input}/>
+              <input
+                value={this.state.technology}
+                placeholder="Technology"
+                className="form-text-input connect"
+                onChange={this.handleTech.bind(this)}
+              />
             </Col>
             <Col sm={2}>
               <ControlLabel>Within</ControlLabel>
