@@ -8,7 +8,7 @@
   "description": "Making the job search easier",
   "main": "index.js",
   "scripts": {
-    "test": "./test/run.sh",
+    "test": "jest",
     "start": "node server/app.js",
     "start:dev": "nodemon server/app.js",
     "build": "webpack",
@@ -41,13 +41,16 @@
   "homepage": "https://github.com/Strive22/Hunt#readme",
   "devDependencies": {
     "babel-core": "^6.17.0",
+    "babel-jest": "^18.0.0",
     "babel-loader": "^6.2.5",
-    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "eslint": "^3.10.2",
+    "jest": "^18.0.0",
     "mocha": "^3.1.2",
     "react-hot-loader": "^3.0.0-beta.6",
+    "react-test-renderer": "^15.4.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },
@@ -65,7 +68,7 @@
     "passport-google-oauth20": "^1.0.0",
     "passport-oauth2-refresh": "^1.0.0",
     "querystring": "^0.2.0",
-    "react": "^15.3.2",
+    "react": "^15.4.1",
     "react-bootstrap": "^0.30.6",
     "react-bootstrap-form": "^0.1.4-beta6",
     "react-dom": "^15.3.2",
@@ -76,5 +79,13 @@
     "request": "^2.78.0",
     "sweetalert-react": "^0.4.5",
     "xml2js": "^0.4.17"
+  },
+  "jest": {
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif)$": "./__mocks__/fileMock.js",
+      "\\.(css|less)$": "./__mocks__/styleMock.js"
+    }
   }
 }
